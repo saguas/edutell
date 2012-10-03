@@ -1,0 +1,10 @@
+/* CSS declarations go here */
+
+ul{
+	width: 250px;
+	
+}
+
+.selected {
+	background-color: orange;
+}
