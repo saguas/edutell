@@ -78,6 +78,7 @@ if (Meteor.is_client) {
  ////////// Tracking vários menus URL //////////
  //a cada novo menu guarda-se um registo no history do browser
 
+/*
 	var MenuRouter = Backbone.Router.extend({
 	  routes: {
 	  	"": "main",//página inicial
@@ -112,6 +113,7 @@ if (Meteor.is_client) {
   	Backbone.history.start({pushState: true});
   	console.log("backbone start");
  });
+ */
  
 }
 
