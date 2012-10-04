@@ -70,7 +70,7 @@ if (Meteor.isClient) {
 	   	
 	   		console.log("user login? ",result);
 	   		
-	   		if(!error){//error é null se o utilizador foi creado
+	   		if(!error){//error é null se o utilizador foi criado
 	    		console.log("user login!!!", Meteor.user());
 	    		login = true;
 	    		console.log("login ",login);
