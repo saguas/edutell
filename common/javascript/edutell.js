@@ -29,7 +29,7 @@ if (Meteor.is_client) {
 	   		
 	   		if(!error){//error é null se o utilizador foi creado
 	    		console.log("user login!!!", Meteor.user());
-	    		Meteor.logout();
+	    		//Meteor.logout();
 	    		/*Meteor.changePassword("8950388", "saguas8950388", function(error){
 	    			console.log("change password ",error);
 	    		});*/
