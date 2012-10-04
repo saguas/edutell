@@ -12,7 +12,7 @@
 	    "*path": "nopath" 
 	  },
 	  main:function(){
-	  	console.log("main");
+	  	console.log("main ",login);
 	  	arrPag = [{pag:"home"}];
 	  	Session.set("pages",arrPag);
 	  },

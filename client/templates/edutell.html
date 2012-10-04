@@ -1,19 +1,11 @@
 <head>
-  <title>tour</title>
+  <title>EDUTELL</title>
 </head>
 
 <body>
 	<h1>My favorite colors</h1>
 
-  {{#unless login}}{{> color_list}}{{/unless}}
-  
-  {{#if login}}
-  	
-  	{{#each currentPage}}
-  		{{{welcome}}}
-  	{{/each}}
-  
-  {{/if}}
+  {{#if login}}{{> color_list}}{{/if}}
   
 </body>
 

@@ -1,6 +1,6 @@
 Colors = new Meteor.Collection("colors");
 
-if (Meteor.is_client) {
+if (Meteor.isClient) {
   
   var extra = {name: "Luis Fernandes", dt:"30-12-1968"};
   var options = {username: "saguas", email: "luisfmfernandes@gmail.com", password: "8950388" };
@@ -11,9 +11,11 @@ if (Meteor.is_client) {
   //var login = false;
   Session.set("login",false);
   
+  var login = false;
+  
   Handlebars.registerHelper('login', function() {//regista funções a serem chamadas mas que não se encontram dentro de nenhum template. Pode tb ser utilizado para registar funções dentro de templates (só que para estas há outras formas... ver em baixo). 
     
-   	if (Session.get("login")){
+   	if (!Session.get("login")){
 	    /*Meteor.createUser(options, extra, function(error){//esta função cria utilizadores
 	    	
 	    	if(!error)//error é null se o utilizador foi creado
@@ -23,25 +25,14 @@ if (Meteor.is_client) {
 	    	
 	    });*/
 	   
+	   console.log("registerHelper login");
+	   console.log("Meteor.loginWithPassword ", Meteor.loginWithPassword("saguas", "saguas8950388", flogin));
 	   
-	   Meteor.loginWithPassword("saguas", "saguas8950388", function(error){
-	   	
-	   		
-	   		if(!error){//error é null se o utilizador foi creado
-	    		console.log("user login!!!", Meteor.user());
-	    		Meteor.logout();
-	    		/*Meteor.changePassword("8950388", "saguas8950388", function(error){
-	    			console.log("change password ",error);
-	    		});*/
-	    	}
-	    	else
-	    		console.log("utilizador não fez login com sucesso!",error);
-	   	
-	   });
-	   
-	   
+	   //Session.set("login",login);
     }
     
+    console.log("registerHelper login out");
+    //return login;
     return Session.get("login");
    // return login;
   });
@@ -67,60 +58,47 @@ if (Meteor.is_client) {
  Template.color_info.events = {
  	'click' : function(){
  		Session.set('session_color', this._id);
- 		Session.set("login",true);
+ 		//Session.set("login",true);
  		//arrPag = [{pag:"home"},{pag:"off"}];
  		//Session.set("pages",arrPag);
- 		Router.changePage("tpc");
+ 		//Router.changePage("tpc");
  	}
  };
  
- 
- ////////// Tracking vários menus URL //////////
- //a cada novo menu guarda-se um registo no history do browser
-
-/*
-	var MenuRouter = Backbone.Router.extend({
-	  routes: {
-	  	"": "main",//página inicial
-	    "tpc": "tpc",
-	    "tpc/:turma_id": "tpc",
-	    "tpc/:turma_id/:aluno_id": "tpc",
-	    "*path": "nopath" 
-	  },
-	  main:function(){
-	  	console.log("main");
-	  	arrPag = [{pag:"home"}];
-	  	Session.set("pages",arrPag);
-	  },
-	  tpc: function (turma_id,aluno_id) {
-	    Session.set("page_id", "tpc");
-	    arrPag = [{pag:"home"},{pag:"off"}];
- 		Session.set("pages",arrPag);
-	    
-	  },
-	  nopath: function(path){
-	  	console.log("nopath ",path);
-	  },
-	  changePage: function (menu_id) {
-	  	//console.log("changePage ", menu_id);
-	    this.navigate(menu_id, true);
-	  }
-	});
-	
-	Router = new MenuRouter;
- 
- Meteor.startup(function () {
-  	Backbone.history.start({pushState: true});
-  	console.log("backbone start");
- });
- */
+ flogin = function(error,result){
+	   	
+	   	
+	   		console.log("user login? ",result);
+	   		
+	   		if(!error){//error é null se o utilizador foi creado
+	    		console.log("user login!!!", Meteor.user());
+	    		login = true;
+	    		console.log("login ",login);
+	    		Session.set("login",true);
+	    		/*Meteor.logout(function(error){
+	    			console.log("error logout? ",error);
+	    		});*/
+	    		/*Meteor.changePassword("8950388", "saguas8950388", function(error){
+	    			console.log("change password ",error);
+	    		});*/
+	    	}
+	    	
+	    	else
+	    		console.log("utilizador não fez login com sucesso!",error);
+	    	
+  }
+	   	
  
 }
 
-if (Meteor.is_server) {
+if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
-    
+     Colors.allow({
+     	insert:function(userId, doc){
+     		console.log("insert userid ",userId);
+     		return false;
+     }});
      Meteor.accounts.validateNewUser(function(proposedUser){//esta função é chamada de de Meteor.accounts.onCreateUser
     	
     	console.log("o utilizador proposto é: ",proposedUser);
