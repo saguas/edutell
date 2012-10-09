@@ -3,13 +3,13 @@
 </head>
 
 <body>
-	<h1>My favorite colors</h1>
-
-  {{#if login}}{{> color_list}}{{/if}}
+	
+ 	{{>layout}}
   
 </body>
 
 <template name="color_list">
+	
   {{#each colors}}
   	<ul>
   		{{> color_info}}
@@ -35,3 +35,4 @@
   <h1>This is the off example!</h1>
   <a href="/welcome" class="welcome">Click here to go to your personalized welcome off page</a>
 </template>
+

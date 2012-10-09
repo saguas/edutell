@@ -1,9 +1,9 @@
-Colors = new Meteor.Collection("colors");
-/*
-if (Meteor.isClient) {
-  
-  var extra = {name: "Luis Fernandes", dt:"30-12-1968"};
-  var options = {username: "saguas", email: "luisfmfernandes@gmail.com", password: "8950388" };
+Meteor.startup(function () {
+	
+});
+
+var extra = {name: "Luis Fernandes", dt:"30-12-1968"};
+var options = {username: "saguas", email: "luisfmfernandes@gmail.com", password: "8950388" };
   
   //var arrPag = [{pag:"home"}];
   //var arrPag = [[{pag:"color_list"}]];
@@ -11,7 +11,7 @@ if (Meteor.isClient) {
   //Session.set("pages",arrPag);
 
   
-  var login = true;
+//var login = true;
 
 //----- HANDLEBARS --------
   
@@ -65,68 +65,32 @@ if (Meteor.isClient) {
  		//arrPag = [{pag:"home"},{pag:"off"}];
  		//Session.set("pages",arrPag);
  		//Router.changePage("tpc");
- 	}
- };
-*/
- 
+		}
+}
+
 //----- FUNCTIONS HELP --------
-/*
 var flogin = function(error,result){
 	   	
 	   	
-	   		//console.log("user login? ",result);
-	   		
-	   		if(!error){//error é null se o utilizador foi criado
-	    		console.log("user login!!!", Meteor.user());
-	    		login = false;
-	    		console.log("login ",login);
-	    		Session.set("login",false);
-	    		Router.changePage("login");
-	    	*/
-	    		/*Meteor.logout(function(error){
-	    			console.log("error logout? ",error);
-	    		});*/
-	    		/*Meteor.changePassword("8950388", "saguas8950388", function(error){
-	    			console.log("change password ",error);
-	    		});*/
-	    	//}
+	//console.log("user login? ",result);
+	
+	if(!error){//error é null se o utilizador foi criado
+		console.log("user login!!!", Meteor.user());
+		//login = false;
+		//console.log("login ",login);
+		//Session.set("login",false);
+		Router.changePage("login");
+		/*Meteor.logout(function(error){
+			console.log("error logout? ",error);
+		});*/
+		/*Meteor.changePassword("8950388", "saguas8950388", function(error){
+			console.log("change password ",error);
+		});*/
+	}
+	
+	else
+		console.log("utilizador não fez login com sucesso!",error);
 	    	
-	    	//else
-	    		//console.log("utilizador não fez login com sucesso!",error);
-	    	
-  //}
-		
- 
-//}
+}
 
-/*
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-     Colors.allow({
-     	insert:function(userId, doc){
-     		console.log("insert userid ",userId);
-     		return false;
-     }});
-     Accounts.validateNewUser(function(proposedUser){//esta função é chamada de de Meteor.accounts.onCreateUser
-    	
-    	console.log("o utilizador proposto é: ",proposedUser);
-    	
-    	return true;
-    	
-    });
-    
-    Accounts.onCreateUser(function(options, extra, user){ //esta função é chamada antes de Meteor.accounts.validateNewUser 
-    	console.log("onCreateUser user:",user);
-    	
-    	return _.extend(user,extra);//é necessário copiar o extra para user. Se não for feito os campos de extra não entram em user (no caso desta função existir).
-    	
-    	//return user;	
-    });
-   
-    
-  });
-
-  
-  
-}*/
+ 	

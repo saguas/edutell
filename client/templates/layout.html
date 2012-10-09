@@ -1,0 +1,46 @@
+<template name="layout">
+	
+<div class="container-fluid">
+	<div class="row-fluid">
+		<!--Top-->
+		
+		{{{top}}}
+		
+	</div>
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+      {{{sidebar}}}
+    </div>
+    <div class="span10">
+      <!--Body content-->
+		{{#each currentPage}}
+  			{{{welcomes}}}
+  		{{/each}}
+    </div>
+  </div>
+  <div class="row-fluid">
+  		<!--Bottom-->
+  		
+  		{{{bottom}}}
+  		
+  </div>
+</div>
+</template>
+
+
+<template name="toplogin">
+	<div class="span12 offset0">
+		<h1 class="well" style="text-align: center ;">LOGIN</h1>
+	</div>
+</template>
+
+<template name="bottomlogin">
+	<div class="span12 offset0">
+	</div>
+</template>
+
+<template name="sidebar">
+	<div class="span12 offset0">
+	</div>
+</template>
