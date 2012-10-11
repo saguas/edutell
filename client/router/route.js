@@ -1,6 +1,6 @@
 var idx;
-var arrPag = [[{pag:"color_list"}],[{pag:"form_login"}],[{pag:"home"},{pag:"off"}]];
-var arrTop = ["","toplogin"];
+var arrPag = [[{pag:"color_list"}],[{pag:"form_login"}],[{pag:"form_registo"}],[{pag:"home"},{pag:"off"}]];
+var arrTop = ["","toplogin","topregisto"];
 var arrBottom = ["","bottomlogin"];
 var arrSidebar = ["","sidebar"];
 
@@ -16,8 +16,14 @@ var IDXBOTTOMLOGIN = 1;
 var IDXSIDEBARLOGIN = 1;
 var IDXLOGIN = 1;
 
+//----- LOGIN --------
+var IDXREGISTO = 2;
+var IDXTOPREGISTO = 2;
+var IDXBOTTOMREGISTO = 2;
+var IDXSIDEBARREGISTO = 2;
 //----- SESSION DEFAULTS --------
-Session.set("pages",IDXPAGEDEFAULT);
+//Session.set("pages",IDXPAGEDEFAULT);
+Session.set("pages",IDXLOGIN);
 Session.set("top",IDXTOPDEFAULT);
 Session.set("bottom",IDXBOTTOMDEFAULT);
 Session.set("sidebar",IDXSIDEBARDEFAULT);
@@ -40,13 +46,16 @@ var MenuRouter = Backbone.Router.extend({
 	    "tpc/:turma_id": "tpc",
 	    "tpc/:turma_id/:aluno_id": "tpc",
 	    "login": "login",
+	    "registo": "registo",
 	    "*path": "nopath" 
 	  },
 	  main:function(){
 	  	//console.log("main ",login);
 	  	//arrPag = [{pag:"color_list"}];
-	  	Session.set("pages",IDXPAGEDEFAULT);
-	  	Session.set("top",IDXTOPDEFAULT);
+	  	//Session.set("pages",IDXPAGEDEFAULT);
+	  	Session.set("pages",IDXLOGIN);
+	  	//Session.set("top",IDXTOPDEFAULT);
+	  	Session.set("top",IDXTOPLOGIN);
   		Session.set("bottom",IDXBOTTOMDEFAULT);
   		Session.set("sidebar",IDXSIDEBARDEFAULT);
 	  },
@@ -58,6 +67,12 @@ var MenuRouter = Backbone.Router.extend({
  		//Session.set("pages",arrPag);
  		Session.set("pages",IDXLOGIN);
  		Session.set("top",IDXTOPLOGIN);
+  		Session.set("bottom",IDXBOTTOMDEFAULT);
+  		Session.set("sidebar",IDXSIDEBARDEFAULT);
+	  },
+	  registo: function(){
+	  	Session.set("pages",IDXREGISTO);
+	  	Session.set("top",IDXTOPREGISTO);
   		Session.set("bottom",IDXBOTTOMDEFAULT);
   		Session.set("sidebar",IDXSIDEBARDEFAULT);
 	  },

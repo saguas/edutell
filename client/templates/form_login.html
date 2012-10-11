@@ -1,9 +1,9 @@
 <template name="form_login">
 	<div class="row-fluid">
-		<div class="span4 offset3">
-			<form class="form-horizontal well">
+		<div class="span4 offset2">
+			<form class="form-horizontal well well-large" style="min-width: 500px">
 				  <div class="control-group">
-				    <label class="control-label span2 offset1" for="inputEmail"><span class="label">Email</span></label>
+				    <label class="control-label" for="inputEmail"><span class="label">Email</span></label>
 				    <div class="controls">
 				      <div class="input-prepend">
       					<span class="add-on"><i class="icon-envelope"></i></span>
@@ -12,9 +12,12 @@
 				    </div>
 				  </div>
 				  <div class="control-group">
-				    <label class="control-label span2 offset1" for="inputPassword"><span class="label">Password</span></label>
+				    <label class="control-label" for="inputPassword"><span class="label">Password</span></label>
 				    <div class="controls">
-				      <input class="span6" type="password" id="inputPassword" placeholder="Password">
+				    	 <div class="input-prepend">
+      						<span class="add-on"><i class="icon-lock"></i></span>
+				      		<input class="span12" type="password" id="inputPassword" placeholder="Password">
+				      	</div>
 				    </div>
 				  </div>
 				  <div class="control-group">
@@ -25,7 +28,35 @@
 				      <button type="submit" class="btn btn-primary"><i class="icon-user icon-white"></i> entrar</button>
 				    </div>
 				  </div>
+				 <div class="span0 offset0">
+					<a href="#" rel="tooltip" id="registar" title="Se não está registado ainda, por favor efetue o seu registo."><small>Criar uma conta</small></a>
+				</div>
+				{{#if login_error}}
+					{{>login_error}}
+				{{/if}}
 			</form>
+			
 		</div>
+	</div>
+	
+</template>
+
+
+<template name="login_error">
+	
+		<div class="span10 offset1">
+			{{{mensagem}}}
+		</div>
+	
+</template>
+
+<template name="toplogin">
+	<div class="span12 offset0">
+		<h1 class="well" style="text-align: center ;">LOGIN</h1>
+	</div>
+</template>
+
+<template name="bottomlogin">
+	<div class="span12 offset0">
 	</div>
 </template>
