@@ -17,6 +17,9 @@ Template.form_registo.preserve(["#registoNome","#resgistoSobrenome","#registoEsc
 
 Template.form_registo.rendered = function(){
 	//console.log("rendered",this.find("form"));
+	
+	$(this.find("#login")).tooltip();
+	
 	$(this.find("form")).validate({
 		
 		rules: {
@@ -74,6 +77,13 @@ Template.form_registo.rendered = function(){
 	$('form #prof').toggleClass("btn-warning btn-inverse");
 	$('form #' + registoObj.tipo).toggleClass("btn-warning btn-inverse");
 };
+
+Template.form_registo.destroyed = function(){
+	//console.log("destroyed ", $('#registar'));
+	//$(this.find("#registar")).tooltip();
+	$("#login").tooltip('destroy');
+};
+
 
 Handlebars.registerHelper('aluno', function() {
      return Session.get("aluno");
@@ -138,6 +148,12 @@ Template.form_registo.events({
 		}
 		
 		//console.log("tipo ",tipo);
+	},
+	'click #login': function(event,obj_template){
+		//console.log("registar");
+		//Router.changePage("registo");
+		Router.changePage(Router.pages.login);
+		event.preventDefault();
 	} 
 });
 
