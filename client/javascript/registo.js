@@ -1,11 +1,5 @@
 Meteor.startup(function () {
 	
-	$.extend($.validator.messages, {//colocar mensagens comuns aqui. 
-  		required: "<div class='alert alert-error'><small>campo obrigatório</small></div>",
-  		number: "<div class='alert alert-error'><small>campo numérico</small></div>"
-  		//email: "Bitte eine gültige E-Mail-Adresse eingeben",
-	});
-	
 });
 
 //----- LOGIN REGISTO --------
@@ -19,7 +13,7 @@ var IDXSIDEBARREGISTO = 2;
 var registoObj = {tipo: "aluno"};
 Session.set("aluno",true);
 
-Template.form_registo.preserve(["#registoNome","#resgistoSobrenome","#registoPassword","#registoEscola","#registoTurma","#registoTurmas","#registoEmail","#registoPassword","#registoPasswordVer",".tipo"]);
+Template.form_registo.preserve(["#registoNome","#resgistoSobrenome","#registoEscola","#registoTurma","#registoTurmas","#registoEmail",".tipo"]);
 
 Template.form_registo.rendered = function(){
 	//console.log("rendered",this.find("form"));
@@ -117,6 +111,9 @@ Template.form_registo.events({
 			registoObj.escola = $.trim($("#registoEscola").val());
 			registoObj.email = $.trim($("#registoEmail").val());
 			registoObj.password = $.trim($("#registoPassword").val());
+ 		}else{
+ 			$("#registoPassword").val("");
+ 			$("#registoPasswordVer").val("");
  		}
 	},
 	'click .tipo': function(event,obj_template){
