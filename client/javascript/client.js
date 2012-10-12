@@ -1,5 +1,11 @@
 Meteor.startup(function () {
 	
+	$.extend($.validator.messages, {//colocar mensagens comuns aqui. 
+  		required: "<div class='alert alert-error'><small>campo obrigatório</small></div>",
+  		number: "<div class='alert alert-error'><small>campo numérico</small></div>"
+  		//email: "Bitte eine gültige E-Mail-Adresse eingeben",
+	});
+	
 });
 
 //------------ arrays com a estrutura de página. Cada entrada corresponde a um template ou a um array de templates (caso de arrPag)
