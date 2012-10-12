@@ -13,15 +13,22 @@ var arrPag = [[{pag:"color_list"}],[{pag:"form_login"}],[{pag:"form_registo"}],[
 var arrTop = ["","toplogin","topregisto"];
 var arrBottom = ["","bottomlogin"];
 var arrSidebar = ["","sidebar"];
+var arrMenu = [""];
+var EDUTELL = "EDUTELL ";
 
 //----- DEFAULTS -------- 
 var IDXTOPDEFAULT = 0;
 var IDXBOTTOMDEFAULT = 0;
 var IDXPAGEDEFAULT = 0;
 var IDXSIDEBARDEFAULT = 0;
+var IDXDEFAULTMENU = 0;
+var IDXDEFAULTMENUTITLE = "Title";
 
 //----- SESSION DEFAULTS --------
 //Session.set("pages",IDXPAGEDEFAULT);
+Session.set("menu",IDXDEFAULTMENU);
+Session.set("menu_title",IDXDEFAULTMENUTITLE);
+Session.set("show_login",true);
 Session.set("top",IDXTOPDEFAULT);
 Session.set("bottom",IDXBOTTOMDEFAULT);
 Session.set("sidebar",IDXSIDEBARDEFAULT);
@@ -29,8 +36,11 @@ Session.set("sidebar",IDXSIDEBARDEFAULT);
 
 var extra = {name: "Luis Fernandes", dt:"30-12-1968"};
 var options = {username: "saguas", email: "luisfmfernandes@gmail.com", password: "8950388" };
+//var login = false;
 
-
+// variáveis que controlam se já foi feito login
+Session.set("login",false);
+var login = false;
 
   //var arrPag = [{pag:"home"}];
   //var arrPag = [[{pag:"color_list"}]];
@@ -73,24 +83,8 @@ var MenuRouter = Backbone.Router.extend({
 	  	Session.set("top",IDXTOPLOGIN);
   		Session.set("bottom",IDXBOTTOMDEFAULT);
   		Session.set("sidebar",IDXSIDEBARDEFAULT);
-	  }/*,
-	  login: function(){
-	  	
-	  	Session.set("page_id", "login");
-	    //arrPag = [{pag:"home"},{pag:"off"}];
-	    //var idx = arrPag.push([{pag:"login"}]);
- 		//Session.set("pages",arrPag);
- 		Session.set("pages",IDXLOGIN);
- 		Session.set("top",IDXTOPLOGIN);
-  		Session.set("bottom",IDXBOTTOMDEFAULT);
-  		Session.set("sidebar",IDXSIDEBARDEFAULT);
+  		
 	  },
-	  registo: function(){
-	  	Session.set("pages",IDXREGISTO);
-	  	Session.set("top",IDXTOPREGISTO);
-  		Session.set("bottom",IDXBOTTOMDEFAULT);
-  		Session.set("sidebar",IDXSIDEBARDEFAULT);
-	  }*/,
 	  tpc: function (turma_id,aluno_id) {
 	    Session.set("page_id", "tpc");
 	    //arrPag = [{pag:"home"},{pag:"off"}];
@@ -138,7 +132,12 @@ Router = new MenuRouter;
       return Template[this.pag]();//chama o template registado com o nome de this.page
   });
   
-   Handlebars.registerHelper('top', function() {
+  Handlebars.registerHelper('menu', function() {
+	    if (Template[arrMenu[Session.get("menu")]]) //verifica se há um template com o node dado por this.pag
+	      return Template[arrMenu[Session.get("menu")]]();//chama o template registado com o nome de this.page
+   });  
+   
+  Handlebars.registerHelper('top', function() {
     if (Template[arrTop[Session.get("top")]]) //verifica se há um template com o node dado por this.pag
       return Template[arrTop[Session.get("top")]]();//chama o template registado com o nome de this.page
   });
@@ -153,9 +152,11 @@ Router = new MenuRouter;
       return Template[arrSidebar[Session.get("sidebar")]]();//chama o template registado com o nome de this.page
   });
   
-  
+
   
 //----- TEMPLATES --------
+  
+ 
   
   Template.color_list.colors = function () {
     return Colors.find({},{sort:{likes:-1, name:1}});

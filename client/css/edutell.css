@@ -1,10 +1,19 @@
 /* CSS declarations go here */
 
-ul{
+/*ul{
 	width: 250px;
 	
+}*/
+
+body{
+	background: #ffffff url("/backgrd.gif") repeat;
 }
 
+.well{
+	/*background-color:cyan;*/
+	opacity:0.76;
+}
+/*
 .selected {
 	background-color: orange;
-}
+}*/

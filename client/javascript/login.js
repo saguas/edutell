@@ -9,7 +9,7 @@ var IDXTOPLOGIN = 1;
 var IDXBOTTOMLOGIN = 1;
 var IDXSIDEBARLOGIN = 1;
 var IDXLOGIN = 1;
-
+var IDXLOGINMENUTITLE = EDUTELL + "LOGIN";
 
 Session.set("login_error", false);
 Session.set("pages",IDXLOGIN);
@@ -99,11 +99,16 @@ var flogin = function(error,result){
 	//console.log("user login? ",result);
 	
 	if(!error){//error é null se o utilizador foi criado
+		console.log("user loaded!!!", Meteor.userLoaded());
 		console.log("user login!!!", Meteor.user());
+		
 		//login = false;
 		//console.log("login ",login);
 		//Session.set("login",false);
 		//Router.changePage("login");
+		Session.set("login",true);
+		//Session.set("show_login",false);
+		login = true;
 		Router.changePage(Router.pages.login);
 		//Session.set("login_error", false);
 		/*Meteor.logout(function(error){
@@ -132,9 +137,11 @@ Router.route("login","login",function(){
 	    //var idx = arrPag.push([{pag:"login"}]);
  		//Session.set("pages",arrPag);
  		Session.set("pages",IDXLOGIN);
+ 		Session.set("menu_title",IDXLOGINMENUTITLE);
  		Session.set("top",IDXTOPLOGIN);
   		Session.set("bottom",IDXBOTTOMDEFAULT);
   		Session.set("sidebar",IDXSIDEBARDEFAULT);
+  		Session.set("show_login",false);
 });
 
 Router.pages.login = "login";

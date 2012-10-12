@@ -7,6 +7,8 @@ var IDXREGISTO = 2;
 var IDXTOPREGISTO = 2;
 var IDXBOTTOMREGISTO = 2;
 var IDXSIDEBARREGISTO = 2;
+var IDXREGISTOMENUTITLE = EDUTELL + "NOVO REGISTO";
+
 
 //var tipo = "aluno";
 //tipo: tipo de inscrição: aluno; EE ou prof
@@ -162,6 +164,9 @@ Router.route("registo","registo",function(){
 	  	Session.set("top",IDXTOPREGISTO);
   		Session.set("bottom",IDXBOTTOMDEFAULT);
   		Session.set("sidebar",IDXSIDEBARDEFAULT);
+  		Session.set("menu_title",IDXREGISTOMENUTITLE);
+  		if(!login)
+  			Session.set("show_login",true);
 });
 
 Router.pages.registo="registo";
