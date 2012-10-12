@@ -20,7 +20,7 @@
 				    <div class="controls">
 				      <div class="input-prepend">
       					<span class="add-on"><i class="icon-user"></i></span>
-				      	<input name="nome" class="span12" type="text" id="registoSobrenome" placeholder="Sobrenome">
+				      	<input name="snome" class="span12" type="text" id="registoSobrenome" placeholder="Sobrenome">
 				      </div>
 				    </div>
 				  </div>
@@ -49,9 +49,10 @@
 					    <label class="control-label" for="resgistoTurmas"><span class="label">Turmas</span></label>
 					    <div class="controls">
 					      
-	      					
-					      	<textarea id="registoTurmas" rows="5" placeholder="Ano e turmas por linha"></textarea>
-					      
+	      					<div class="input-prepend">
+      							<span class="add-on"><i class="icon-book"></i></span>
+					      		<textarea name="turma" id="registoTurmas" rows="5" placeholder="Ano e turmas (Ex. 7D) por linha" style="max-width: 200px;max-height: 100px"></textarea>
+					        </div>
 					    </div>
 					  </div>
 				  	

@@ -8,12 +8,18 @@ Meteor.startup(function () {
 	
 });
 
+//----- LOGIN REGISTO --------
+var IDXREGISTO = 2;
+var IDXTOPREGISTO = 2;
+var IDXBOTTOMREGISTO = 2;
+var IDXSIDEBARREGISTO = 2;
+
 //var tipo = "aluno";
 //tipo: tipo de inscrição: aluno; EE ou prof
 var registoObj = {tipo: "aluno"};
 Session.set("aluno",true);
 
-Template.form_registo.preserve(["#registoNome","#registoPassword","#registoEscola","#registoTurma","#registoTurmas","#registoEmail","#registoPassword","#registoPasswordVer",".tipo"]);
+Template.form_registo.preserve(["#registoNome","#resgistoSobrenome","#registoPassword","#registoEscola","#registoTurma","#registoTurmas","#registoEmail","#registoPassword","#registoPasswordVer",".tipo"]);
 
 Template.form_registo.rendered = function(){
 	//console.log("rendered",this.find("form"));
@@ -21,6 +27,9 @@ Template.form_registo.rendered = function(){
 		
 		rules: {
 			nome: {
+				required: true
+			},
+			snome: {
 				required: true
 			},
 			password: {
@@ -134,4 +143,20 @@ Template.form_registo.events({
 		//console.log("tipo ",tipo);
 	} 
 });
+
+Router.route("registo","registo",function(){
+	  	Session.set("pages",IDXREGISTO);
+	  	Session.set("top",IDXTOPREGISTO);
+  		Session.set("bottom",IDXBOTTOMDEFAULT);
+  		Session.set("sidebar",IDXSIDEBARDEFAULT);
+});
+
+Router.pages.registo="registo";
+
+//alternativa ao de cima
+/*
+Router.on("route:registo", function(page) {
+  console.log("Router registo");
+});
+*/
 
