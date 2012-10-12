@@ -1,0 +1,39 @@
+<head>
+  <title>EDUTELL</title>
+  <script src="jquery.validate.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	
+ 	{{>layout}}
+  
+</body>
+
+<template name="color_list">
+	
+  {{#each colors}}
+  	<ul>
+  		{{> color_info}}
+  	</ul>
+  {{else}}
+  No colors yet.
+  {{/each}}
+</template>
+
+<template name="color_info">
+	
+	<li class="{{maybe_selected}}">
+		{{name}}
+	</li>
+</template>
+
+ <template name="home">
+  <h1>This is the example!</h1>
+  <a href="/welcome" class="welcome">Click here to go to your personalized welcome page</a>
+</template>
+
+ <template name="off">
+  <h1>This is the off example!</h1>
+  <a href="/welcome" class="welcome">Click here to go to your personalized welcome off page</a>
+</template>
+
