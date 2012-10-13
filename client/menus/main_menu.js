@@ -30,8 +30,8 @@ Session.set("menu",IDXMAINMENU);
 			if(!error){
 				Session.set('login', false);
 				//Session.set("show_login",true);
-				Router.changePage(Router.pages.login);
 				login = false;
+				Router.changePage(Router.pages.login);
 			}else{
 				console.log("error ao fazer logout: ",error);
 			}

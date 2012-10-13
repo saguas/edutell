@@ -1,114 +1,114 @@
 <template name="form_registo">
-	<head>
-  		
-	</head>
 	
 	<div class="row-fluid">
-		<div class="span4 offset2">
-			<form class="form-horizontal well well-large" style="min-width: 550px">
-				  <div class="control-group">
-				    <label class="control-label" for="resgistoNome"><span class="label">Nome</span></label>
-				    <div class="controls">
-				      <div class="input-prepend">
-      					<span class="add-on"><i class="icon-user"></i></span>
-				      	<input name="nome" class="span12" type="text" id="registoNome" placeholder="Nome">
-				      </div>
-				    </div>
-				  </div>
-				  <div class="control-group">
-				    <label class="control-label" for="resgistoSobrenome"><span class="label">Sobrenome</span></label>
-				    <div class="controls">
-				      <div class="input-prepend">
-      					<span class="add-on"><i class="icon-user"></i></span>
-				      	<input name="snome" class="span12" type="text" id="registoSobrenome" placeholder="Sobrenome">
-				      </div>
-				    </div>
-				  </div>
-				  {{#if aluno}}
-				  <div class="control-group">
-				    <label class="control-label" for="registoTurma"><span class="label">Turma</span></label>
-				    <div class="controls">
-				    	 <div class="input-prepend">
-      						<span class="add-on"><i class="icon-book"></i></span>
-				      		<input name="turma" class="span12" type="text" id="registoTurma" placeholder="Ano e a Turma, Ex. 7D">
-				      	</div>
-				    </div>
-				  </div>
-				  
-				  <div class="control-group">
-				    <label class="control-label" for="registoNumero"><span class="label">Número</span></label>
-				    <div class="controls">
-				    	 <div class="input-prepend">
-      						<span class="add-on"><i class="icon-th-list"></i></span>
-				      		<input name="numero" class="span12" type="text" id="registoNumero" placeholder="Número do aluno">
-				      	</div>
-				    </div>
-				  </div>
-				  {{else}}
+		<div class="span4 offset3">
+			<div class="row-fluid wellForm well-large">
+				<form class="form-horizontal " >
 					  <div class="control-group">
-					    <label class="control-label" for="resgistoTurmas"><span class="label">Turmas</span></label>
+					    <label class="control-label" for="resgistoNome"><span class="label">Nome</span></label>
 					    <div class="controls">
-					      
-	      					<div class="input-prepend">
-      							<span class="add-on"><i class="icon-book"></i></span>
-					      		<textarea name="turma" id="registoTurmas" rows="5" placeholder="Ano e turmas (Ex. 7D) por linha" style="max-width: 200px;max-height: 100px"></textarea>
-					        </div>
+					      <div class="input-prepend">
+	      					<span class="add-on"><i class="icon-user"></i></span>
+					      	<input name="nome" class="span12" type="text" id="registoNome" placeholder="Nome">
+					      </div>
 					    </div>
 					  </div>
-				  	
-				  {{/if}}
-				  <div class="control-group">
-				    <label class="control-label" for="registoEscola"><span class="label">Escola</span></label>
-				    <div class="controls">
-				    	 <div class="input-prepend">
-      						<span class="add-on"><i class="icon-lock"></i></span>
-				      		<input name="escola" class="span12" type="text" id="registoEscola" placeholder="Código da escola">
-				      	</div>
-				    </div>
-				  </div>
-				  <div class="control-group">
-				    <label class="control-label" for="registoEmail"><span class="label">Email</span></label>
-				    <div class="controls">
-				      <div class="input-prepend">
-      					<span class="add-on"><i class="icon-envelope"></i></span>
-				      	<input name="email" class="span12" type="text" id="registoEmail" placeholder="Email">
-				      </div>
-				    </div>
-				  </div>
-				  <div class="control-group">
-				    <label class="control-label" for="registoPassword"><span class="label">Password</span></label>
-				    <div class="controls">
-				    	 <div class="input-prepend">
-      						<span class="add-on"><i class="icon-lock"></i></span>
-				      		<input name="password" class="span12" type="password" id="registoPassword" placeholder="Password">
-				      	</div>
-				    </div>
-				  </div>
-				  <div class="control-group">
-				    <label class="control-label" for="registoPasswordVer"><span class="label">Verificar Password</span></label>
-				    <div class="controls">
-				    	 <div class="input-prepend">
-      						<span class="add-on"><i class="icon-lock"></i></span>
-				      		<input name="password_again" class="span12" type="password" id="registoPasswordVer" placeholder="Password novamente">
-				      	</div>
-				    </div>
-				  </div>
-				  <div class="btn-group" data-toggle="buttons-radio" style="text-align: center ;">
-					  <button id="aluno" type="button" class="btn btn-warning tipo">Aluno</button>
-					  <button id="EE" type="button" class="btn btn-warning tipo">E. Educação</button>
-					  <button id="prof" type="button" class="btn btn-warning tipo">Professor</button>
-				  </div>
-				  <div class="control-group">
-				    <div class="controls">
-				      <br>
-				      <button type="submit" class="btn btn-primary"><i class="icon-user icon-white"></i> Submeter</button>
-				    </div>
-				  </div>
-				  <div class="span0 offset0">
-					<a href="#" rel="tooltip" id="login" title="Fazer login."><small>Login</small></a>
-				</div>
-			</form>
-			
+					  <div class="control-group">
+					    <label class="control-label" for="resgistoSobrenome"><span class="label">Sobrenome</span></label>
+					    <div class="controls">
+					      <div class="input-prepend">
+	      					<span class="add-on"><i class="icon-user"></i></span>
+					      	<input name="snome" class="span12" type="text" id="registoSobrenome" placeholder="Sobrenome">
+					      </div>
+					    </div>
+					  </div>
+					  {{#if aluno}}
+					  <div class="control-group">
+					    <label class="control-label" for="registoTurma"><span class="label">Turma</span></label>
+					    <div class="controls">
+					    	 <div class="input-prepend">
+	      						<span class="add-on"><i class="icon-book"></i></span>
+					      		<input name="turma" class="span12" type="text" id="registoTurma" placeholder="Ano e a Turma, Ex. 7D">
+					      	</div>
+					    </div>
+					  </div>
+					  
+					  <div class="control-group">
+					    <label class="control-label" for="registoNumero"><span class="label">Número</span></label>
+					    <div class="controls">
+					    	 <div class="input-prepend">
+	      						<span class="add-on"><i class="icon-th-list"></i></span>
+					      		<input name="numero" class="span12" type="text" id="registoNumero" placeholder="Número do aluno">
+					      	</div>
+					    </div>
+					  </div>
+					  {{else}}
+						  <div class="control-group">
+						    <label class="control-label" for="resgistoTurmas"><span class="label">Turmas</span></label>
+						    <div class="controls">
+						      
+		      					<div class="input-prepend">
+	      							<span class="add-on"><i class="icon-book"></i></span>
+						      		<textarea name="turma" id="registoTurmas" rows="5" placeholder="Ano e turmas (Ex. 7D) por linha" style="max-width: 200px;max-height: 100px"></textarea>
+						        </div>
+						    </div>
+						  </div>
+					  	
+					  {{/if}}
+					  <div class="control-group">
+					    <label class="control-label" for="registoEscola"><span class="label">Escola</span></label>
+					    <div class="controls">
+					    	 <div class="input-prepend">
+	      						<span class="add-on"><i class="icon-lock"></i></span>
+					      		<input name="escola" class="span12" type="text" id="registoEscola" placeholder="Código da escola">
+					      	</div>
+					    </div>
+					  </div>
+					  <div class="control-group">
+					    <label class="control-label" for="registoEmail"><span class="label">Email</span></label>
+					    <div class="controls">
+					      <div class="input-prepend">
+	      					<span class="add-on"><i class="icon-envelope"></i></span>
+					      	<input name="email" class="span12" type="text" id="registoEmail" placeholder="Email">
+					      </div>
+					    </div>
+					  </div>
+					  <div class="control-group">
+					    <label class="control-label" for="registoPassword"><span class="label">Password</span></label>
+					    <div class="controls">
+					    	 <div class="input-prepend">
+	      						<span class="add-on"><i class="icon-lock"></i></span>
+					      		<input name="password" class="span12" type="password" id="registoPassword" placeholder="Password">
+					      	</div>
+					    </div>
+					  </div>
+					  <div class="control-group">
+					    <label class="control-label" for="registoPasswordVer"><span class="label">Verificar Password</span></label>
+					    <div class="controls">
+					    	 <div class="input-prepend">
+	      						<span class="add-on"><i class="icon-lock"></i></span>
+					      		<input name="password_again" class="span12" type="password" id="registoPasswordVer" placeholder="Password novamente">
+					      	</div>
+					    </div>
+					  </div>
+					  <div class="form-actions">
+						  <div class="btn-group" data-toggle="buttons-radio" >
+							  <button id="aluno" type="button" class="btn btn-warning tipo">Aluno</button>
+							  <button id="EE" type="button" class="btn btn-warning tipo">E.Educ.</button>
+							  <button id="prof" type="button" class="btn btn-warning tipo">Prof.</button>
+						  </div>
+					  </div>
+					  <div class="control-group">
+					    <div class="controls">
+					      <br>
+					      <button type="submit" class="btn btn-primary"><i class="icon-user icon-white"></i> Submeter</button>
+					    </div>
+					  </div>
+					  <div class="span0 offset0">
+						<a href="#" rel="tooltip" id="login" title="Fazer login."><small>Login</small></a>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 	

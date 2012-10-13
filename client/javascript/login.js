@@ -140,7 +140,8 @@ Router.route("login","login",function(){
  		Session.set("menu_title",IDXLOGINMENUTITLE);
  		Session.set("top",IDXTOPLOGIN);
   		Session.set("bottom",IDXBOTTOMDEFAULT);
-  		Session.set("sidebar",IDXSIDEBARDEFAULT);
+  		Session.set("sidebar-left",IDXLSIDEBARDEFAULT);
+  		Session.set("sidebar-right",IDXRSIDEBARDEFAULT);
   		Session.set("show_login",false);
 });
 

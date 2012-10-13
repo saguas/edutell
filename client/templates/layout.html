@@ -12,13 +12,17 @@
   <div class="row-fluid">
     <div class="span2">
       <!--Sidebar content-->
-      {{{sidebar}}}
+      {{{sidebar-left}}}
     </div>
-    <div class="span10">
+    <div class="span8 well">
       <!--Body content-->
 		{{#each currentPage}}
   			{{{welcomes}}}
   		{{/each}}
+    </div>
+    <div class="span2">
+      <!--Sidebar content-->
+      {{{sidebar-right}}}
     </div>
   </div>
   <div class="row-fluid">
@@ -31,7 +35,12 @@
 </template>
 
 
-<template name="sidebar">
+<template name="sidebar-left">
+	<div class="span12 offset0">
+	</div>
+</template>
+
+<template name="sidebar-right">
 	<div class="span12 offset0">
 	</div>
 </template>

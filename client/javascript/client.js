@@ -12,7 +12,8 @@ Meteor.startup(function () {
 var arrPag = [[{pag:"color_list"}],[{pag:"form_login"}],[{pag:"form_registo"}],[{pag:"home"},{pag:"off"}]];
 var arrTop = ["","toplogin","topregisto"];
 var arrBottom = ["","bottomlogin"];
-var arrSidebar = ["","sidebar"];
+var arrSidebarLeft = ["","sidebar-left"];
+var arrSidebarRight = ["","sidebar-right"];
 var arrMenu = [""];
 var EDUTELL = "EDUTELL ";
 
@@ -20,7 +21,11 @@ var EDUTELL = "EDUTELL ";
 var IDXTOPDEFAULT = 0;
 var IDXBOTTOMDEFAULT = 0;
 var IDXPAGEDEFAULT = 0;
-var IDXSIDEBARDEFAULT = 0;
+//sidebar left
+var IDXLSIDEBARDEFAULT = 0;
+//sidebar right
+var IDXRSIDEBARDEFAULT = 0;
+//menu
 var IDXDEFAULTMENU = 0;
 var IDXDEFAULTMENUTITLE = "Title";
 
@@ -31,7 +36,8 @@ Session.set("menu_title",IDXDEFAULTMENUTITLE);
 Session.set("show_login",true);
 Session.set("top",IDXTOPDEFAULT);
 Session.set("bottom",IDXBOTTOMDEFAULT);
-Session.set("sidebar",IDXSIDEBARDEFAULT);
+Session.set("sidebar-left",IDXLSIDEBARDEFAULT);
+Session.set("sidebar-right",IDXRSIDEBARDEFAULT);
 
 
 var extra = {name: "Luis Fernandes", dt:"30-12-1968"};
@@ -82,7 +88,9 @@ var MenuRouter = Backbone.Router.extend({
 	  	//Session.set("top",IDXTOPDEFAULT);
 	  	Session.set("top",IDXTOPLOGIN);
   		Session.set("bottom",IDXBOTTOMDEFAULT);
-  		Session.set("sidebar",IDXSIDEBARDEFAULT);
+  		Session.set("sidebar-left",IDXLSIDEBARDEFAULT);
+  		Session.set("sidebar-right",IDXRSIDEBARDEFAULT);
+  		Session.set("menu_title",IDXLOGINMENUTITLE);
   		
 	  },
 	  tpc: function (turma_id,aluno_id) {
@@ -147,17 +155,20 @@ Router = new MenuRouter;
       return Template[arrBottom[Session.get("bottom")]]();//chama o template registado com o nome de this.page
   });
   
-   Handlebars.registerHelper('sidebar', function() {
-     if (Template[arrSidebar[Session.get("sidebar")]]) //verifica se há um template com o node dado por this.pag
-      return Template[arrSidebar[Session.get("sidebar")]]();//chama o template registado com o nome de this.page
+   Handlebars.registerHelper('sidebar-left', function() {
+     if (Template[arrSidebarLeft[Session.get("sidebar-left")]]) //verifica se há um template com o node dado por this.pag
+      return Template[arrSidebarLeft[Session.get("sidebar-left")]]();//chama o template registado com o nome de this.page
+  });
+  
+  Handlebars.registerHelper('sidebar-right', function() {
+     if (Template[arrSidebarRight[Session.get("sidebar-right")]]) //verifica se há um template com o node dado por this.pag
+      return Template[arrSidebarRight[Session.get("sidebar-right")]]();//chama o template registado com o nome de this.page
   });
   
 
   
 //----- TEMPLATES --------
-  
- 
-  
+
   Template.color_list.colors = function () {
     return Colors.find({},{sort:{likes:-1, name:1}});
   };

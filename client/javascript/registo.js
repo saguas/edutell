@@ -163,7 +163,8 @@ Router.route("registo","registo",function(){
 	  	Session.set("pages",IDXREGISTO);
 	  	Session.set("top",IDXTOPREGISTO);
   		Session.set("bottom",IDXBOTTOMDEFAULT);
-  		Session.set("sidebar",IDXSIDEBARDEFAULT);
+  		Session.set("sidebar-left",IDXLSIDEBARDEFAULT);
+  		Session.set("sidebar-right",IDXRSIDEBARDEFAULT);
   		Session.set("menu_title",IDXREGISTOMENUTITLE);
   		if(!login)
   			Session.set("show_login",true);
