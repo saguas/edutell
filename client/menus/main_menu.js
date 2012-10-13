@@ -29,6 +29,7 @@ Session.set("menu",IDXMAINMENU);
 				login = false;
 				Session.set("show_login",true);
 				Session.set('login', false);
+				//Session.set("inicio","");
 				Router.changePage(Router.pages.inicial);
 			}else{
 				console.log("error ao fazer logout: ",error);
@@ -44,6 +45,10 @@ Session.set("menu",IDXMAINMENU);
 Template.menu_orig.events = {
 	'click .home' : function(event){
 		event.preventDefault();
+		//$(event.currentTarget).addClass("active");
+		//$('.home').addClass("active");
+		Session.set("inicio","active");
 		Router.changePage(Router.pages.inicial);
+		//console.log("home click ", event.currentTarget);
 	}
 };

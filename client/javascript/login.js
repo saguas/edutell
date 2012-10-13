@@ -144,6 +144,7 @@ Router.route("login","login",function(){
   		Session.set("sidebar-left",IDXLSIDEBARDEFAULT);
   		Session.set("sidebar-right",IDXRSIDEBARDEFAULT);
   		Session.set("show_login",false);
+  		Session.set("inicio","");
 });
 
 Router.pages.login = "login";

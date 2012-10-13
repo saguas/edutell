@@ -1,11 +1,19 @@
 
 var IDXHOMEMENUTITLE = EDUTELL + "HOME";
+
+Session.set("inicio","");  
+  
+ Handlebars.registerHelper('inicio', function() {
+  	//mostra o menu login em algumas páginas antes de fazer login
+      return Session.get("inicio");
+ });
   
 
-Template.menu_orig.rendered = function(){
+
+Template.home.rendered = function(){
 	$('#myCarousel').carousel();
 };
 
-Template.menu_orig.destroyed = function(){
-	$('#myCarousel').carousel('pause');
+Template.home.destroyed = function(){
+	$('#myCarousel').carousel("pause");
 };

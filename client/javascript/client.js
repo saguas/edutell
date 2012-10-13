@@ -82,6 +82,7 @@ var MenuRouter = Backbone.Router.extend({
 	  main:function(){
 	  	//console.log("main ",login);
 	  	//arrPag = [{pag:"color_list"}];
+	  	Session.set("inicio","active");
 	  	Session.set("pages",IDXPAGEDEFAULT);
 	  	//Session.set("pages",IDXLOGIN);
 	  	Session.set("top",IDXTOPDEFAULT);
