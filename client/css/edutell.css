@@ -1,4 +1,4 @@
-/* CSS declarations go here */
+/*CSS declarations go here */
 
 /*ul{
 	width: 250px;
@@ -31,6 +31,10 @@ form a#login, a#registar{
 	font-size: 14px;
 	font-variant: small-caps;
 	font-weight: bold;
+}
+
+.myCarousel{
+	border-style: none;
 }
 /*
 .selected {

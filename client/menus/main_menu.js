@@ -17,8 +17,6 @@ Session.set("menu",IDXMAINMENU);
       return Session.get("show_login");
   });
 
-
-
  Template.menu_original.Title = function(){
   	return Session.get("menu_title");
   };
@@ -28,10 +26,10 @@ Session.set("menu",IDXMAINMENU);
   		event.preventDefault();
 		Meteor.logout(function(error){
 			if(!error){
-				Session.set('login', false);
-				//Session.set("show_login",true);
 				login = false;
-				Router.changePage(Router.pages.login);
+				Session.set("show_login",true);
+				Session.set('login', false);
+				Router.changePage(Router.pages.inicial);
 			}else{
 				console.log("error ao fazer logout: ",error);
 			}
@@ -42,3 +40,10 @@ Session.set("menu",IDXMAINMENU);
 		Router.changePage(Router.pages.login);
 	}
   };
+  
+Template.menu_orig.events = {
+	'click .home' : function(event){
+		event.preventDefault();
+		Router.changePage(Router.pages.inicial);
+	}
+};

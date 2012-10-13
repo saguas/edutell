@@ -1,17 +1,11 @@
 Meteor.startup(function () {
     // code to run on server at startup
-     Colors.allow({
+     
+     /*Colors.allow({
      	insert:function(userId, doc){
      		console.log("insert userid ",userId);
      		return false;
      }});
-     Accounts.validateNewUser(function(proposedUser){//esta função é chamada de de Meteor.accounts.onCreateUser
-    	
-    	console.log("o utilizador proposto é: ",proposedUser);
-    	
-    	return true;
-    	
-    });
     
     Accounts.onCreateUser(function(options, extra, user){ //esta função é chamada antes de Meteor.accounts.validateNewUser 
     	console.log("onCreateUser user:",user);
@@ -20,6 +14,21 @@ Meteor.startup(function () {
     	
     	//return user;	
     });
+    */
    
+   Accounts.validateNewUser(function(proposedUser){//esta função é chamada de Meteor.accounts.onCreateUser
+    	
+    	console.log("o utilizador proposto é: ", proposedUser);
+    	
+    	//esta função controla a criação de professores. Estes para fazerem o registo precisam ter na base de dados uma autorização.
+    	//só é permitido criar professores quando o número atribuído coincide com o email fornecido. O número pode ser o de professor, o BI ou o NIF.
+    	if (proposedUser.profile.tipo == "prof"){
+    		
+    		return false	
+    	}
+    	
+    	return true;
+    	
+    });
     
 });

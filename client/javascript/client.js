@@ -9,8 +9,8 @@ Meteor.startup(function () {
 });
 
 //------------ arrays com a estrutura de página. Cada entrada corresponde a um template ou a um array de templates (caso de arrPag)
-var arrPag = [[{pag:"color_list"}],[{pag:"form_login"}],[{pag:"form_registo"}],[{pag:"home"},{pag:"off"}]];
-var arrTop = ["","toplogin","topregisto"];
+var arrPag = [[{pag:"home"}],[{pag:"form_login"}],[{pag:"form_registo"}],[{pag:"home"},{pag:"off"}]];
+var arrTop = ["notop","toplogin","topregisto"];
 var arrBottom = ["","bottomlogin"];
 var arrSidebarLeft = ["","sidebar-left"];
 var arrSidebarRight = ["","sidebar-right"];
@@ -43,7 +43,6 @@ Session.set("sidebar-right",IDXRSIDEBARDEFAULT);
 var extra = {name: "Luis Fernandes", dt:"30-12-1968"};
 var options = {username: "saguas", email: "luisfmfernandes@gmail.com", password: "8950388" };
 //var login = false;
-
 // variáveis que controlam se já foi feito login
 Session.set("login",false);
 var login = false;
@@ -83,14 +82,19 @@ var MenuRouter = Backbone.Router.extend({
 	  main:function(){
 	  	//console.log("main ",login);
 	  	//arrPag = [{pag:"color_list"}];
-	  	//Session.set("pages",IDXPAGEDEFAULT);
-	  	Session.set("pages",IDXLOGIN);
-	  	//Session.set("top",IDXTOPDEFAULT);
-	  	Session.set("top",IDXTOPLOGIN);
+	  	Session.set("pages",IDXPAGEDEFAULT);
+	  	//Session.set("pages",IDXLOGIN);
+	  	Session.set("top",IDXTOPDEFAULT);
+	  	//Session.set("top",IDXTOPLOGIN);
   		Session.set("bottom",IDXBOTTOMDEFAULT);
   		Session.set("sidebar-left",IDXLSIDEBARDEFAULT);
   		Session.set("sidebar-right",IDXRSIDEBARDEFAULT);
-  		Session.set("menu_title",IDXLOGINMENUTITLE);
+  		//Session.set("menu_title",IDXLOGINMENUTITLE);
+  		//Session.set("menu_title",IDXLOGINMENUTITLE);
+  		Session.set("menu_title",IDXHOMEMENUTITLE);
+  		
+  		if(!login)
+  			Session.set("show_login",true);
   		
 	  },
 	  tpc: function (turma_id,aluno_id) {
@@ -123,6 +127,7 @@ var MenuRouter = Backbone.Router.extend({
 	
 Router = new MenuRouter;
 
+Router.pages.inicial = "";
   
 //var login = true;
 

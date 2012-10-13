@@ -107,9 +107,9 @@ var flogin = function(error,result){
 		//Session.set("login",false);
 		//Router.changePage("login");
 		Session.set("login",true);
-		//Session.set("show_login",false);
+		Session.set("show_login",false);
 		login = true;
-		Router.changePage(Router.pages.login);
+		Router.changePage(Router.pages.inicial);
 		//Session.set("login_error", false);
 		/*Meteor.logout(function(error){
 			console.log("error logout? ",error);
@@ -138,7 +138,8 @@ Router.route("login","login",function(){
  		//Session.set("pages",arrPag);
  		Session.set("pages",IDXLOGIN);
  		Session.set("menu_title",IDXLOGINMENUTITLE);
- 		Session.set("top",IDXTOPLOGIN);
+ 		//Session.set("top",IDXTOPLOGIN);
+ 		Session.set("top",IDXTOPDEFAULT);
   		Session.set("bottom",IDXBOTTOMDEFAULT);
   		Session.set("sidebar-left",IDXLSIDEBARDEFAULT);
   		Session.set("sidebar-right",IDXRSIDEBARDEFAULT);

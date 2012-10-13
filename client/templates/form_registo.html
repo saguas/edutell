@@ -22,48 +22,19 @@
 					      </div>
 					    </div>
 					  </div>
-					  {{#if aluno}}
-					  <div class="control-group">
-					    <label class="control-label" for="registoTurma"><span class="label">Turma</span></label>
-					    <div class="controls">
-					    	 <div class="input-prepend">
-	      						<span class="add-on"><i class="icon-book"></i></span>
-					      		<input name="turma" class="span12" type="text" id="registoTurma" placeholder="Ano e a Turma, Ex. 7D">
-					      	</div>
-					    </div>
-					  </div>
-					  
-					  <div class="control-group">
-					    <label class="control-label" for="registoNumero"><span class="label">Número</span></label>
-					    <div class="controls">
-					    	 <div class="input-prepend">
-	      						<span class="add-on"><i class="icon-th-list"></i></span>
-					      		<input name="numero" class="span12" type="text" id="registoNumero" placeholder="Número do aluno">
-					      	</div>
-					    </div>
-					  </div>
-					  {{else}}
+					  {{#unless aluno}}
 						  <div class="control-group">
-						    <label class="control-label" for="resgistoTurmas"><span class="label">Turmas</span></label>
+						    <label class="control-label" for="registoEscola"><span class="label">Escola</span></label>
 						    <div class="controls">
-						      
-		      					<div class="input-prepend">
-	      							<span class="add-on"><i class="icon-book"></i></span>
-						      		<textarea name="turma" id="registoTurmas" rows="5" placeholder="Ano e turmas (Ex. 7D) por linha" style="max-width: 200px;max-height: 100px"></textarea>
-						        </div>
+						    	 <div class="input-prepend">
+		      						<span class="add-on"><i class="icon-lock"></i></span>
+						      		<input name="escola" class="span12" type="text" id="registoEscola" placeholder="Código professor">
+						      	</div>
 						    </div>
 						  </div>
 					  	
-					  {{/if}}
-					  <div class="control-group">
-					    <label class="control-label" for="registoEscola"><span class="label">Escola</span></label>
-					    <div class="controls">
-					    	 <div class="input-prepend">
-	      						<span class="add-on"><i class="icon-lock"></i></span>
-					      		<input name="escola" class="span12" type="text" id="registoEscola" placeholder="Código da escola">
-					      	</div>
-					    </div>
-					  </div>
+					  {{/unless}}
+					  
 					  <div class="control-group">
 					    <label class="control-label" for="registoEmail"><span class="label">Email</span></label>
 					    <div class="controls">

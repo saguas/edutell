@@ -12,7 +12,10 @@ var IDXREGISTOMENUTITLE = EDUTELL + "NOVO REGISTO";
 
 //var tipo = "aluno";
 //tipo: tipo de inscrição: aluno; EE ou prof
-var registoObj = {tipo: "aluno"};
+var registoObj = {};
+
+registoObj.profile = {tipo: "aluno"};
+
 Session.set("aluno",true);
 
 Template.form_registo.preserve(["#registoNome","#resgistoSobrenome","#registoEscola","#registoTurma","#registoTurmas","#registoEmail",".tipo"]);
@@ -73,17 +76,18 @@ Template.form_registo.rendered = function(){
 		
 	});
 	
-	$("#" + registoObj.tipo).button('toggle');
+	$("#" + registoObj.profile.tipo).button('toggle');
 	$('form #aluno').toggleClass("btn-warning btn-inverse");
 	$('form #EE').toggleClass("btn-warning btn-inverse");
 	$('form #prof').toggleClass("btn-warning btn-inverse");
-	$('form #' + registoObj.tipo).toggleClass("btn-warning btn-inverse");
+	$('form #' + registoObj.profile.tipo).toggleClass("btn-warning btn-inverse");
 };
 
 Template.form_registo.destroyed = function(){
 	//console.log("destroyed ", $('#registar'));
 	//$(this.find("#registar")).tooltip();
 	$("#login").tooltip('destroy');
+	//$('#registoEscola').popover("destroy");
 };
 
 
@@ -97,16 +101,18 @@ Template.form_registo.events({
  		event.preventDefault();
  		//console.log("template origem ",$('form').valid());
  		if($('form').valid()){
-	 		registoObj.nome = $.trim($('#registoNome').val());
-	 		registoObj.sobrenome = $.trim($("#resgistoSobrenome").val());
-	 		if(registoObj.tipo != "prof"){
-	 			registoObj.turma = $.trim($("#registoTurma").val());
-				registoObj.numero = $.trim($("#registoNumero").val());
-			}else{
+ 			
+	 		registoObj.profile.nome = $.trim($('#registoNome').val());
+	 		registoObj.profile.sobrenome = $.trim($("#registoSobrenome").val());
+	 		//console.log("sobrenome ",$("#registoSobrenome").val());
+	 		
+	 		
+	 		if(registoObj.profile.tipo == "prof"){
 				
-				
+				registoObj.profile.cescola = $.trim($("#registoEscola").val());
 				//---------- extrai as turmas, no caso do prof, do textarea
 				//a função grep retira os casos em que existe uma linha em branco e retorna um array com as turmas.
+				/*
 				var tmp = $.grep($("#registoTurmas").val().split("\n"), function(val,idx){
 					return $.trim(val) == "" ? false : true;
 					
@@ -116,13 +122,29 @@ Template.form_registo.events({
 				registoObj.turmas = $.map(tmp,function(val,idx){
 					//console.log("map ",val);
 					return $.trim(val);
-				});
+				});*/
+				
 				//console.log("turmas ", registoObj.turmas);
 				//------------------------------------------------------------
 			}
-			registoObj.escola = $.trim($("#registoEscola").val());
+			
 			registoObj.email = $.trim($("#registoEmail").val());
 			registoObj.password = $.trim($("#registoPassword").val());
+			//_.extend(tmpObj, {"email": registoObj.email,"password":registoObj.password});
+			
+			Accounts.createUser(registoObj,function(error){
+					
+					if(!error){
+						Session.set("login",true);
+						login = true;
+						Router.changePage(Router.pages.login);			
+					}else{
+						console.log("erro! Código da escola inválido ou já utilizado");
+						$('#registoEscola').popover({trigger:"manual",title: "ERRO!",content:"Código da escola e email não coincidem ou já utilizados"});
+						$('#registoEscola').popover("show");
+					}	
+			});
+			
  		}else{
  			$("#registoPassword").val("");
  			$("#registoPasswordVer").val("");
@@ -131,12 +153,12 @@ Template.form_registo.events({
 	'click .tipo': function(event,obj_template){
 		//console.log("id target %s id old %s",event.target.id,registoObj.tipo);
 		
-		if(event.target.id != registoObj.tipo){
+		if(event.target.id != registoObj.profile.tipo){
 			$('form #' + event.target.id).toggleClass('btn-warning btn-inverse');
-			$('form #' + registoObj.tipo).toggleClass("btn-warning btn-inverse");
-			registoObj.tipo = event.target.id;
+			$('form #' + registoObj.profile.tipo).toggleClass("btn-warning btn-inverse");
+			registoObj.profile.tipo = event.target.id;
 		
-			switch(registoObj.tipo){
+			switch(registoObj.profile.tipo){
 				case "aluno":
 					Session.set("aluno",true);
 					break;
@@ -156,12 +178,16 @@ Template.form_registo.events({
 		//Router.changePage("registo");
 		Router.changePage(Router.pages.login);
 		event.preventDefault();
+	},
+	"click #registoEscola": function(event){
+		$('#registoEscola').popover("destroy");
 	} 
 });
 
 Router.route("registo","registo",function(){
 	  	Session.set("pages",IDXREGISTO);
-	  	Session.set("top",IDXTOPREGISTO);
+	  	//Session.set("top",IDXTOPREGISTO);
+	  	Session.set("top",IDXTOPDEFAULT);
   		Session.set("bottom",IDXBOTTOMDEFAULT);
   		Session.set("sidebar-left",IDXLSIDEBARDEFAULT);
   		Session.set("sidebar-right",IDXRSIDEBARDEFAULT);
