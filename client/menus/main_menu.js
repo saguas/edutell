@@ -3,6 +3,7 @@
 var idxmenu = arrMenu.push("menu_original");
 var IDXMAINMENU = idxmenu - 1;
 
+
 Session.set("menu",IDXMAINMENU);
 
 
@@ -38,17 +39,16 @@ Session.set("menu",IDXMAINMENU);
 	},
 	'click .login' : function(event){
 		event.preventDefault();
+		//clearTooltip();
 		Router.changePage(Router.pages.login);
 	}
   };
   
-Template.menu_orig.events = {
-	'click .home' : function(event){
-		event.preventDefault();
-		//$(event.currentTarget).addClass("active");
-		//$('.home').addClass("active");
-		Session.set("inicio","active");
-		Router.changePage(Router.pages.inicial);
-		//console.log("home click ", event.currentTarget);
-	}
+Template.menu_orig.events(menu_origEvents);
+
+
+window.onpopstate = function(){
+	//console.log("popstate");
+	clearTooltip();
 };
+ 

@@ -18,6 +18,10 @@ Handlebars.registerHelper('login_error', function() {
      return Session.get("login_error");
 });
 
+Handlebars.registerHelper('login', function() {
+     return Session.get("login");
+});
+
 Template.login_error.mensagem = function () {
     return "<div class='alert alert-error alert-block' style='text-align: center ;'><h4>Erro!</h4> Password ou email inválido</div>";
 };
@@ -61,7 +65,7 @@ Template.form_login.rendered = function(){
 Template.form_login.destroyed = function(){
 	//console.log("destroyed ", $('#registar'));
 	//$(this.find("#registar")).tooltip();
-	$("#registar").tooltip('destroy');
+	//$("#registar").tooltip('destroy');
 };
 
 Template.form_login.events({
@@ -87,6 +91,7 @@ Template.form_login.events({
 	'click #registar': function(event,obj_template){
 		//console.log("registar");
 		//Router.changePage("registo");
+		$("#registar").tooltip('destroy');
 		Router.changePage(Router.pages.registo);
 		event.preventDefault();
 	}

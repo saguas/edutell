@@ -29,6 +29,9 @@ var IDXRSIDEBARDEFAULT = 0;
 var IDXDEFAULTMENU = 0;
 var IDXDEFAULTMENUTITLE = "Title";
 
+//--- Objecto para tratamento dos eventos relacionados com o menu. Deve ser extendido por cada ficheiro que trata os menus
+var menu_origEvents = {};
+
 //----- SESSION DEFAULTS --------
 //Session.set("pages",IDXPAGEDEFAULT);
 Session.set("menu",IDXDEFAULTMENU);
@@ -46,6 +49,47 @@ var options = {username: "saguas", email: "luisfmfernandes@gmail.com", password:
 // variáveis que controlam se já foi feito login
 Session.set("login",false);
 var login = false;
+
+
+function clearTooltip(){
+	console.log("clearTooltip");
+	$.each($('.error,[rel="tooltip"]'),function(i,o){
+		$(o).removeClass("error");
+		//console.log("o ",o);
+		$(o).tooltip("destroy");
+	});
+};
+
+//eventos do layout
+var layout_events = {
+	
+	'click': function(event){
+		//console.log("origem ",event.target);
+		clearTooltip();
+	}
+	
+}
+
+/*
+var clearTooltip = function () {
+  var update = function () {
+    var ctx = new Meteor.deps.Context();  // invalidation context
+    ctx.onInvalidate(update);             // rerun update() on invalidation
+    ctx.run(function () {
+      var menu_title = Session.get("menu_title");
+      $.each($('.error'),function(i,o){
+			$(o).removeClass("error");
+			console.log("o ",o);
+			$(o).tooltip("destroy");
+	  });
+      console.log("The current username is now", menu_title);
+    });
+  };
+  update();
+};
+*/
+
+clearTooltip();
 
   //var arrPag = [{pag:"home"}];
   //var arrPag = [[{pag:"color_list"}]];
@@ -170,8 +214,9 @@ Router.pages.inicial = "";
      if (Template[arrSidebarRight[Session.get("sidebar-right")]]) //verifica se há um template com o node dado por this.pag
       return Template[arrSidebarRight[Session.get("sidebar-right")]]();//chama o template registado com o nome de this.page
   });
-  
 
+//trata dos eventos do layout
+Template.layout.events(layout_events);
   
 //----- TEMPLATES --------
 
