@@ -41,14 +41,23 @@ Session.set("menu",IDXMAINMENU);
 		event.preventDefault();
 		//clearTooltip();
 		Router.changePage(Router.pages.login);
+	},
+	"click .brand": function(event){
+		event.preventDefault();
+		return false;
 	}
   };
   
 Template.menu_orig.events(menu_origEvents);
 
+$(window).bind('popstate', function(event){
+	//console.log("popstate ",JSON.stringify(event.state));
+	clearTooltip({type:" "});
+});
 
+/*
 window.onpopstate = function(){
 	//console.log("popstate");
 	clearTooltip();
 };
- 
+ */

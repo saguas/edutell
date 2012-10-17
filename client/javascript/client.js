@@ -51,21 +51,35 @@ Session.set("login",false);
 var login = false;
 
 
-function clearTooltip(){
-	console.log("clearTooltip");
-	$.each($('.error,[rel="tooltip"]'),function(i,o){
+function clearTooltip(objevent){
+	//console.log("clearTooltip");
+	
+	//if(objevent.type != "text" && objevent.type != "password"){
+	$.each($('.error'),function(i,o){
+	//$.each($('.tooltip'),function(i,o){
 		$(o).removeClass("error");
-		//console.log("o ",o);
+		//console.log("o error ",o);
 		$(o).tooltip("destroy");
 	});
+	//}
+	
+	if(objevent.type != null && objevent.type != undefined && objevent.type != "text" && objevent.type != "password" && objevent.type != "submit" && objevent.type != "button" ){
+		
+		$.each($('[rel="tooltip"]'),function(i,o){
+		//$.each($('.tooltip'),function(i,o){
+			//console.log("o tooltip",o);
+			$(o).tooltip("destroy");
+		});
+	}
 };
 
 //eventos do layout
 var layout_events = {
 	
 	'click': function(event){
-		//console.log("origem ",event.target);
-		clearTooltip();
+		//console.log("origem ",event.currentTarget);
+		
+		clearTooltip(event.currentTarget);
 	}
 	
 }
@@ -89,7 +103,7 @@ var clearTooltip = function () {
 };
 */
 
-clearTooltip();
+//clearTooltip();
 
   //var arrPag = [{pag:"home"}];
   //var arrPag = [[{pag:"color_list"}]];

@@ -71,7 +71,7 @@ Template.form_registo.rendered = function(){
 		    //$("#" + $(label).attr("for")).tooltip('hide');
 		 },
 		highlight: function(element, errorClass) {
-			 console.log("error class ",errorClass);
+			 //console.log("error class ",errorClass);
 			 $(element).addClass(errorClass).removeClass("valid");
 			//$(element).tooltip('show');
 		},
@@ -128,6 +128,9 @@ Handlebars.registerHelper('aluno', function() {
 Template.form_registo.events({
  	'submit' : function(event,obj_template){
  		event.preventDefault();
+ 		event.stopPropagation();
+ 		//event.stopImmediatePropagation();
+ 		//console.log("form registo");
  		//console.log("template origem ",$('form').valid());
  		if($('form').valid()){
  			
@@ -168,7 +171,7 @@ Template.form_registo.events({
 						login = true;
 						Router.changePage(Router.pages.login);			
 					}else{
-						console.log("erro! Código da escola inválido ou já utilizado");
+						//console.log("erro! Código da escola inválido ou já utilizado");
 						$('#registoEscola').popover({trigger:"manual",title: "ERRO!",content:"Código da escola e email não coincidem ou já utilizados"});
 						$('#registoEscola').popover("show");
 					}	
@@ -178,6 +181,8 @@ Template.form_registo.events({
  			$("#registoPassword").val("");
  			$("#registoPasswordVer").val("");
  		}
+ 		
+ 		//return false;
 	},
 	'click .tipo': function(event,obj_template){
 		//console.log("id target %s id old %s",event.target.id,registoObj.tipo);

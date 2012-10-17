@@ -44,6 +44,32 @@ Template.form_login.rendered = function(){
 				required: true
 			}
 		},
+		errorPlacement: function(error, element) {
+		
+			/*
+			var frag = Meteor.render(function () {
+			  return '<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>';
+			});
+			*/
+	
+			$(element).tooltip({animation:false, /*template: frag,*/ trigger:"manual",title: $(error).text(),placement:"right"});
+			$(element).tooltip('show');
+			
+		},
+		 success: function(label) {
+		 	//console.log("label ", $(label).attr("for"));
+		    //$("#" + $(label).attr("for")).tooltip('hide');
+		 },
+		highlight: function(element, errorClass) {
+			 //console.log("error class ",errorClass);
+			 $(element).addClass(errorClass).removeClass("valid");
+			//$(element).tooltip('show');
+		},
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).removeClass(errorClass).addClass(validClass);
+			$(element).tooltip('hide');
+		},
+		
 		messages: {
 			nome: {//colocar mensagens específicas aqui
 				//required: "campo obrigatório"
@@ -71,6 +97,7 @@ Template.form_login.destroyed = function(){
 Template.form_login.events({
  	'submit' : function(event,obj_template){
  		event.preventDefault();
+ 		event.stopPropagation();
  		//console.log("template origem ",this);
  		var email = $.trim($('#inputEmail').val());
  		var password = $.trim($('#inputPassword').val());
@@ -82,6 +109,7 @@ Template.form_login.events({
  			$('#inputEmail').val("");
  			$('#inputPassword').val("");
  		}
+ 		//return false;
 	},
 	'focus #inputEmail, focus #inputPassword': function(event,obj_template){
 		//console.log("keypress");
