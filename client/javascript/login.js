@@ -5,14 +5,14 @@ Meteor.startup(function () {
 });
 
 //----- LOGIN --------
-var IDXTOPLOGIN = 1;
-var IDXBOTTOMLOGIN = 1;
-var IDXSIDEBARLOGIN = 1;
-var IDXLOGIN = 1;
-var IDXLOGINMENUTITLE = EDUTELL + "LOGIN";
+mEdutell.IDXTOPLOGIN = 1;
+mEdutell.IDXBOTTOMLOGIN = 1;
+mEdutell.IDXSIDEBARLOGIN = 1;
+mEdutell.IDXLOGIN = 1;
+mEdutell.IDXLOGINMENUTITLE = mEdutell.EDUTELL + "LOGIN";
 
 Session.set("login_error", false);
-Session.set("pages",IDXLOGIN);
+Session.set("pages",mEdutell.IDXLOGIN);
 
 Handlebars.registerHelper('login_error', function() {
      return Session.get("login_error");
@@ -26,7 +26,7 @@ Template.login_error.mensagem = function () {
     return "<div class='alert alert-error alert-block' style='text-align: center ;'><h4>Erro!</h4> Password ou email inválido</div>";
 };
 
-Template.form_login.preserve(["#inputEmail","#inputPassword"]);
+//Template.form_login.preserve(["#inputEmail","#inputPassword"]);
 
 Template.form_login.rendered = function(){
 	//console.log("rendered",this.find("#registar"));
@@ -120,7 +120,7 @@ Template.form_login.events({
 		//console.log("registar");
 		//Router.changePage("registo");
 		$("#registar").tooltip('destroy');
-		Router.changePage(Router.pages.registo);
+		mEdutell.Router.changePage(mEdutell.Router.pages.registo);
 		event.preventDefault();
 	}
 });
@@ -142,7 +142,7 @@ var flogin = function(error,result){
 		Session.set("login",true);
 		Session.set("show_login",false);
 		login = true;
-		Router.changePage(Router.pages.inicial);
+		mEdutell.Router.changePage(mEdutell.Router.pages.inicial);
 		//Session.set("login_error", false);
 		/*Meteor.logout(function(error){
 			console.log("error logout? ",error);
@@ -163,24 +163,24 @@ var flogin = function(error,result){
 	    	
 }
 
-Router.route("login","login",function(){
+mEdutell.Router.route("login","login",function(){
 	  	
 	  	Session.set("page_id", "login");
 	    //arrPag = [{pag:"home"},{pag:"off"}];
 	    //var idx = arrPag.push([{pag:"login"}]);
  		//Session.set("pages",arrPag);
- 		Session.set("pages",IDXLOGIN);
- 		Session.set("menu_title",IDXLOGINMENUTITLE);
+ 		Session.set("pages",mEdutell.IDXLOGIN);
+ 		Session.set("menu_title",mEdutell.IDXLOGINMENUTITLE);
  		//Session.set("top",IDXTOPLOGIN);
- 		Session.set("top",IDXTOPDEFAULT);
-  		Session.set("bottom",IDXBOTTOMDEFAULT);
-  		Session.set("sidebar-left",IDXLSIDEBARDEFAULT);
-  		Session.set("sidebar-right",IDXRSIDEBARDEFAULT);
+ 		Session.set("top",mEdutell.IDXTOPDEFAULT);
+  		Session.set("bottom",mEdutell.IDXBOTTOMDEFAULT);
+  		Session.set("sidebar-left",mEdutell.IDXLSIDEBARDEFAULT);
+  		Session.set("sidebar-right",mEdutell.IDXRSIDEBARDEFAULT);
   		Session.set("show_login",false);
   		Session.set("inicio","");
 });
 
-Router.pages.login = "login";
+mEdutell.Router.pages.login = "login";
 
 /*function isValidEmailAddress(emailAddress) {
     var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);

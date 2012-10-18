@@ -3,11 +3,11 @@ Meteor.startup(function () {
 });
 
 //----- LOGIN REGISTO --------
-var IDXREGISTO = 2;
-var IDXTOPREGISTO = 2;
-var IDXBOTTOMREGISTO = 2;
-var IDXSIDEBARREGISTO = 2;
-var IDXREGISTOMENUTITLE = EDUTELL + "NOVO REGISTO";
+mEdutell.IDXREGISTO = 2;
+mEdutell.IDXTOPREGISTO = 2;
+mEdutell.IDXBOTTOMREGISTO = 2;
+mEdutell.IDXSIDEBARREGISTO = 2;
+mEdutell.IDXREGISTOMENUTITLE = mEdutell.EDUTELL + "NOVO REGISTO";
 
 
 //var tipo = "aluno";
@@ -169,7 +169,7 @@ Template.form_registo.events({
 					if(!error){
 						Session.set("login",true);
 						login = true;
-						Router.changePage(Router.pages.login);			
+						mEdutell.Router.changePage(mEdutell.Router.pages.login);			
 					}else{
 						//console.log("erro! Código da escola inválido ou já utilizado");
 						$('#registoEscola').popover({trigger:"manual",title: "ERRO!",content:"Código da escola e email não coincidem ou já utilizados"});
@@ -213,7 +213,7 @@ Template.form_registo.events({
 		//Router.changePage("registo");
 		//clearTooltip();
 		$("#login").tooltip('destroy');
-		Router.changePage(Router.pages.login);
+		mEdutell.Router.changePage(mEdutell.Router.pages.login);
 		event.preventDefault();
 	},
 	"click #registoEscola": function(event){
@@ -221,19 +221,19 @@ Template.form_registo.events({
 	} 
 });
 
-Router.route("registo","registo",function(){
-	  	Session.set("pages",IDXREGISTO);
+mEdutell.Router.route("registo","registo",function(){
+	  	Session.set("pages",mEdutell.IDXREGISTO);
 	  	//Session.set("top",IDXTOPREGISTO);
-	  	Session.set("top",IDXTOPDEFAULT);
-  		Session.set("bottom",IDXBOTTOMDEFAULT);
-  		Session.set("sidebar-left",IDXLSIDEBARDEFAULT);
-  		Session.set("sidebar-right",IDXRSIDEBARDEFAULT);
-  		Session.set("menu_title",IDXREGISTOMENUTITLE);
+	  	Session.set("top",mEdutell.IDXTOPDEFAULT);
+  		Session.set("bottom",mEdutell.IDXBOTTOMDEFAULT);
+  		Session.set("sidebar-left",mEdutell.IDXLSIDEBARDEFAULT);
+  		Session.set("sidebar-right",mEdutell.IDXRSIDEBARDEFAULT);
+  		Session.set("menu_title",mEdutell.IDXREGISTOMENUTITLE);
   		if(!login)
   			Session.set("show_login",true);
 });
 
-Router.pages.registo="registo";
+mEdutell.Router.pages.registo="registo";
 
 
 /*function clearTooltip(){

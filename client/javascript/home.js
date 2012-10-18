@@ -1,18 +1,18 @@
 
-var IDXHOMEMENUTITLE = EDUTELL + "HOME";
+mEdutell.IDXHOMEMENUTITLE = mEdutell.EDUTELL + "HOME";
 
 Session.set("inicio","");  
 
 
 
-_.extend(menu_origEvents,{
+_.extend(mEdutell.menu_origEvents,{
 	'click .home' : function(event){
 		event.preventDefault();
 		//$(event.currentTarget).addClass("active");
 		//$('.home').addClass("active");
 		//clearTooltip();
 		Session.set("inicio","active");
-		Router.changePage(Router.pages.inicial);
+		mEdutell.Router.changePage(mEdutell.Router.pages.inicial);
 		//console.log("home click ", event.currentTarget);
 }});
   

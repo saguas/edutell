@@ -1,10 +1,8 @@
 
-
-var idxmenu = arrMenu.push("menu_original");
-var IDXMAINMENU = idxmenu - 1;
+mEdutell.IDXMAINMENU = mEdutell.arrMenu.push("menu_original") - 1;
 
 
-Session.set("menu",IDXMAINMENU);
+Session.set("menu",mEdutell.IDXMAINMENU);
 
 
   Handlebars.registerHelper('logout', function() {
@@ -31,7 +29,7 @@ Session.set("menu",IDXMAINMENU);
 				Session.set("show_login",true);
 				Session.set('login', false);
 				//Session.set("inicio","");
-				Router.changePage(Router.pages.inicial);
+				mEdutell.Router.changePage(mEdutell.Router.pages.inicial);
 			}else{
 				console.log("error ao fazer logout: ",error);
 			}
@@ -40,7 +38,7 @@ Session.set("menu",IDXMAINMENU);
 	'click .login' : function(event){
 		event.preventDefault();
 		//clearTooltip();
-		Router.changePage(Router.pages.login);
+		mEdutell.Router.changePage(mEdutell.Router.pages.login);
 	},
 	"click .brand": function(event){
 		event.preventDefault();
@@ -48,7 +46,7 @@ Session.set("menu",IDXMAINMENU);
 	}
   };
   
-Template.menu_orig.events(menu_origEvents);
+Template.menu_orig.events(mEdutell.menu_origEvents);
 
 $(window).bind('popstate', function(event){
 	//console.log("popstate ",JSON.stringify(event.state));
