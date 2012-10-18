@@ -1,6 +1,6 @@
 //cria um array de colecction, cada uma com o número de páginas a incluir por documento 
 
-var mPage = Backbone.Model;
+//var mPage = Backbone.Model;
 /*
 var arrPages = [];
 var arrTop = [];
@@ -62,8 +62,20 @@ window.mEdutell = Backbone.Model.extend({},{
 	Router: null,
 	
 	//objeto onde acrescentar os eventos tratados pelo layout. Deve-se usar ._extend();
-	layout_events: {}
+	layout_events: {},
+	
+	
+	setpage: function(arr,arrobj){
+		//var mycoll = new Backbone.Collection(arrobj);
+		/*_.each(arrobj,function(obj){
+			mycoll.add(new mPage(obj));
+		});*/
+		arr.push(new Backbone.Collection(arrobj));
+	}
 });
+
+
+
 
 //window.edutellObj = new mEdutell();
 
@@ -71,10 +83,14 @@ window.mEdutell = Backbone.Model.extend({},{
 
 //var mytesteobj = new mEdutell();
 
-mEdutell.arrPages.push(new Backbone.Collection([new mPage({page: "home"})]));
-mEdutell.arrPages.push(new Backbone.Collection([new mPage({page:"form_login"})]));
-mEdutell.arrPages.push(new Backbone.Collection([new mPage({page:"form_registo"})]));
-mEdutell.arrPages.push(new Backbone.Collection([new mPage({page:"home"}),new mPage({page:"off"})]));
+mEdutell.setpage(mEdutell.arrPages,[{page: "home"}]);
+mEdutell.setpage(mEdutell.arrPages,[{page:"form_login"}]);
+mEdutell.setpage(mEdutell.arrPages,[{page:"form_registo"}]);
+mEdutell.setpage(mEdutell.arrPages,[{page:"home"},{page:"off"}]);
+//mEdutell.arrPages.push(new Backbone.Collection([new mPage({page: "home"})]));
+//mEdutell.arrPages.push(new Backbone.Collection([new mPage({page:"form_login"})]));
+//mEdutell.arrPages.push(new Backbone.Collection([new mPage({page:"form_registo"})]));
+//mEdutell.arrPages.push(new Backbone.Collection([new mPage({page:"home"}),new mPage({page:"off"})]));
 
 
 
@@ -82,20 +98,29 @@ mEdutell.arrPages.push(new Backbone.Collection([new mPage({page:"home"}),new mPa
 //var arrPag = [[{pag:"home"}],[{pag:"form_login"}],[{pag:"form_registo"}],[{pag:"home"},{pag:"off"}]];
 //var arrTop = ["notop","toplogin","topregisto"];
 
-mEdutell.arrTop.push(new Backbone.Collection([new mPage({page: "notop"})]));
-mEdutell.arrTop.push(new Backbone.Collection([new mPage({page: "toplogin"})]));
-mEdutell.arrTop.push(new Backbone.Collection([new mPage({page: "topregisto"})]));
+//mEdutell.arrTop.push(new Backbone.Collection([new mPage({page: "notop"})]));
+//mEdutell.arrTop.push(new Backbone.Collection([new mPage({page: "toplogin"})]));
+//mEdutell.arrTop.push(new Backbone.Collection([new mPage({page: "topregisto"})]));
 
-console.log("edutellObj ",mEdutell.EDUTELL);//.get("arrPages"));
+mEdutell.setpage(mEdutell.arrTop,[{page: "notop"}]);
+mEdutell.setpage(mEdutell.arrTop,[{page: "toplogin"}]);
+mEdutell.setpage(mEdutell.arrTop,[{page: "topregisto"}]);
+
+//console.log("edutellObj ",mEdutell.EDUTELL);//.get("arrPages"));
 //console.log("mytesteobj ",mytesteobj);
 
-mEdutell.arrBottom.push(new Backbone.Collection([new mPage({page: ""})]));
-mEdutell.arrBottom.push(new Backbone.Collection([new mPage({page: "bottomlogin"})]));
+//mEdutell.arrBottom.push(new Backbone.Collection([new mPage({page: ""})]));
+//mEdutell.arrBottom.push(new Backbone.Collection([new mPage({page: "bottomlogin"})]));
+mEdutell.setpage(mEdutell.arrBottom,[{page: ""}]);
+mEdutell.setpage(mEdutell.arrBottom,[{page: "bottomlogin"}]);
 
+//mEdutell.arrSidebarLeft.push(new Backbone.Collection([new mPage({page: ""})]));
+//mEdutell.arrSidebarLeft.push(new Backbone.Collection([new mPage({page: "sidebar-left"})]));
+mEdutell.setpage(mEdutell.arrSidebarLeft,[{page: ""}]);
+mEdutell.setpage(mEdutell.arrSidebarLeft,[{page: "sidebar-left"}]);
 
-mEdutell.arrSidebarLeft.push(new Backbone.Collection([new mPage({page: ""})]));
-mEdutell.arrSidebarLeft.push(new Backbone.Collection([new mPage({page: "sidebar-left"})]));
+//mEdutell.arrSidebarRight.push(new Backbone.Collection([new mPage({page: ""})]));
+//mEdutell.arrSidebarRight.push(new Backbone.Collection([new mPage({page: "sidebar-right"})]));
+mEdutell.setpage(mEdutell.arrSidebarRight,[{page: ""}]);
+mEdutell.setpage(mEdutell.arrSidebarRight,[{page: "sidebar-right"}]);
 
-
-mEdutell.arrSidebarRight.push(new Backbone.Collection([new mPage({page: ""})]));
-mEdutell.arrSidebarRight.push(new Backbone.Collection([new mPage({page: "sidebar-right"})]));
