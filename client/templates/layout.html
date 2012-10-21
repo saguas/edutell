@@ -1,75 +1,83 @@
 <template name="layout">
-	
-<div class="container-fluid">
-	<div class="row-fluid">
-		<!--Menu-->
-		{{{menu}}}
-	</div>
-	<div class="row-fluid">
-		<!--Top-->
-		{{{top}}}
-	</div>
-  <div class="row-fluid">
-    <div class="span2">
-      <!--Sidebar content-->
-      {{{sidebar-left}}}
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <!--Menu-->
+            {{{menu}}}
+        </div>
+        <div class="row-fluid">
+            <!--Top-->
+            {{{top}}}
+        </div>
+        <div class="row-fluid">
+            <div class="span2">
+                <!--Sidebar content-->
+                {{{sidebar-left}}}
+            </div>
+            <div class="span8 well">
+                <!--Body content-->
+                {{#each currentPage}}
+                {{{welcomes}}}
+                {{/each}}
+            </div>
+            <div class="span2">
+                <!--Sidebar content-->
+                {{{sidebar-right}}}
+            </div>
+        </div>
+        <div class="row-fluid">
+            <!--Bottom-->
+
+            {{{bottom}}}
+            <!--<img src="http://viewvc.svn.mozilla.org/vc/addons/trunk/bandwagon/skin/images/spinner.gif?revision=18591&view=co&pathrev=18591">-->
+        </div>
     </div>
-    <div class="span8 well">
-      <!--Body content-->
-		{{#each currentPage}}
-  			{{{welcomes}}}
-  		{{/each}}
-    </div>
-    <div class="span2">
-      <!--Sidebar content-->
-      {{{sidebar-right}}}
-    </div>
-  </div>
-  <div class="row-fluid">
-  		<!--Bottom-->
-  		
-  		{{{bottom}}}
-  		<!--<img src="http://viewvc.svn.mozilla.org/vc/addons/trunk/bandwagon/skin/images/spinner.gif?revision=18591&view=co&pathrev=18591">-->
-  </div>
-</div>
 </template>
 
 
 <template name="notop">
-	<div class="span12 offset0">
-		<h1 class=""></h1>
-	</div>
+    <div class="span12 offset0">
+        <h1 class=""></h1>
+    </div>
 </template>
 
 <template name="sidebar-left">
-	<div class="span12 offset0">
-	</div>
+    <div class="span12 offset0">
+    </div>
 </template>
 
 <template name="sidebar-right">
-	<div class="span12 offset0">
-	</div>
+    <div class="span12 offset0">
+    </div>
 </template>
 
 <template name="menu_original">
-<div class="span0 offset0">
-	<div class="navbar navbar-inverse navbar-fixed-top">
-	  <div class="navbar-inner">
-	  	<div class="container">  
-		    <ul class="nav">
-		      <li class="active"><a class="brand" href="#">{{Title}}</a></li>
-		    </ul>
-		    {{>menu_orig}}
-		    <ul class="nav pull-right">
-		    	{{#if logout}}
-		    		<li class="logout pull-right"><a href="#">Sair</a></li>
-		    	{{/if}}
-		    	{{#if show_login}}
-		    		<li class="login pull-right"><a href="#">Login</a></li>
-		    	{{/if}}
-		    </ul>
-		</div>
-	  </div>
-	</div>
-</div>
+    <div class="span0 offset0">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">  
+                    <ul class="nav">
+                        <li class="active"><a class="brand" href="#">{{Title}}</a></li>
+                    </ul>
+                    {{>menu_orig}}
+                    <ul class="nav pull-right">
+                        <li class="pull-right"><a class="onlogin" href="#">{{loginButtons }}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+
+<template name="old_login">
+    <ul class="nav pull-right">
+        {{#if logout}}
+        <li class="logout pull-right"><a href="#">Sair</a></li>
+        {{/if}}
+        {{#if show_login}}
+        <li class="login pull-right"><a href="#">Login</a></li>
+        {{/if}}
+    </ul>
 </template>

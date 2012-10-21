@@ -9,3 +9,7 @@ accounts-base
 autopublish
 bootstrap
 jquery
+accounts-ui
+accounts-facebook
+accounts-twitter
+accounts-google

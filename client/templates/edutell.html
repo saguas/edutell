@@ -1,31 +1,31 @@
 <head>
-  <title>EDUTELL</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale = 1.0">
-  <script src="jquery.validate.min.js" type="text/javascript" charset="utf-8"></script>
+    <title>EDUTELL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale = 1.0">
+    <script src="jquery.validate.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body>
-	
- 	{{>layout}}
-  
+
+    {{>layout}}
+
 </body>
 
 <template name="color_list">
-	
-  {{#each colors}}
-  	<ul>
-  		{{> color_info}}
-  	</ul>
-  {{else}}
-  No colors yet.
-  {{/each}}
+
+    {{#each colors}}
+    <ul>
+        {{> color_info}}
+    </ul>
+    {{else}}
+    No colors yet.
+    {{/each}}
 </template>
 
 <template name="color_info">
-	
-	<li class="{{maybe_selected}}">
-		{{name}}
-	</li>
+
+    <li class="{{maybe_selected}}">
+        {{name}}
+    </li>
 </template>
 
 <!--

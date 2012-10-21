@@ -1,42 +1,42 @@
 /*CSS declarations go here */
 
 /*ul{
-	width: 250px;
-	
+        width: 250px;
+        
 }*/
 
 body{
-	background: #ffffff url("/backgrd.gif") repeat;
+    background: #ffffff url("/backgrd.gif") repeat;
 }
 
 .well{
-	/*background-color:cyan;*/
-	opacity:0.76;
+    /*background-color:cyan;*/
+    opacity:0.76;
 }
 .wellForm{
-	/*background-color:green;*/
-	/*border-style:solid;
-	border-bottom-style:solid;
-	border-top-style:solid;
-	border-radius:50px;*/
-	opacity:0.76;
+    /*background-color:green;*/
+    /*border-style:solid;
+    border-bottom-style:solid;
+    border-top-style:solid;
+    border-radius:50px;*/
+    opacity:0.76;
 }
 
 .form-actions{
-	border-top-style: none;
-	background-color:transparent;
+    border-top-style: none;
+    background-color:transparent;
 }
 form a#login, a#registar{
-	color: dimgray;
-	font-size: 14px;
-	font-variant: small-caps;
-	font-weight: bold;
+    color: dimgray;
+    font-size: 14px;
+    font-variant: small-caps;
+    font-weight: bold;
 }
 
 .myCarousel{
-	border-style: none;
+    border-style: none;
 }
 /*
 .selected {
-	background-color: orange;
+        background-color: orange;
 }*/
