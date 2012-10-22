@@ -7,9 +7,9 @@
 mEdutell.IDXADMIN = 3;
 mEdutell.IDXADMINALUNOS = 4;
 mEdutell.IDXADMINPROFS = 5;
-mEdutell.IDXTOPREGISTO = 2;
-mEdutell.IDXBOTTOMREGISTO = 2;
-mEdutell.IDXSIDEBARREGISTO = 2;
+//mEdutell.IDXTOPREGISTO = 2;
+//mEdutell.IDXBOTTOMREGISTO = 2;
+//mEdutell.IDXSIDEBARREGISTO = 2;
 mEdutell.IDXADMINMENUTITLE = mEdutell.EDUTELL + "ADMINISTRAÇÃO";
 
 
@@ -18,7 +18,6 @@ Template.menu_orig.events({
         //console.log("admin clicked ");
         mEdutell.IDXSIDEBARLEFT = 1;
         event.preventDefault();
-        Session.set("selected", ["admin"]);
         mEdutell.Router.changePage(mEdutell.Router.pages.admin);
        
        }
@@ -26,11 +25,13 @@ Template.menu_orig.events({
 
 
 mEdutell.Router.route("admin", "admin", function() {
+    Session.set("selected", ["admin"]);
     this.changePage(mEdutell.Router.pages.adminalunos);
     
 });
 
 mEdutell.Router.route("administracao_alunos", "administracao_alunos", function() {
+    mEdutell.IDXPAGEACTUAL = mEdutell.IDXADMINALUNOS;
     Session.set("pages", mEdutell.IDXADMINALUNOS);
     Session.set("selected", ["admin","adminalunos"]);
     adminSessionCommon();
@@ -38,6 +39,7 @@ mEdutell.Router.route("administracao_alunos", "administracao_alunos", function()
 });
 
 mEdutell.Router.route("administracao_profs", "administracao_profs", function() {
+    mEdutell.IDXPAGEACTUAL = mEdutell.IDXADMINPROFS;
     Session.set("pages", mEdutell.IDXADMINPROFS);
     Session.set("selected", ["admin","adminprofs"]);
     adminSessionCommon();
@@ -45,6 +47,7 @@ mEdutell.Router.route("administracao_profs", "administracao_profs", function() {
 });
 
 mEdutell.Router.route("administracao_EE", "administracao_EE", function() {
+    mEdutell.IDXPAGEACTUAL = mEdutell.IDXADMINPROFS;
     Session.set("pages", mEdutell.IDXADMINPROFS);
     Session.set("selected", ["admin","adminEEs"]);
     adminSessionCommon();
@@ -52,6 +55,7 @@ mEdutell.Router.route("administracao_EE", "administracao_EE", function() {
 });
 
 mEdutell.Router.route("administracao_escolas", "administracao_escolas", function() {
+    mEdutell.IDXPAGEACTUAL = mEdutell.IDXADMINPROFS;
     Session.set("pages", mEdutell.IDXADMINPROFS);
     Session.set("selected", ["admin","adminescolas"]);
     adminSessionCommon();
@@ -59,6 +63,7 @@ mEdutell.Router.route("administracao_escolas", "administracao_escolas", function
 });
 
 mEdutell.Router.route("administracao_add", "administracao_add", function() {
+    mEdutell.IDXPAGEACTUAL = mEdutell.IDXADMINPROFS;
     Session.set("pages", mEdutell.IDXADMINPROFS);
     Session.set("selected", ["admin","adminadds"]);
     adminSessionCommon();

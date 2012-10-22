@@ -4,7 +4,28 @@ and open the template in the editor.
 -->
 <template name="config_dados_pessoais">
     
-    <p>Configuração Dados Pessoais</p>
+    <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label" for="Nome">Nome</label>
+          <div class="controls">
+            <input type="text" id="Nome" placeholder="Nome">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="Sobrenome">Sobrenome</label>
+          <div class="controls">
+            <input type="text" id="Sobrenome" placeholder="Sobrenome">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <label class="checkbox">
+              <input type="checkbox"> Remember me
+            </label>
+            <button type="submit" class="btn">Guardar</button>
+          </div>
+        </div>
+    </form>
     
     
 </template>

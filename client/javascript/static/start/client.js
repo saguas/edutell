@@ -17,7 +17,7 @@ Session.set("top", mEdutell.IDXTOPDEFAULT);
 Session.set("bottom", mEdutell.IDXBOTTOMDEFAULT);
 Session.set("sidebar-left", mEdutell.IDXLSIDEBARDEFAULT);
 Session.set("sidebar-right", mEdutell.IDXRSIDEBARDEFAULT);
-
+Session.set("pages", mEdutell.IDXPAGEACTUAL);
 
 //var extra = {name: "Luis Fernandes", dt: "30-12-1968"};
 //var options = {username: "saguas", email: "luisfmfernandes@gmail.com", password: "8950388"};
@@ -120,6 +120,7 @@ var MenuRouter = Backbone.Router.extend({
         //console.log("main ",login);
         //arrPag = [{pag:"color_list"}];
         Session.set("selected", ["home"]);
+        mEdutell.IDXPAGEACTUAL = mEdutell.IDXPAGEDEFAULT;
         Session.set("pages", mEdutell.IDXPAGEDEFAULT);
         //Session.set("pages",IDXLOGIN);
         Session.set("top", mEdutell.IDXTOPDEFAULT);

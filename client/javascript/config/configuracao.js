@@ -9,9 +9,9 @@ mEdutell.IDXCONFIG = 6;
 mEdutell.IDXCONFIGDADOSPESSOAIS = 7;
 mEdutell.IDXCONFIGINSCRICAO = 8;
 mEdutell.IDXCONFIGCONFIRM = 9;
-mEdutell.IDXTOPREGISTO = 2;
-mEdutell.IDXBOTTOMREGISTO = 2;
-mEdutell.IDXSIDEBARREGISTO = 2;
+//mEdutell.IDXTOPREGISTO = 2;
+//mEdutell.IDXBOTTOMREGISTO = 2;
+//mEdutell.IDXSIDEBARREGISTO = 2;
 mEdutell.IDXCONFIGMENUTITLE = mEdutell.EDUTELL + "CONFIGURAÇÃO";
 
 
@@ -28,6 +28,7 @@ Template.menu_orig.events({
 
 
 mEdutell.Router.route("config", "config", function() {
+    mEdutell.IDXPAGEACTUAL = mEdutell.IDXCONFIG;
     Session.set("pages", mEdutell.IDXCONFIG);
     Session.set("selected", ["config","config_dados_pessoais"]);
     configSessionCommon();
@@ -35,6 +36,7 @@ mEdutell.Router.route("config", "config", function() {
 });
 
 mEdutell.Router.route("config_dados_pessoais", "config_dados_pessoais", function() {
+    mEdutell.IDXPAGEACTUAL = mEdutell.IDXCONFIGDADOSPESSOAIS;
     Session.set("pages", mEdutell.IDXCONFIGDADOSPESSOAIS);
     Session.set("selected", ["config","configdadosP"]);
     configSessionCommon();
@@ -42,6 +44,7 @@ mEdutell.Router.route("config_dados_pessoais", "config_dados_pessoais", function
 });
 
 mEdutell.Router.route("config_inscricao", "config_inscricao", function() {
+    mEdutell.IDXPAGEACTUAL = mEdutell.IDXCONFIGINSCRICAO;
     Session.set("pages", mEdutell.IDXCONFIGINSCRICAO);
     Session.set("selected", ["config","configinsc"]);
     configSessionCommon();
@@ -50,6 +53,7 @@ mEdutell.Router.route("config_inscricao", "config_inscricao", function() {
 
 
 mEdutell.Router.route("config_confirmacao", "config_confirmacao", function() {
+    mEdutell.IDXPAGEACTUAL = mEdutell.IDXCONFIGCONFIRM;
     Session.set("pages", mEdutell.IDXCONFIGCONFIRM);
     Session.set("selected", ["config","configconfirm"]);
     configSessionCommon();

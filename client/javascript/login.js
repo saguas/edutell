@@ -7,12 +7,12 @@ Meteor.startup(function() {
 //----- LOGIN --------
 mEdutell.IDXTOPLOGIN = 1;
 mEdutell.IDXBOTTOMLOGIN = 1;
-mEdutell.IDXSIDEBARLOGIN = 1;
+//mEdutell.IDXSIDEBARLOGIN = 1;
 mEdutell.IDXLOGIN = 1;
 mEdutell.IDXLOGINMENUTITLE = mEdutell.EDUTELL + "LOGIN";
 
 Session.set("login_error", false);
-Session.set("pages", mEdutell.IDXLOGIN);
+//Session.set("pages", mEdutell.IDXLOGIN);
 
 Handlebars.registerHelper('login_error', function() {
     return Session.get("login_error");

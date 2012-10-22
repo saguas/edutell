@@ -19,6 +19,7 @@ window.mEdutell = Backbone.Model.extend({}, {
     //----- DEFAULTS -------- 
     IDXTOPDEFAULT: 0,
     IDXBOTTOMDEFAULT: 0,
+    IDXPAGEACTUAL: 0,
     IDXPAGEDEFAULT: 0,
     IDXLSIDEBARDEFAULT: 0,
     IDXRSIDEBARDEFAULT: 0,
