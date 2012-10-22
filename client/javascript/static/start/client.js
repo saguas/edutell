@@ -27,7 +27,6 @@ Session.set("login", false);
 var login = false;
 
 
-
 function clearTooltip(objevent) {
     //console.log("clearTooltip");
 
@@ -52,6 +51,7 @@ function clearTooltip(objevent) {
 ;
 
 //eventos do layout
+/*
 _.extend(mEdutell.layout_events, {
 
     'click': function(event) {
@@ -61,6 +61,7 @@ _.extend(mEdutell.layout_events, {
     }
 
 });
+*/
 
 /*
  var clearTooltip = function () {
@@ -118,7 +119,7 @@ var MenuRouter = Backbone.Router.extend({
     main: function() {
         //console.log("main ",login);
         //arrPag = [{pag:"color_list"}];
-        Session.set("inicio", "active");
+        Session.set("selected", ["home"]);
         Session.set("pages", mEdutell.IDXPAGEDEFAULT);
         //Session.set("pages",IDXLOGIN);
         Session.set("top", mEdutell.IDXTOPDEFAULT);
@@ -145,9 +146,12 @@ var MenuRouter = Backbone.Router.extend({
     nopath: function(path) {
         console.log("nopath ", path);
     },
-    changePage: function(menu_id) {
-        //console.log("changePage ", menu_id);
-        this.navigate(menu_id, true);
+    changePage: function(menu_id, opt) {
+        //console.log("changePage ", opt);
+        if(opt == undefined || opt == null)
+            this.navigate(menu_id, true);
+        else
+            this.navigate(menu_id, opt);
     },
     //objeto com o nome dos routes a chamar com a função Router.changePage(Router.pages.login / Router.pages.registo) Assim é possível experimentar várias páginas de login
     pages: {
@@ -158,6 +162,8 @@ var MenuRouter = Backbone.Router.extend({
         faltas: "",
         testes: "",
         config: "", //página de configuração
+        admin: "",//página do administrador
+        adminalunos: "",
         logout: ""
     }
 });
@@ -169,6 +175,15 @@ mEdutell.Router.pages.inicial = "";
 //var login = true;
 
 //----- HANDLEBARS --------
+
+Handlebars.registerHelper('userTipo', function(tipo) {
+
+    if(Meteor.userLoaded() && Meteor.user().profile.tipo == tipo){
+       return true;
+    }
+    
+    return false;
+});
 
 // if Router is defined, provide a currentPage helper
 Handlebars.registerHelper('currentPage', function() {
@@ -201,18 +216,27 @@ Handlebars.registerHelper('bottom', function() {
         return Template[mEdutell.arrBottom[Session.get("bottom")].at(0).get("page")]();//chama o template registado com o nome de this.page
 });
 
-Handlebars.registerHelper('sidebar-left', function() {
+Handlebars.registerHelper('sidebarleft', function() {
     if (Template[mEdutell.arrSidebarLeft[Session.get("sidebar-left")].at(0).get("page")]) //verifica se há um template com o node dado por this.pag
         return Template[mEdutell.arrSidebarLeft[Session.get("sidebar-left")].at(0).get("page")]();//chama o template registado com o nome de this.page
+    //console.log("sidebarleft ",mEdutell.arrSidebarLeft[Session.get("sidebar-left")].map(function(coll){return coll.get("page")}));
+    
 });
 
-Handlebars.registerHelper('sidebar-right', function() {
+Handlebars.registerHelper('sidebarright', function() {
     if (Template[mEdutell.arrSidebarRight[Session.get("sidebar-right")].at(0).get("page")]) //verifica se há um template com o node dado por this.pag
         return Template[mEdutell.arrSidebarRight[Session.get("sidebar-right")].at(0).get("page")]();//chama o template registado com o nome de this.page
 });
 
 //trata dos eventos do layout
-Template.layout.events(mEdutell.layout_events);
+Template.layout.events({
+
+    'click': function(event) {
+        //console.log("origem ",event.currentTarget);
+
+        clearTooltip(event.currentTarget);
+    }
+});
 
 //----- TEMPLATES --------
 

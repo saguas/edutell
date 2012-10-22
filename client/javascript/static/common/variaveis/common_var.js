@@ -39,16 +39,17 @@ window.mEdutell = Backbone.Model.extend({}, {
     IDXBOTTOMREGISTO: 2,
     IDXSIDEBARREGISTO: 2,
     IDXREGISTOMENUTITLE: "",
+    //---------- ADMIN ------------
+    IDXADMIN: 3,
+    IDXCONFIG: 4,
     //index do menu principal
     IDXMAINMENU: 0,
-            //Titulo do home menu
-            IDXHOMEMENUTITLE: "",
-            //TPC
-            IDXTPC: 2,
+    //Titulo do home menu
+    IDXHOMEMENUTITLE: "",
+    //TPC
+    IDXTPC: 2,
     //array com os menus. Ver ficheiro main_menu.js
     arrMenu: [""],
-    //--- Objecto para tratamento dos eventos relacionados com o menu. Deve ser extendido por cada ficheiro que trata os menus com ._extend();
-    menu_origEvents: {},
     //router do lado do cliente
     Router: null,
     //objeto onde acrescentar os eventos tratados pelo layout. Deve-se usar ._extend();
@@ -74,6 +75,10 @@ window.mEdutell = Backbone.Model.extend({}, {
 mEdutell.setpage(mEdutell.arrPages, [{page: "home"}]);
 mEdutell.setpage(mEdutell.arrPages, [{page: "form_login"}]);
 mEdutell.setpage(mEdutell.arrPages, [{page: "form_registo"}]);
+mEdutell.setpage(mEdutell.arrPages, [{page: "administracao"}]);
+mEdutell.setpage(mEdutell.arrPages, [{page: "administracao_alunos"}]);
+mEdutell.setpage(mEdutell.arrPages, [{page: "administracao_profs"}]);
+mEdutell.setpage(mEdutell.arrPages, [{page: "configuracao"}]);
 mEdutell.setpage(mEdutell.arrPages, [{page: "home"}, {page: "off"}]);
 //mEdutell.arrPages.push(new Backbone.Collection([new mPage({page: "home"})]));
 //mEdutell.arrPages.push(new Backbone.Collection([new mPage({page:"form_login"})]));
@@ -105,7 +110,8 @@ mEdutell.setpage(mEdutell.arrBottom, [{page: "bottomlogin"}]);
 //mEdutell.arrSidebarLeft.push(new Backbone.Collection([new mPage({page: ""})]));
 //mEdutell.arrSidebarLeft.push(new Backbone.Collection([new mPage({page: "sidebar-left"})]));
 mEdutell.setpage(mEdutell.arrSidebarLeft, [{page: ""}]);
-mEdutell.setpage(mEdutell.arrSidebarLeft, [{page: "sidebar-left"}]);
+mEdutell.setpage(mEdutell.arrSidebarLeft, [{page: "admin_sidebar-left"}]);
+mEdutell.setpage(mEdutell.arrSidebarLeft, [{page: "config_sidebar-left"}]);
 
 //mEdutell.arrSidebarRight.push(new Backbone.Collection([new mPage({page: ""})]));
 //mEdutell.arrSidebarRight.push(new Backbone.Collection([new mPage({page: "sidebar-right"})]));

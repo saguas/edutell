@@ -3,18 +3,18 @@ mEdutell.IDXHOMEMENUTITLE = mEdutell.EDUTELL + "HOME";
 
 Session.set("inicio", "");
 
-
-
-_.extend(mEdutell.menu_origEvents, {
+Template.menu_orig.events({
     'click .home': function(event) {
         event.preventDefault();
         //$(event.currentTarget).addClass("active");
         //$('.home').addClass("active");
         //clearTooltip();
-        Session.set("inicio", "active");
+        //Session.set("inicio", "active");
+        //Session.set("selected", "home");
         mEdutell.Router.changePage(mEdutell.Router.pages.inicial);
         //console.log("home click ", event.currentTarget);
-    }});
+    }
+});
 
 Handlebars.registerHelper('inicio', function() {
     //mostra o menu login em algumas páginas antes de fazer login

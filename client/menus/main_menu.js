@@ -20,7 +20,7 @@ Template.menu_original.Title = function() {
     return Session.get("menu_title");
 };
 
-Template.menu_original.events = {
+Template.menu_original.events({
     'click .logout': function(event) {
         event.preventDefault();
         Meteor.logout(function(error) {
@@ -48,9 +48,22 @@ Template.menu_original.events = {
         event.preventDefault();
         return false;
     }
-};
+});
 
-Template.menu_orig.events(mEdutell.menu_origEvents);
+//Template.menu_orig.events(mEdutell.menu_origEvents);
+
+Handlebars.registerHelper('activar', function(options) {
+    //mostra o menu login em algumas páginas antes de fazer login
+   
+    //console.log("activar ",options.hash.selected);
+    
+    //console.log("sel ",options.hash.selected);
+    if(_.contains(Session.get("selected"), options.hash.selected))
+        return true;
+    
+    //return Session.equals("selected",options.hash.selected);
+});
+
 
 $(window).bind('popstate', function(event) {
     //console.log("popstate ",JSON.stringify(event.state));

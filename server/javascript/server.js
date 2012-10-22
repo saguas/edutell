@@ -1,3 +1,9 @@
+/*
+Meteor.publish("directory", function () {
+  return Meteor.users.find({}, {fields: {emails: 1, profile: 1}});
+});
+*/
+
 Meteor.startup(function() {
     // code to run on server at startup
 
@@ -6,15 +12,19 @@ Meteor.startup(function() {
      console.log("insert userid ",userId);
      return false;
      }});
-     
-     Accounts.onCreateUser(function(options, extra, user){ //esta função é chamada antes de Meteor.accounts.validateNewUser 
-     console.log("onCreateUser user:",user);
-     
-     return _.extend(user,extra);//é necessário copiar o extra para user. Se não for feito os campos de extra não entram em user (no caso desta função existir).
-     
-     //return user;	
-     });
      */
+     Accounts.onCreateUser(function(options, user){ //esta função é chamada antes de Meteor.accounts.validateNewUser 
+        console.log("onCreateUser user:",user);
+            
+        if (options.profile)
+            user.profile = options.profile;
+        else
+            user.profile = {tipo:"aluno"};
+
+        //return _.extend(user,extra);//é necessário copiar o extra para user. Se não for feito os campos de extra não entram em user (no caso desta função existir).
+
+        return user;	
+     });
 
     Accounts.validateNewUser(function(proposedUser) {//esta função é chamada de Meteor.accounts.onCreateUser
 

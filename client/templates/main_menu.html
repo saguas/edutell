@@ -1,10 +1,15 @@
 
 <template name="menu_orig">
     <ul class="nav">
-        <li class="home {{inicio}}"><a href="#">Home</a></li>
+        <li class="home {{#if activar selected="home"}}active{{/if}}"><a href="#">Home</a></li>
         {{#if currentUser}}
-        <li><a href="#">Link1</a></li>
-        <li><a href="#">Configuração</a></li>
+            <li><a href="#">Link1</a></li>
+            {{#if userTipo "admin"}}   
+                <li class="admin {{#if activar selected="admin"}}active{{/if}}"><a href="#">Administração</a></li>
+            {{/if}}
+            {{#if userTipo "aluno"}}
+                <li class="config {{#if activar selected="config"}}active{{/if}}"><a href="#">Configuração</a></li>
+            {{/if}}
         {{/if}}
     </ul>
 </template>

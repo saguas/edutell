@@ -1,0 +1,18 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<template name="admin_sidebar-left">
+    <div class="span12 offset0">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="nav-header">Pesquisar</li>
+            <li class="alunos {{#if activar selected="adminalunos"}}active{{/if}}"><a href="#">Alunos</a></li>     
+            <li class="profs {{#if activar selected="adminprofs"}}active{{/if}}"><a href="#">Professores</a></li>  
+            <li class="EEs {{#if activar selected="adminEEs"}}active{{/if}}"><a href="#">Enc. Educação</a></li> 
+            <li class="escolas {{#if activar selected="adminescolas"}}active{{/if}}"><a href="#">Escolas</a></li>   
+            
+            <li class="nav-header">Adicionar Elementos</li>
+            <li class="adds {{#if activar selected="adminadds"}}active{{/if}}"><a href="#">Adicionar</a></li>   
+        </ul>
+    </div>
+</template>
