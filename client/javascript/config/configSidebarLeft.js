@@ -13,12 +13,12 @@ Template["config_sidebar-left"].events({
     "click .dados": function(event,tmpl){
         event.preventDefault();
        
-        mEdutell.Router.changePage(mEdutell.Router.pages.adminalunos);
+        mEdutell.Router.changePage(mEdutell.Router.pages.configdadosP);
     },
     "click .insc": function(event,tmpl){
         event.preventDefault();
         
-        mEdutell.Router.changePage(mEdutell.Router.pages.adminprofs);
+        mEdutell.Router.changePage(mEdutell.Router.pages.configinsc);
     },
     "click .EEs": function(event){
         event.preventDefault();
@@ -28,9 +28,9 @@ Template["config_sidebar-left"].events({
         event.preventDefault();
         mEdutell.Router.changePage(mEdutell.Router.pages.adminescolas);
     },
-    "click .adds": function(event){
+    "click .confirm": function(event){
         event.preventDefault();
-        mEdutell.Router.changePage(mEdutell.Router.pages.adminadd);
+        mEdutell.Router.changePage(mEdutell.Router.pages.configconfirm);
     }        
 });
 

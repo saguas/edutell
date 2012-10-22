@@ -1,10 +1,10 @@
 Meteor.startup(function() {
-
+    /*
     $.extend($.validator.messages, {//colocar mensagens comuns aqui. 
         required: "<div class='alert alert-error'><small>campo obrigatório</small></div>",
         number: "<div class='alert alert-error'><small>campo numérico</small></div>"
         //email: "Bitte eine gültige E-Mail-Adresse eingeben",
-    });
+    });*/
 
 });
 
@@ -12,21 +12,21 @@ Meteor.startup(function() {
 //Session.set("pages",IDXPAGEDEFAULT);
 Session.set("menu", mEdutell.IDXDEFAULTMENU);
 Session.set("menu_title", mEdutell.IDXDEFAULTMENUTITLE);
-Session.set("show_login", true);
+//Session.set("show_login", true);
 Session.set("top", mEdutell.IDXTOPDEFAULT);
 Session.set("bottom", mEdutell.IDXBOTTOMDEFAULT);
 Session.set("sidebar-left", mEdutell.IDXLSIDEBARDEFAULT);
 Session.set("sidebar-right", mEdutell.IDXRSIDEBARDEFAULT);
 
 
-var extra = {name: "Luis Fernandes", dt: "30-12-1968"};
-var options = {username: "saguas", email: "luisfmfernandes@gmail.com", password: "8950388"};
+//var extra = {name: "Luis Fernandes", dt: "30-12-1968"};
+//var options = {username: "saguas", email: "luisfmfernandes@gmail.com", password: "8950388"};
 //var login = false;
 // variáveis que controlam se já foi feito login
-Session.set("login", false);
-var login = false;
+//Session.set("login", false);
+//var login = false;
 
-
+/*
 function clearTooltip(objevent) {
     //console.log("clearTooltip");
 
@@ -47,8 +47,8 @@ function clearTooltip(objevent) {
             $(o).tooltip("destroy");
         });
     }
-}
-;
+};
+*/
 
 //eventos do layout
 /*
@@ -131,8 +131,8 @@ var MenuRouter = Backbone.Router.extend({
         //Session.set("menu_title",IDXLOGINMENUTITLE);
         Session.set("menu_title", mEdutell.IDXHOMEMENUTITLE);
 
-        if (!login)
-            Session.set("show_login", true);
+        //if (!login)
+          //  Session.set("show_login", true);
 
     },
     tpc: function(turma_id, aluno_id) {
@@ -229,17 +229,18 @@ Handlebars.registerHelper('sidebarright', function() {
 });
 
 //trata dos eventos do layout
+/*
 Template.layout.events({
-
+    
     'click': function(event) {
         //console.log("origem ",event.currentTarget);
 
         clearTooltip(event.currentTarget);
     }
 });
-
+*/
 //----- TEMPLATES --------
-
+/*
 Template.color_list.colors = function() {
     return Colors.find({}, {sort: {likes: -1, name: 1}});
 };
@@ -247,10 +248,10 @@ Template.color_list.colors = function() {
 Template.color_info.maybe_selected = function() {
     return Session.equals('session_color', this._id) ? "selected" : "";
 };
-
+*/
 //----- TEMPLATES EVENTS HANDLERS--------
 
-
+/*
 Template.color_info.events = {
     'click': function() {
         Session.set('session_color', this._id);
@@ -260,7 +261,7 @@ Template.color_info.events = {
         //Session.set("pages",arrPag);
         //Router.changePage("tpc");
     }
-}
+}*/
 
 
  	

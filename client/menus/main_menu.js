@@ -4,7 +4,7 @@ mEdutell.IDXMAINMENU = mEdutell.arrMenu.push("menu_original") - 1;
 
 Session.set("menu", mEdutell.IDXMAINMENU);
 
-
+/*
 Handlebars.registerHelper('logout', function() {
 
     //se já fez login mostra o menu logout
@@ -15,19 +15,21 @@ Handlebars.registerHelper('show_login', function() {
     //mostra o menu login em algumas páginas antes de fazer login
     return Session.get("show_login");
 });
+*/
 
 Template.menu_original.Title = function() {
     return Session.get("menu_title");
 };
 
 Template.menu_original.events({
+    /*
     'click .logout': function(event) {
         event.preventDefault();
         Meteor.logout(function(error) {
             if (!error) {
-                login = false;
-                Session.set("show_login", true);
-                Session.set('login', false);
+                //login = false;
+                //Session.set("show_login", true);
+                //Session.set('login', false);
                 //Session.set("inicio","");
                 mEdutell.Router.changePage(mEdutell.Router.pages.inicial);
             } else {
@@ -44,6 +46,7 @@ Template.menu_original.events({
         event.preventDefault();
         //clearTooltip();
     },
+    */
     "click .brand": function(event) {
         event.preventDefault();
         return false;
@@ -64,12 +67,12 @@ Handlebars.registerHelper('activar', function(options) {
     //return Session.equals("selected",options.hash.selected);
 });
 
-
+/*
 $(window).bind('popstate', function(event) {
     //console.log("popstate ",JSON.stringify(event.state));
     clearTooltip({type: " "});
 });
-
+*/
 /*
  window.onpopstate = function(){
  //console.log("popstate");

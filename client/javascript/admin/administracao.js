@@ -15,7 +15,7 @@ mEdutell.IDXADMINMENUTITLE = mEdutell.EDUTELL + "ADMINISTRAÇÃO";
 
 Template.menu_orig.events({
     'click .admin': function(event) {
-        console.log("admin clicked ");
+        //console.log("admin clicked ");
         mEdutell.IDXSIDEBARLEFT = 1;
         event.preventDefault();
         Session.set("selected", ["admin"]);
@@ -79,9 +79,9 @@ var adminSessionCommon = function(){
     'click': function(event) {//#login-buttons-logout
       
       if(event.target.id == "login-buttons-logout"){
-            console.log("logout ",event.target);//remover o path admin do router
+            //console.log("logout ",event.target);//remover o path admin do router
       //return true;
-           //mEdutell.Router.navigate("admin", {replace: true});
+            mEdutell.Router.changePage(mEdutell.Router.pages.inicial);
       }
      }
     

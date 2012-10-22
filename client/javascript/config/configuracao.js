@@ -5,7 +5,10 @@
 
 
 //----- ADMIN --------
-mEdutell.IDXCONFIG = 4;
+mEdutell.IDXCONFIG = 6;
+mEdutell.IDXCONFIGDADOSPESSOAIS = 7;
+mEdutell.IDXCONFIGINSCRICAO = 8;
+mEdutell.IDXCONFIGCONFIRM = 9;
 mEdutell.IDXTOPREGISTO = 2;
 mEdutell.IDXBOTTOMREGISTO = 2;
 mEdutell.IDXSIDEBARREGISTO = 2;
@@ -26,7 +29,29 @@ Template.menu_orig.events({
 
 mEdutell.Router.route("config", "config", function() {
     Session.set("pages", mEdutell.IDXCONFIG);
-    Session.set("selected", ["config","adminalunos"]);
+    Session.set("selected", ["config","config_dados_pessoais"]);
+    configSessionCommon();
+    
+});
+
+mEdutell.Router.route("config_dados_pessoais", "config_dados_pessoais", function() {
+    Session.set("pages", mEdutell.IDXCONFIGDADOSPESSOAIS);
+    Session.set("selected", ["config","configdadosP"]);
+    configSessionCommon();
+    
+});
+
+mEdutell.Router.route("config_inscricao", "config_inscricao", function() {
+    Session.set("pages", mEdutell.IDXCONFIGINSCRICAO);
+    Session.set("selected", ["config","configinsc"]);
+    configSessionCommon();
+    
+});
+
+
+mEdutell.Router.route("config_confirmacao", "config_confirmacao", function() {
+    Session.set("pages", mEdutell.IDXCONFIGCONFIRM);
+    Session.set("selected", ["config","configconfirm"]);
     configSessionCommon();
     
 });
@@ -41,18 +66,8 @@ var configSessionCommon = function(){
     Session.set("menu_title", mEdutell.IDXCONFIGMENUTITLE);
 };
 
-// shared between dropdown and single mode
-  Template._loginButtons.events({
-    'click': function(event) {//#login-buttons-logout
-      
-      if(event.target.id == "login-buttons-logout"){
-            //console.log("logout ",event.target);//remover o path admin do router
-            mEdutell.Router.changePage(mEdutell.Router.pages.home);
-      //return true;
-           //mEdutell.Router.navigate("admin", {replace: true});
-      }
-     }
-    
-  });
 
 mEdutell.Router.pages.config = "config";
+mEdutell.Router.pages.configdadosP = "config_dados_pessoais";
+mEdutell.Router.pages.configinsc = "config_inscricao";
+mEdutell.Router.pages.configconfirm = "config_confirmacao";
