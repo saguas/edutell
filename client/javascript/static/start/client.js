@@ -11,6 +11,7 @@ Meteor.startup(function() {
 //----- SESSION DEFAULTS --------
 //Session.set("pages",IDXPAGEDEFAULT);
 //Session.set("menu", mEdutell.IDXDEFAULTMENU);
+/*
 Session.set("menu_title", mEdutell.IDXHOMEMENUTITLE);
 //Session.set("show_login", true);
 Session.set("top", mEdutell.IDXTOPDEFAULT);
@@ -19,7 +20,7 @@ Session.set("sidebar-left", mEdutell.IDXLSIDEBARDEFAULT);
 Session.set("sidebar-right", mEdutell.IDXRSIDEBARDEFAULT);
 console.log("client Page actual ", mEdutell.IDXPAGEACTUAL);
 Session.set("pages", mEdutell.IDXPAGEACTUAL);
-
+*/
 //var extra = {name: "Luis Fernandes", dt: "30-12-1968"};
 //var options = {username: "saguas", email: "luisfmfernandes@gmail.com", password: "8950388"};
 //var login = false;
@@ -118,8 +119,9 @@ var MenuRouter = Backbone.Router.extend({
         "*path": "nopath"
     },
     main: function() {
-        //console.log("main ",login);
+        console.log("main ",mEdutell.IDXPAGEDEFAULT);
         //arrPag = [{pag:"color_list"}];
+        Session.set("menu", mEdutell.IDXMAINMENU);
         Session.set("selected", ["home"]);
         mEdutell.IDXPAGEACTUAL = mEdutell.IDXPAGEDEFAULT;
         Session.set("pages", mEdutell.IDXPAGEDEFAULT);
@@ -146,14 +148,26 @@ var MenuRouter = Backbone.Router.extend({
 
     },
     nopath: function(path) {
+        Session.set("selected", ["home"]);
+        mEdutell.IDXPAGEACTUAL = mEdutell.IDXPAGEDEFAULT;
+        Session.set("pages", mEdutell.IDXPAGEDEFAULT);
+        //Session.set("pages",IDXLOGIN);
+        Session.set("top", mEdutell.IDXTOPDEFAULT);
+        //Session.set("top",IDXTOPLOGIN);
+        Session.set("bottom", mEdutell.IDXBOTTOMDEFAULT);
+        Session.set("sidebar-left", mEdutell.IDXLSIDEBARDEFAULT);
+        Session.set("sidebar-right", mEdutell.IDXRSIDEBARDEFAULT);
+        //Session.set("menu_title",IDXLOGINMENUTITLE);
+        //Session.set("menu_title",IDXLOGINMENUTITLE);
+        Session.set("menu_title", mEdutell.IDXHOMEMENUTITLE);
         console.log("nopath ", path);
     },
-    changePage: function(menu_id, opt) {
+    changePage: function(menu_id) {
         //console.log("changePage ", opt);
-        if(opt == undefined || opt == null)
-            this.navigate(menu_id, true);
-        else
-            this.navigate(menu_id, opt);
+        //if(opt == undefined || opt == null)
+          //  this.navigate(menu_id, true);
+        //else
+        this.navigate(menu_id, true);
     },
     //objeto com o nome dos routes a chamar com a função Router.changePage(Router.pages.login / Router.pages.registo) Assim é possível experimentar várias páginas de login
     pages: {
@@ -189,9 +203,14 @@ Handlebars.registerHelper('userTipo', function(tipo) {
 
 // if Router is defined, provide a currentPage helper
 Handlebars.registerHelper('currentPage', function() {
-
+    var pages = Session.get("pages");
+    console.log("mEdutell ", pages);
+    
     //console.log("currentPage ",JSON.stringify(arrPages[Session.get("pages")]));//arrPages[Session.get("pages")].toJSON());
-    return mEdutell.arrPages[Session.get("pages")].toJSON();
+    if (!_.isUndefined(pages) && pages >= 0)
+        return mEdutell.arrPages[pages].toJSON();
+    
+    return null;
     //return JSON.stringify(arrPages[Session.get("pages")]);
 });
 
@@ -203,31 +222,38 @@ Handlebars.registerHelper('welcomes', function() {
 });
 
 Handlebars.registerHelper('menu', function() {
-    if (Template[mEdutell.arrMenu[Session.get("menu")]]) //verifica se há um template com o node dado por this.pag
-        return Template[mEdutell.arrMenu[Session.get("menu")]]();//chama o template registado com o nome de this.page
+    var menu = Session.get("menu");
+    if (!_.isUndefined(menu) && Template[mEdutell.arrMenu[menu]]) //verifica se há um template com o node dado por this.pag
+        return Template[mEdutell.arrMenu[menu]]();//chama o template registado com o nome de this.page
 });
 
 Handlebars.registerHelper('top', function() {
     //console.log("top ",arrTop[Session.get("top")].at(0).get("page"));
-    if (Template[mEdutell.arrTop[Session.get("top")].at(0).get("page")]) //verifica se há um template com o node dado por this.pag
-        return Template[mEdutell.arrTop[Session.get("top")].at(0).get("page")]();//chama o template registado com o nome de this.page
+    var top = Session.get("top");
+    if (!_.isUndefined(top) && top >= 0 && Template[mEdutell.arrTop[top].at(0).get("page")]) //verifica se há um template com o node dado por this.pag
+        return Template[mEdutell.arrTop[top].at(0).get("page")]();//chama o template registado com o nome de this.page
 });
 
 Handlebars.registerHelper('bottom', function() {
-    if (Template[mEdutell.arrBottom[Session.get("bottom")].at(0).get("page")]) //verifica se há um template com o node dado por this.pag
-        return Template[mEdutell.arrBottom[Session.get("bottom")].at(0).get("page")]();//chama o template registado com o nome de this.page
+    var bottom = Session.get("bottom");
+    
+    if (!_.isUndefined(bottom) && Template[mEdutell.arrBottom[bottom].at(0).get("page")]) //verifica se há um template com o node dado por this.pag
+        return Template[mEdutell.arrBottom[bottom].at(0).get("page")]();//chama o template registado com o nome de this.page
 });
 
 Handlebars.registerHelper('sidebarleft', function() {
-    if (Template[mEdutell.arrSidebarLeft[Session.get("sidebar-left")].at(0).get("page")]) //verifica se há um template com o node dado por this.pag
-        return Template[mEdutell.arrSidebarLeft[Session.get("sidebar-left")].at(0).get("page")]();//chama o template registado com o nome de this.page
+    console.log("mEdutell ", Session.get("sidebar-left"));
+    var sidebar = Session.get("sidebar-left");
+    if (!_.isUndefined(sidebar) && sidebar >=0 && Template[mEdutell.arrSidebarLeft[sidebar].at(0).get("page")]) //verifica se há um template com o node dado por this.pag
+        return Template[mEdutell.arrSidebarLeft[sidebar].at(0).get("page")]();//chama o template registado com o nome de this.page
     //console.log("sidebarleft ",mEdutell.arrSidebarLeft[Session.get("sidebar-left")].map(function(coll){return coll.get("page")}));
     
 });
 
 Handlebars.registerHelper('sidebarright', function() {
-    if (Template[mEdutell.arrSidebarRight[Session.get("sidebar-right")].at(0).get("page")]) //verifica se há um template com o node dado por this.pag
-        return Template[mEdutell.arrSidebarRight[Session.get("sidebar-right")].at(0).get("page")]();//chama o template registado com o nome de this.page
+    var sidebar = Session.get("sidebar-right");
+    if (!_.isUndefined(sidebar) && sidebar >=0 && Template[mEdutell.arrSidebarRight[sidebar].at(0).get("page")]) //verifica se há um template com o node dado por this.pag
+        return Template[mEdutell.arrSidebarRight[sidebar].at(0).get("page")]();//chama o template registado com o nome de this.page
 });
 
 //trata dos eventos do layout

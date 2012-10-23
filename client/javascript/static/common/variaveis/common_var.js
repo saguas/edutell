@@ -65,7 +65,7 @@ window.mEdutell = Backbone.Model.extend({}, {
 });
 
 
-mEdutell.IDXHOMEMENUTITLE = mEdutell.EDUTELL + "HOME";
+
 
 //window.edutellObj = new mEdutell();
 

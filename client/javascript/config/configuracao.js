@@ -18,9 +18,9 @@ mEdutell.IDXCONFIGMENUTITLE = mEdutell.EDUTELL + "CONFIGURAÇÃO";
 Template.menu_orig.events({
     'click .config': function(event) {
         //console.log("admin clicked ");
-        mEdutell.IDXSIDEBARLEFT = 2;
-        event.preventDefault();
         Session.set("selected", ["config"]);
+        Session.set("menu", mEdutell.IDXMAINMENU);
+        event.preventDefault();
         mEdutell.Router.changePage(mEdutell.Router.pages.config);
        
        }
@@ -63,6 +63,9 @@ mEdutell.Router.route("config_confirmacao", "config_confirmacao", function() {
 
 var configSessionCommon = function(){
     
+    mEdutell.IDXSIDEBARLEFT = 2;
+    
+    Session.set("menu", mEdutell.IDXMAINMENU);
     Session.set("top", mEdutell.IDXTOPDEFAULT);
     Session.set("bottom", mEdutell.IDXBOTTOMDEFAULT);
     Session.set("sidebar-left", mEdutell.IDXSIDEBARLEFT);

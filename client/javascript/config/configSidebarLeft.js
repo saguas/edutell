@@ -5,8 +5,8 @@
 
 
 //----- ADMIN SIDEBAR - LEFT --------
-mEdutell.IDXTOPREGISTO = 2;
-mEdutell.IDXBOTTOMREGISTO = 2;
+//mEdutell.IDXTOPREGISTO = 2;
+//mEdutell.IDXBOTTOMREGISTO = 2;
 
 
 Template["config_sidebar-left"].events({

@@ -2,7 +2,7 @@
 mEdutell.IDXMAINMENU = mEdutell.arrMenu.push("menu_original") - 1;
 
 
-Session.set("menu", mEdutell.IDXMAINMENU);
+//Session.set("menu", mEdutell.IDXMAINMENU);
 
 /*
 Handlebars.registerHelper('logout', function() {
@@ -18,7 +18,13 @@ Handlebars.registerHelper('show_login', function() {
 */
 
 Template.menu_original.Title = function() {
-    return Session.get("menu_title");
+    
+    var menuTitle = Session.get("menu_title");
+    
+    if(!_.isUndefined(menuTitle))
+        return menuTitle;
+    
+    return mEdutell.IDXDEFAULTMENUTITLE;
 };
 
 Template.menu_original.events({
@@ -59,9 +65,9 @@ Handlebars.registerHelper('activar', function(options) {
     //mostra o menu login em algumas páginas antes de fazer login
    
     //console.log("activar ",options.hash.selected);
-    
+    var sel = Session.get("selected");
     //console.log("sel ",options.hash.selected);
-    if(_.contains(Session.get("selected"), options.hash.selected))
+    if(!_.isUndefined(sel) && _.contains(sel, options.hash.selected))
         return true;
     
     return false
