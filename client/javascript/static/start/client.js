@@ -10,13 +10,14 @@ Meteor.startup(function() {
 
 //----- SESSION DEFAULTS --------
 //Session.set("pages",IDXPAGEDEFAULT);
-Session.set("menu", mEdutell.IDXDEFAULTMENU);
-Session.set("menu_title", mEdutell.IDXDEFAULTMENUTITLE);
+//Session.set("menu", mEdutell.IDXDEFAULTMENU);
+Session.set("menu_title", mEdutell.IDXHOMEMENUTITLE);
 //Session.set("show_login", true);
 Session.set("top", mEdutell.IDXTOPDEFAULT);
 Session.set("bottom", mEdutell.IDXBOTTOMDEFAULT);
 Session.set("sidebar-left", mEdutell.IDXLSIDEBARDEFAULT);
 Session.set("sidebar-right", mEdutell.IDXRSIDEBARDEFAULT);
+console.log("client Page actual ", mEdutell.IDXPAGEACTUAL);
 Session.set("pages", mEdutell.IDXPAGEACTUAL);
 
 //var extra = {name: "Luis Fernandes", dt: "30-12-1968"};

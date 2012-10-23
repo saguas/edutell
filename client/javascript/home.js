@@ -1,7 +1,7 @@
 
-mEdutell.IDXHOMEMENUTITLE = mEdutell.EDUTELL + "HOME";
 
-Session.set("inicio", "");
+
+//Session.set("inicio", "");
 
 Template.menu_orig.events({
     'click .home': function(event) {

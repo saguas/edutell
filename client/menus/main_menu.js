@@ -64,6 +64,7 @@ Handlebars.registerHelper('activar', function(options) {
     if(_.contains(Session.get("selected"), options.hash.selected))
         return true;
     
+    return false
     //return Session.equals("selected",options.hash.selected);
 });
 
