@@ -87,11 +87,13 @@ var adminSessionCommon = function(){
       if(event.target.id == "login-buttons-logout"){
             //console.log("logout ",event.target);//remover o path admin do router
       //return true;
+            event.preventDefault();
             mEdutell.Router.changePage(mEdutell.Router.pages.inicial);
       }
      }
     
   });
+ 
 
 mEdutell.Router.pages.admin = "admin";
 mEdutell.Router.pages.adminalunos = "administracao_alunos";

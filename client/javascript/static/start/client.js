@@ -257,6 +257,15 @@ Handlebars.registerHelper('sidebarright', function() {
         return Template[mEdutell.arrSidebarRight[sidebar].at(0).get("page")]();//chama o template registado com o nome de this.page
 });
 
+
+//elimina qualquer click de fazer o que está definido por defeito. Usado para evitar que os menus de login coloquem #
+Template.layout.events({
+    'click': function(event) {
+            
+            event.preventDefault();
+      }
+});
+
 //trata dos eventos do layout
 /*
 Template.layout.events({
