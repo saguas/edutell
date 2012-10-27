@@ -1,10 +1,11 @@
 Meteor.startup(function() {
-    /*
+    
     $.extend($.validator.messages, {//colocar mensagens comuns aqui. 
-        required: "<div class='alert alert-error'><small>campo obrigatório</small></div>",
-        number: "<div class='alert alert-error'><small>campo numérico</small></div>"
+        //required: "<div class='alert alert-error'><small>campo obrigatório</small></div>",
+        required: "<span class='label label-important'><small>campo obrigatório</small></span>",
+        number: "<span class='label label-important'><small>campo numérico</small></span>"
         //email: "Bitte eine gültige E-Mail-Adresse eingeben",
-    });*/
+    });
 
 });
 

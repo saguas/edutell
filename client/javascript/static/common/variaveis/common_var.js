@@ -43,6 +43,7 @@ window.mEdutell = Backbone.Model.extend({}, {
     //---------- ADMIN ------------
     IDXADMIN: 3,
     IDXCONFIG: 4,
+    FORMCLASSSUCCESS: "",
     //index do menu principal
     IDXMAINMENU: 0,
     //Titulo do home menu

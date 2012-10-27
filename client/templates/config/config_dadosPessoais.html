@@ -4,28 +4,86 @@ and open the template in the editor.
 -->
 <template name="config_dados_pessoais">
     
-    <form class="form-horizontal">
-        <div class="control-group">
-          <label class="control-label" for="Nome">Nome</label>
-          <div class="controls">
-            <input type="text" id="Nome" placeholder="Nome">
+    
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+        <ul class="nav nav-tabs nav-pills">
+          <li class="active"><a href="#tab1" data-toggle="pill">Aluno</a></li>
+          <li><a href="#tab2" data-toggle="pill">Encarregado Educação</a></li>
+          <li><a href="#tab3" data-toggle="pill">Inquérito</a></li>
+        </ul>
+        
+        <div class="tab-content" >
+          
+            <div class="tab-pane active" id="tab1" >
+              {{>dpForm}}
+            </div>
+          
+          <div class="tab-pane" id="tab2">
+            <p>Howdy, I'm in Section 2.</p>
+          </div>
+          <div class="tab-pane" id="tab3">
+            <p>Howdy, I'm in Section 3.</p>
           </div>
         </div>
-        <div class="control-group">
-          <label class="control-label" for="Sobrenome">Sobrenome</label>
-          <div class="controls">
-            <input type="text" id="Sobrenome" placeholder="Sobrenome">
-          </div>
-        </div>
+           <button id="btnform" type="submit" class="btn">Guardar</button>
+        
+        
+        
+   </div>
+    
+   
+    
+    
+</template>
+
+
+<template name="dpForm">
+    
+    
+        <form class="form-horizontal wellForm">
+          
+            <div class="control-group" >
+              <label class="control-label" for="Nome">Nome</label>
+              <div class="controls">
+                <input name="nome" type="text" id="Nome" placeholder="Nome">
+              </div>
+            </div>
+           
+            <div class="control-group">
+              <label class="control-label" for="Sobrenome">Sobrenome</label>
+              <div class="controls">
+                <input name="sobrenome" type="text" id="Sobrenome" placeholder="Sobrenome">
+              </div>
+            </div>
+          
+        
+        
+           
+            <div class="control-group">
+              <label class="control-label" for="Morada">Morada</label>
+              <div class="controls">
+                <input type="text" id="Morada" placeholder="Morada">
+              </div>
+            </div>
+               
+                
+            <div class="control-group">
+              <label class="control-label" for="CPostal">C. Postal</label>
+              <div class="controls">
+                <input name="CPostal" type="text" id="CPostal" placeholder="Código Postal">
+              </div>
+            </div>
+          
+        
         <div class="control-group">
           <div class="controls">
             <label class="checkbox">
               <input type="checkbox"> Remember me
             </label>
-            <button type="submit" class="btn">Guardar</button>
+            <!--<button type="submit" class="btn">Guardar</button>-->
           </div>
         </div>
+        
     </form>
-    
     
 </template>

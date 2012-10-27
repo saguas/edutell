@@ -3,6 +3,12 @@
  * and open the template in the editor.
  */
 
+Meteor.startup(function(){
+     $.validator.addMethod("cpRegex", function(value, element) {
+        var pattern = /[0-9]{4}\-[0-9]{3}/i;
+        return this.optional(element) || pattern.test(value);
+    }, "O Código postal deve ser da forma 0000-000");
+});
 
 //----- ADMIN --------
 mEdutell.IDXCONFIG = 6;
@@ -15,6 +21,35 @@ mEdutell.IDXCONFIGCONFIRM = 9;
 mEdutell.IDXCONFIGMENUTITLE = mEdutell.EDUTELL + "CONFIGURAÇÃO";
 
 
+Template.config_dados_pessoais.rendered = function() {
+    
+    formValidacao($(this.find("form")));
+    
+    $('a[data-toggle="pill"]').on('show', function (e) {
+        //console.log("e.target ",e.target); // activated tab
+        //console.log("e.relatedTarget ",e.relatedTarget); // previous tab
+        
+        return verificarForm($("form"));
+        
+    });
+    
+    
+};
+
+Template.config_dados_pessoais.events({
+    'click #btnform': function(event, tmpl) {
+            
+            console.log("submit ");
+            event.preventDefault();
+            event.stopPropagation();
+            //console.log("template origem ",this);
+            var nome = $.trim($('#Nome').val());
+            var sobrenome = $.trim($('#Sobrenome').val());
+
+            verificarForm($(tmpl.find("form")));
+       }
+});
+
 Template.menu_orig.events({
     'click .config': function(event) {
         //console.log("admin clicked ");
@@ -25,7 +60,6 @@ Template.menu_orig.events({
        
        }
 });
-
 
 mEdutell.Router.route("config", "config", function() {
     mEdutell.IDXPAGEACTUAL = mEdutell.IDXCONFIG;
@@ -78,3 +112,70 @@ mEdutell.Router.pages.config = "config";
 mEdutell.Router.pages.configdadosP = "config_dados_pessoais";
 mEdutell.Router.pages.configinsc = "config_inscricao";
 mEdutell.Router.pages.configconfirm = "config_confirmacao";
+
+
+var formValidacao = function(elem){
+    
+    elem.validate({
+
+        rules: {
+            nome: {
+                required: true
+            },
+            sobrenome: {
+                required: true
+            },
+            CPostal:{
+                cpRegex: true
+            }
+        },
+        errorClass: "help-inline",
+	errorElement: "span",
+        highlight: function(element, errorClass, validClass) {
+            //console.log("error class ",errorClass);
+            //$(element).addClass(errorClass).removeClass("valid");
+            //console.log("highlight ",validClass);
+            $(element).parents('.control-group').removeClass('success');
+            $(element).parents('.control-group').addClass('error');
+            //$(element).tooltip('show');
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            //$(element).removeClass(errorClass).addClass(validClass);
+            //$(element).tooltip('hide');
+            //console.log("unhighlight");
+            $(element).parents('.control-group').removeClass('error');
+            $(element).parents('.control-group').addClass(mEdutell.FORMCLASSSUCCESS);
+        },
+        messages: {
+            nome: {//colocar mensagens espec√≠ficas aqui
+                //required: "campo obrigat√≥rio"
+            },
+            password: {
+                //required: "campo obrigat√≥rio",
+                minlength: "<span class='label label-important'><small>tamanho mínimo é de 6 caracteres</small></pan>"
+            },
+            email: {
+                email: "<span class='label label-important'><small>introduza um email válido</small></span>"
+            },
+            CPostal:{
+                cpRegex:"O Código postal deve ser da forma 0000-000"
+            }
+        }
+
+    });
+};
+
+
+var verificarForm = function(form){
+  
+    if (/*$('form')*/form.valid()) {
+        console.log("form valid ");
+        return true;
+    } else {
+        mEdutell.FORMCLASSSUCCESS = "success";
+        return false;
+        //$('#Nome').val("");
+        //$('#Sobrenome').val("");
+    }
+    
+};
