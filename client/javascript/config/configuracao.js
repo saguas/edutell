@@ -5,9 +5,26 @@
 
 Meteor.startup(function(){
      $.validator.addMethod("cpRegex", function(value, element) {
-        var pattern = /[0-9]{4}\-[0-9]{3}/i;
+        var pattern = /^[0-9]{4}\-\d{3}$/;
         return this.optional(element) || pattern.test(value);
     }, "O Código postal deve ser da forma 0000-000");
+    
+     $.validator.addMethod(
+        "DateFormat",
+        function(value, element) {
+            //console.log("DateFormat ",value);
+            return value.match(/^\d\d?\-\d\d?\-\d\d\d\d$/);
+        },"Please enter a date in the format dd/mm/yyyy");
+        
+     $.validator.addMethod("telRegex", function(value, element) {
+        //var pattern = /[0-9]{9}/i;
+        //var pattern = /^9[1236][0-9]{7}$|^2[1-9][0-9]{7}$/;
+        var pattern = /^9[1236][0-9]{1}\s?[0-9]{3}\s?[0-9]{3}$|^2[1-9]{2}\s?[0-9]{3}\s?[0-9]{3}$/;
+        //return value.match(/9[1236][0-9]{7}|2[1-9][0-9]{7}/);
+        
+        return this.optional(element) || pattern.test(value);
+     }, "Introduza apenas 9 digitos");
+
 });
 
 //----- ADMIN --------
@@ -23,17 +40,110 @@ mEdutell.IDXCONFIGMENUTITLE = mEdutell.EDUTELL + "CONFIGURAÇÃO";
 
 Template.config_dados_pessoais.rendered = function() {
     
-    formValidacao($(this.find("form")));
+    
+    var form = $(this.find(".form-horizontal"));
+    formValidacao(form);
     
     $('a[data-toggle="pill"]').on('show', function (e) {
         //console.log("e.target ",e.target); // activated tab
         //console.log("e.relatedTarget ",e.relatedTarget); // previous tab
         
-        return verificarForm($("form"));
+        return verificarForm($(".form-horizontal"));
         
     });
     
+    var dtn = $(this.find('#dp3'));
+    //var elem = this.find('#dtn');
+    dtn.datepicker.setdatestring({
+                days: ["Sundays", "Mondays", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
+                daysMin: ["Do", "Se", "Te", "Qt", "Qt", "Se", "Sa", "Do"],
+                months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    });
     
+    
+    dtn.datepicker()
+        .on('show', function(ev){
+          //if (ev.date.valueOf() < startDate.valueOf()){
+            //console.log("show ",ev);
+            //$('#dp3').datepicker('setValue',"28-10-2012");
+          //}
+           //if (/*$('form')*/form.valid()) {};
+           /*
+           if(formerror){          
+                //$(".datepicker").attr("rel","popover");
+                //console.log("formerror ",  $('.datepicker'));
+                $(".datepicker").popover({placement:"top",title: 'Ajuda Calendário', content: "Click aqui uma vez para escolher o mês. Click uma segunda vez para escolher o ano!"}); 
+                $(".datepicker").popover('show');
+                //$(".datepicker").attr("rel","");
+           }*/
+           dtn.datepicker('setValue',new Date(today.getFullYear()-10, today.getMonth(),today.getDate()));//"28-10-2012");
+                //$('.popdtn').popover('show');
+        });
+    dtn.datepicker()
+        .on('hide', function(ev){
+          //if (ev.date.valueOf() < startDate.valueOf()){
+            //console.log("show ",ev);
+            //$('#dp3').datepicker('setValue',"28-10-2012");
+          //}
+           //if (/*$('form')*/form.valid()) {};
+           //console.log("formerror ",  $('.datepicker'));
+           /*if(formerror){          
+                //$(".datepicker").attr("rel","popover");
+                //console.log("formerror ",  $('.datepicker'));
+                //$(".datepicker").popover({placement:"top",title: 'Twitter Bootstrap Popover', content: "It's so simple to create a tooltop for my website!"}); 
+                $(".datepicker").popover('destroy');
+                formerror = false;
+           }*/
+                
+                //$('.popdtn').popover('show');
+        });
+        
+    dtn.datepicker()
+        .on('changeDate', function(ev){
+          //if (ev.date.valueOf() < startDate.valueOf()){
+            //console.log("changeDate ",ev);
+            //$('#dp3').datepicker('setValue',"28-10-2012");
+          //}
+           //console.log("$.validator ",$.validator);
+           /*if (form.validate().element(elem)) {
+               console.log("form ", dtn);//é preciso encontrar outra solução
+           };*/
+         
+        });
+        
+    dtn.datepicker()
+        .on('clickDate', function(ev){
+          //if (ev.date.valueOf() < startDate.valueOf()){
+            //console.log("clickDate ",ev);
+            //$('#dp3').datepicker('setValue',"28-10-2012");
+          //}
+           //console.log("$.validator ",$.validator);
+           /*if (form.validate().element(elem)) {
+               console.log("form ", dtn);//é preciso encontrar outra solução
+           };*/
+          
+        });
+    
+    if(!this.dtn){
+        //dtn.datepicker({viewMode:2});//"28-10-2012");
+        var today = new Date();
+        dtn.datepicker('setValue',today);//"28-10-2012");
+        this.dtn = true;
+        //console.log("RENDERED ",this.dtn);
+    }
+    //dtn.datepicker();  
+    
+    
+};
+
+Template.config_dados_pessoais.destroyed = function() {
+    var dtn = $('.datepicker');
+    //console.log("destroyed ",dtn);
+    this.dtn = false;
+    
+    dtn.hide();//verificar se é possível remover do dom.
 };
 
 Template.config_dados_pessoais.events({
@@ -45,9 +155,13 @@ Template.config_dados_pessoais.events({
             //console.log("template origem ",this);
             var nome = $.trim($('#Nome').val());
             var sobrenome = $.trim($('#Sobrenome').val());
-
-            verificarForm($(tmpl.find("form")));
-       }
+           
+            //console.log("form click button ",$(tmpl.find(".form-horizontal")));
+            verificarForm($(tmpl.find(".form-horizontal")));
+       },
+    'keypress #tel': function(ev,tmpl){
+         //console.log(ev);//.srcElement.value);
+    }
 });
 
 Template.menu_orig.events({
@@ -127,6 +241,17 @@ var formValidacao = function(elem){
             },
             CPostal:{
                 cpRegex: true
+            },
+            dtn:{
+                DateFormat: true
+            },
+            tel:{
+                //number: true,
+                telRegex:true
+            },
+            tlm:{
+                //number:true,
+                telRegex:true
             }
         },
         errorClass: "help-inline",
@@ -135,6 +260,7 @@ var formValidacao = function(elem){
             //console.log("error class ",errorClass);
             //$(element).addClass(errorClass).removeClass("valid");
             //console.log("highlight ",validClass);
+            //console.log("$(element).parents('.control-group') ",$(element).parents('.control-group'));
             $(element).parents('.control-group').removeClass('success');
             $(element).parents('.control-group').addClass('error');
             //$(element).tooltip('show');
@@ -158,7 +284,13 @@ var formValidacao = function(elem){
                 email: "<span class='label label-important'><small>introduza um email válido</small></span>"
             },
             CPostal:{
-                cpRegex:"O Código postal deve ser da forma 0000-000"
+                cpRegex:"<span class='label label-important'><small>O Código postal deve ser da forma 0000-000</small></span>"
+            },
+            tel:{
+                telRegex:"<span class='label label-important'><small>Introduza 9 digitos</small></span>"
+            },
+            tlm:{
+                telRegex:"<span class='label label-important'><small>Introduza 9 digitos</small></span>"
             }
         }
 
@@ -169,13 +301,27 @@ var formValidacao = function(elem){
 var verificarForm = function(form){
   
     if (/*$('form')*/form.valid()) {
+        var dtn = $('#dtn').val();
+        if(dtn.split('-')[2] == new Date().getFullYear()){
+            console.log("form invalid ");
+            
+            return false;
+        }
+        
+        
         console.log("form valid ");
         return true;
     } else {
         mEdutell.FORMCLASSSUCCESS = "success";
+        
         return false;
         //$('#Nome').val("");
         //$('#Sobrenome').val("");
     }
     
 };
+
+
+
+
+

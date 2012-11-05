@@ -42,39 +42,27 @@ and open the template in the editor.
     
         <form class="form-horizontal wellForm">
           
-            <div class="control-group" >
-              <label class="control-label" for="Nome">Nome</label>
-              <div class="controls">
-                <input name="nome" type="text" id="Nome" placeholder="Nome">
-              </div>
-            </div>
-           
             <div class="control-group">
-              <label class="control-label" for="Sobrenome">Sobrenome</label>
-              <div class="controls">
-                <input name="sobrenome" type="text" id="Sobrenome" placeholder="Sobrenome">
-              </div>
-            </div>
-          
-        
-        
-           
-            <div class="control-group">
-              <label class="control-label" for="Morada">Morada</label>
-              <div class="controls">
-                <input type="text" id="Morada" placeholder="Morada">
-              </div>
-            </div>
                
-                
-            <div class="control-group">
-              <label class="control-label" for="CPostal">C. Postal</label>
-              <div class="controls">
-                <input name="CPostal" type="text" id="CPostal" placeholder="Código Postal">
-              </div>
+                {{>dpForm2}}
+               
             </div>
-          
+           
         
+        <div class="control-group">  
+            <label class="control-label" for="dtn">Data de Nascimento </label>
+            <div id="idtn" class="controls">
+            <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                <input name="dtn" id="dtn" class="span8" size="16" type="text" value="12-02-2012" disabled>
+                <span class="add-on"><i class="cus-calendar-edit"></i></span>
+           </div>
+                
+               
+            </div>
+        </div>
+         
+        
+            
         <div class="control-group">
           <div class="controls">
             <label class="checkbox">
@@ -85,5 +73,37 @@ and open the template in the editor.
         </div>
         
     </form>
+    
+</template>
+
+<template name="dpForm2">
+    
+    <div class="form-inline">
+        <label class="control-label" for="Nome">Nome</label>
+        <div class="controls">
+          <input name="nome" type="text" id="Nome" placeholder="Nome">
+          <input name="sobrenome" type="text" id="Sobrenome" placeholder="Sobrenome">
+        </div>
+    </div>
+        
+    <div><p></p></div>
+        
+    <div class="form-inline">
+          <label class="control-label" for="Nome">Morada</label>
+          <div class="controls">
+                <input type="text" id="Morada" placeholder="Morada">
+                <input name="CPostal" type="text" id="CPostal" placeholder="Código Postal">
+          </div>
+    </div>
+        
+    <div><p></p></div>
+        
+    <div class="form-inline">
+          <label class="control-label" for="tel">Contato</label>
+          <div class="controls">
+                <input name="tel" type="text" id="tel" placeholder="Telefone Casa">
+                <input name="tlm" type="text" id="telemovel" placeholder="Telemóvel">
+          </div>
+    </div>
     
 </template>
