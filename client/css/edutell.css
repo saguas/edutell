@@ -9,18 +9,7 @@ body{
     background: #ffffff url("/backgrd.gif") repeat;
 }
 
-.well{
-    /*background-color:cyan;*/
-    opacity:0.76;
-}
-.wellForm{
-    /*background-color:green;*/
-    /*border-style:solid;
-    border-bottom-style:solid;
-    border-top-style:solid;
-    border-radius:50px;*/
-    opacity:0.76;
-}
+
 
 .form-actions{
     border-top-style: none;

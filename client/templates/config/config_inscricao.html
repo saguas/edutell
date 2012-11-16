@@ -5,7 +5,124 @@ and open the template in the editor.
 
 <template name="config_inscricao">
     
-    <p>Configuração Inscrição</p>
-    
+    {{>dpFormInsc}}
     
 </template>
+
+
+<template name="dpFormInsc">
+    
+    
+        <form class="form-horizontal wellForm">
+          
+            <div class="control-group">
+               
+                {{>dpFormInsc2}}
+               
+            </div>
+        
+    	</form>
+    
+</template>
+
+<template name="dpFormInsc2">
+    <div class="control-group">
+      
+          <div class="controls">
+            	<select id="classes" data-placeholder="Escolha uma Classe..." class="chzn-select" style="width:350px;" tabindex="1">
+            			  <option value=""></option> 
+				          <option value="Aluno" selected>Aluno</option> 
+				          <option value="EE">Encarregado de Educação</option> 
+				          <option value="Prof">Professor</option> 
+				          <option value="Visit">Visitante</option>
+            	</select>
+          </div>
+     
+      </div>    
+    <div><p></p></div>
+    
+    <div class="control-group">
+      <div class="form-inline">
+            
+            <div class="controls">
+              
+            	  <select id="escola" data-placeholder="Escolha uma Escola..." class="chzn-select" multiple style="width:350px;" tabindex="2">
+  			          <option value=""></option> 
+  			          <!--<option value="Lindley">Lindley</option> 
+  			          <option value="Odemira">Odemira</option> 
+  			          <option value="MC">Manuel Cargaleiro</option> -->
+                  {{#each Escola}}
+                    <option value="{{name}}" {{#if EscolaSelected this}} selected {{/if}}>{{name}}</option>
+                  {{/each}}
+			         </select>
+              {{#isolate}}
+                <select id="turma" data-placeholder="Escolha uma Turma..." class="chzn-select" multiple style="width:350px;" tabindex="3">
+    			          <option value=""></option> 
+    			          <!--<option value="7C">7ºC</option> 
+    			          <option value="7A">7ºA</option> 
+    			          <option value="8A">8ºA</option> -->
+                    {{#each Turmas}}
+                       <optgroup label="{{name}}">
+                        {{#each Turma this}}
+                          <option value="{{this.turma}}" {{selected}}>{{this.turma}}</option>
+                        {{/each}}
+                      <optgroup>
+                    {{/each}}
+			         </select>
+              {{/isolate}}
+            </div>
+      </div>
+    </div>    
+    <div><p></p></div>
+    <!--
+    <div class="control-group">
+      <div class="form-inline">
+            <label class="control-label" for="tel">Contato</label>
+            <div class="controls">
+                  <input name="tel" type="text" id="tel" placeholder="Telefone Casa">
+                  <input name="tlm" type="text" id="telemovel" placeholder="Telemóvel">
+            </div>
+      </div>
+    </div>
+	-->
+  <!-- Modal -->
+    <!-- Modal -->
+  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Password de Acesso</h3>
+    </div>
+    <div class="modal-body">
+      <p>{{>inscForm}}</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+      <button id="btnpassacesso" class="btn btn-primary">OK</button>
+    </div>
+  </div>
+
+    <button id="btnformInsc" type="submit" class="btn">Guardar</button>
+    
+</template>
+
+
+<template name="inscForm">
+    
+        <aside class="form-horizontal wellForm">
+          
+            
+               
+                <div class="control-group">
+                  
+                      <!--<label class="control-label" for="pass">Password de Acesso</label>-->
+                      <div class="controls">
+                            <input name="pass" class="span10" type="password" id="passacesso" placeholder="Password fornecida pelo administrador">
+                      </div>
+                  
+                </div>
+               
+            
+        </aside>
+
+</template>
+

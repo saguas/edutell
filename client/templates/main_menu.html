@@ -4,10 +4,10 @@
         <li class="home {{#if activar selected="home"}}active{{/if}}"><a href="#">Home</a></li>
         {{#if currentUser}}
             <li><a href="#">Link1</a></li>
-            {{#if userTipo "admin"}}   
+            {{#if userTipo "Admin"}}   
                 <li class="admin {{#if activar selected="admin"}}active{{/if}}"><a href="#">Administração</a></li>
             {{/if}}
-            {{#if userTipo "aluno"}}
+            {{#if userTipo "Aluno"}}
                 <li class="config {{#if activar selected="config"}}active{{/if}}"><a href="#">Configuração</a></li>
             {{/if}}
         {{/if}}

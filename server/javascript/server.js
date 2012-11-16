@@ -4,22 +4,23 @@ Meteor.publish("directory", function () {
 });
 */
 
-Meteor.startup(function() {
-    // code to run on server at startup
+Meteor.publish("escolas", function () {
+  return Escolas.find({}, {fields: {acesso: 0}});
+});
 
-    /*Colors.allow({
-     insert:function(userId, doc){
-     console.log("insert userid ",userId);
-     return false;
-     }});
-     */
+Meteor.publish("dadosPessoais", function () {
+  return dP.find();
+});
+
+Meteor.startup(function() {
+  
      Accounts.onCreateUser(function(options, user){ //esta função é chamada antes de Meteor.accounts.validateNewUser 
         console.log("onCreateUser user:",user);
             
         if (options.profile)
             user.profile = options.profile;
         else
-            user.profile = {tipo:"aluno"};
+            user.profile = {tipo:"Aluno"};
 
         //return _.extend(user,extra);//é necessário copiar o extra para user. Se não for feito os campos de extra não entram em user (no caso desta função existir).
 
