@@ -7,9 +7,7 @@ module Main {
 	var layout = new Eduapp.Layout("layout",Eduapp.Position.MIDDLE,UserTipo.ALUNO);
 
 	console.log("Main mlayout ", mlayout);
-	//Template.layout();
 
-	//mlayout.setTemplateName("home");
 	var self = mlayout;
 	
 	Handlebars.registerHelper('middle', function() {
@@ -19,4 +17,7 @@ module Main {
             return Template[tmpl]();//chama o template registado com o nome de this.page
         }
     });
+
+	Template.layout();
+    mlayout.setTemplateName("home");
 }

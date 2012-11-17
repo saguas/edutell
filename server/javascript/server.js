@@ -4,6 +4,7 @@ Meteor.publish("directory", function () {
 });
 */
 
+/*
 Meteor.publish("escolas", function () {
   return Escolas.find({}, {fields: {acesso: 0}});
 });
@@ -11,6 +12,7 @@ Meteor.publish("escolas", function () {
 Meteor.publish("dadosPessoais", function () {
   return dP.find();
 });
+*/ 
 
 Meteor.startup(function() {
   

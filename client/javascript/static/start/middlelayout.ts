@@ -8,7 +8,7 @@ module Eduapp{
 	        super(tmpl,pos,tipo);
 
 	        var self = this;
-	        console.log("MiddleLayout ", self );
+	        //console.log("MiddleLayout ", self );
 	        
 
 	    }
