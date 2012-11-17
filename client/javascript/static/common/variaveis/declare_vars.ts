@@ -1,4 +1,3 @@
-/// <reference path="../../../../../../Definitions/mydefs/common_var.d.ts" />
 /// <reference path="../../../../../../Definitions/jquery-1.8.d.ts" />//este ficheiro está também a ser importado pelo Backbone
 /// <reference path="../../../../../../Definitions/backbone-0.9.d.ts" />
 /// <reference path="../../../../../../Definitions/underscore-1.4.d.ts" />
@@ -6,16 +5,9 @@
 /// <reference path="../../../../../../Definitions/handlebars-1.0.d.ts" />
 /// <reference path="../../../../../../Definitions/toastr-1.0.d.ts" />
 /// <reference path="../../../../../../Definitions/chosen-0.9.d.ts" />
-/*/// <reference path="../../../../../../Definitions/mydefs/validacao_form.d.ts" />*/
 
 
 declare var Meteor: any;
-var mEdutell;
-
-if(Meteor.isClient)
-	mEdutell = mEdutell || MEdutell.mEdutell;
-
-
 declare var Session: any;
 declare var Escolas: any;
 declare var dP: any;
