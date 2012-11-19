@@ -1,9 +1,8 @@
-///<reference path='interfaces/IPage.ts'/>
-///<reference path='usertipo.ts'/>
-///<reference path='../common/variaveis/declare_vars.ts'/>
+///<reference path='../../common/variaveis/declare_vars.ts'/>
+///<reference path='../interfaces/ILayout.ts'/>
 
 module Eduapp{
-	export class LayoutTemplate implements IPage{
+	export class LayoutTemplate implements ILayout{
 
 		public templateName: string;
 		private position: string;
@@ -19,7 +18,7 @@ module Eduapp{
 	    	this.position = this.checkPosition(pos) ? pos : "nothing";
 	        this.listenersUserTipo = {};
 	        this.listenersTmplName = {};
-	    }
+	    };
 
 	    public getTemplateName():string{
 
@@ -94,6 +93,13 @@ module Eduapp{
 		private checkPosition(pos:string):bool{
 
 				return _.contains([Eduapp.Position.TOP,Eduapp.Position.BOTTOM,Eduapp.Position.MIDDLE,Eduapp.Position.LEFT, Eduapp.Position.RIGHT,Eduapp.Position.NOTHING], pos);
+		}
+
+		private startHelpers():void{
+			return;
+		}
+		private startTemplate():void{
+			return;
 		}
 	}
 }

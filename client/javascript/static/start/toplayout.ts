@@ -2,7 +2,7 @@
 ///<reference path='../../../../../Definitions/mydefs/layouttemplate.d.ts'/>
 
 module Eduapp{
-	export class MiddleLayout extends LayoutTemplate{
+	export class TopLayout extends LayoutTemplate{
 
 		 constructor(tmpl:string,pos:string,tipo:string)
 	    {
@@ -17,7 +17,7 @@ module Eduapp{
 
 	    	var self = this;
 	        //console.log("MiddleLayout ", self );
-	        Handlebars.registerHelper('middle', function() {
+	        Handlebars.registerHelper('top', function() {
 		    	var tmpl = self.getTemplateName();
 		    	//var s = Session.get("page");
 		        console.log("template ",tmpl);

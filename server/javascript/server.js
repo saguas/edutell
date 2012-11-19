@@ -4,7 +4,7 @@ Meteor.publish("directory", function () {
 });
 */
 
-/*
+
 Meteor.publish("escolas", function () {
   return Escolas.find({}, {fields: {acesso: 0}});
 });
@@ -12,7 +12,7 @@ Meteor.publish("escolas", function () {
 Meteor.publish("dadosPessoais", function () {
   return dP.find();
 });
-*/ 
+
 
 Meteor.startup(function() {
   
@@ -35,10 +35,10 @@ Meteor.startup(function() {
 
         //esta função controla a criação de professores. Estes para fazerem o registo precisam ter na base de dados uma autorização.
         //só é permitido criar professores quando o número atribuído coincide com o email fornecido. O número pode ser o de professor, o BI ou o NIF.
-        /*if (proposedUser.profile.tipo == "prof") {
+        //if (proposedUser.profile.tipo == "prof") {
 
-            return false
-        }*/
+          //  return false
+        //}
 
         return true;
 
