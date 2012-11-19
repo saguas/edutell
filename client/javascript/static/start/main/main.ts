@@ -22,7 +22,6 @@ module Eduapp {
 
 	export var router = startRouter();
 	export var mlayout = new Eduapp.MiddleLayout("home",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
-	export var mmenu = new Eduapp.MainMenu("menu_original",Eduapp.Position.TOP,Eduapp.UserTipo.ALUNO,router);
 	export var homepage = new Eduapp.HomePage("home",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 	export var configpage = new Eduapp.ConfigPage("configuracao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 	export var config_DP_page = new Eduapp.ConfigDadosPessoaisPage("config_dados_pessoais",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
@@ -32,8 +31,14 @@ module Eduapp {
 	export var toplayout = new Eduapp.TopLayout("notop",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
 	export var sidebarLeftlayout = new Eduapp.SideBarLayout("",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
 	export var startLayout = new Eduapp.Layout("layout",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
+	export var mmenu = new Eduapp.MainMenu("menu_original",Eduapp.Position.TOP,Eduapp.UserTipo.ALUNO,router);
 	
 	
+	//Session.set("page","home");
+	//Session.set("layout","layout");
+	//Session.set("pageTop","notop");
+	//Session.set("pageSideBar","");
+	//Session.set("menu","menu_original");
 	Global.C.elem["mlayout"] = mlayout;	
 	Global.C.elem["mmenu"] = mmenu;	
 	Global.C.elem["homepage"] = homepage;	
@@ -55,7 +60,7 @@ module Eduapp {
  
   Template._loginButtons.events({
     'click': function(event) {//#login-buttons-logout
-      
+      //console.log("butt");
       if(event.target.id == "login-buttons-logout"){
             
             event.preventDefault();
@@ -64,7 +69,8 @@ module Eduapp {
      }
     
   });
-	
+  
+  
 	function startRouter(){
 
 		//a cada novo menu guarda-se um registo no history do browser
@@ -80,11 +86,18 @@ module Eduapp {
 		            "*path": "nopath"
 		        },
 		        main: function() {
-		           toplayout.setTemplateName(mmenu.getTemplateName());
-		           mlayout.setTemplateName(homepage.getTemplateName());
-		           mmenu.setTitle(CC.Menu.HOME_TITLE);
-		           Session.set("menu_selected",["home"]);
-		           Global.C.elem["sidebarLeftlayout"].setTemplateName("");
+
+			        
+			           toplayout.setTemplateName("notop");
+			           mlayout.setTemplateName("home");
+			           	//Session.set("page","home");
+						//Session.set("layout","layout");
+						//Session.set("pageTop","notop");
+						//Session.set("pageSideBar","");
+						//Session.set("menu","menu_original");
+			            mmenu.setTitle(CC.Menu.HOME_TITLE);
+			            Session.set("menu_selected",["home"]);
+			            Global.C.elem["sidebarLeftlayout"].setTemplateName("");
 
 		        },
 		        tpc: function(turma_id, aluno_id) {

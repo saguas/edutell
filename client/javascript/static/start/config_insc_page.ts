@@ -20,7 +20,7 @@ module Eduapp{
 	    private startTemplate():void{
 	    	var self = this;
 
-	    	Template[this.getTemplateName()].rendered = function() {
+	    	Template.config_inscricao.rendered = function() {
 		    	//console.log("config_inscricao.rendered");
 		        $(this.findAll(".chzn-select")).chosen();
 
@@ -103,7 +103,7 @@ module Eduapp{
 		        //return Escolas.find({name: Session.get("escolas")[0]}).fetch();
 		    };
 
-		    Template[this.getTemplateName()].events({
+		    Template.config_inscricao.events({
 		        'click #btnformInsc': function(event, tmpl) {
 		                
 		                //console.log("Open Modal ");

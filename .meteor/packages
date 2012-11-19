@@ -14,3 +14,4 @@ accounts-twitter
 accounts-google
 meteor-typescript
 http
+preserve-inputs

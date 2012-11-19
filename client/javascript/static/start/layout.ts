@@ -24,7 +24,7 @@ module Eduapp{
 	    	var self = this;
 	        Handlebars.registerHelper('layout', function() {
 		    	var tmpl = self.getTemplateName();
-		    	//var s = Session.get("page");
+		    	//var tmpl = Session.get("layout");
 		        console.log("template ",tmpl);
 		        if (Template[tmpl]){ //verifica se há um template com o node dado por this.pag            
 		            return Template[tmpl]();//chama o template registado com o nome de this.page

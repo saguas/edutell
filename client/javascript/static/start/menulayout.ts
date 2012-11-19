@@ -19,6 +19,7 @@ module Eduapp{
 	        //console.log("MiddleLayout ", self );
 	        Handlebars.registerHelper('menu', function() {
 		    	var tmpl = self.getTemplateName();
+		    	//var tmpl = Session.get("menu");
 		    	//var s = Session.get("page");
 		        console.log("template ",tmpl);
 		        if (Template[tmpl]){ //verifica se há um template com o node dado por this.pag            

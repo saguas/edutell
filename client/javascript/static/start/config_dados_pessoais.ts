@@ -22,7 +22,7 @@ module Eduapp{
 
 	    private startTemplate():void{
 	    	var self = this;
-	    	Template[this.getTemplateName()].rendered = function() {
+	    	Template.config_dados_pessoais.rendered = function() {
 		    	//console.log("config_dados_pessoais");
 		        var form = $(this.find(".form-horizontal"));
 		        self.validacao_form.formValidacao(form);
@@ -115,7 +115,7 @@ module Eduapp{
 		        }
 			};
 
-			Template[this.getTemplateName()].destroyed = function() {
+			Template.config_dados_pessoais.destroyed = function() {
 		        this.handle && this.handle.stop();
 		        this.handleEdit && this.handleEdit.stop();
 		        var dtn = $('.datepicker');
@@ -125,11 +125,11 @@ module Eduapp{
 		        dtn.hide();//verificar se é possível remover do dom.
 		    };
 
-		    Template[this.getTemplateName()].edit = function() {
+		    Template.config_dados_pessoais.edit = function() {
 		          return Session.get("dadosPessoais");
 		    }
 
-		    Template[this.getTemplateName()].events({
+		    Template.config_dados_pessoais.events({
 		        'click #btnform': function(event, tmpl) {
 		                
 		                console.log("submit ");

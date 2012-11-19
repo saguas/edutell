@@ -21,11 +21,11 @@ module Eduapp{
 	    	var Router = this.getRouter();
 	    	var self = this;
 
-	    	Template[this.getTemplateName()].rendered = function() {
+	    	Template["config_sidebar-left"].rendered = function() {
 		    	
 			};
 
-			Template[this.getTemplateName()].events({
+			Template["config_sidebar-left"].events({
 		        "click .dados": function(event,tmpl){
 		            event.preventDefault();
 		           	console.log("dados pessoais clicked ");
@@ -50,7 +50,7 @@ module Eduapp{
 		        }        
 		    });
 
-		    Template[this.getTemplateName()].dadosPessoais = function(){
+		    Template["config_sidebar-left"].dadosPessoais = function(){
 		        return Session.get("dadosPessoais");
 		    };
 	    }

@@ -18,7 +18,7 @@ module Eduapp{
 	    }
 
 	    private startTemplate():void{
-	    	Template[this.getTemplateName()].rendered = function() {
+	    	Template.configuracao.rendered = function() {
 		    	
 			};
 	    }
@@ -72,19 +72,36 @@ module Eduapp{
 	    }
 
 	    private setConfigSession(tmplName:string, menuName:string, sidebar: string ,selectArr:string[],):void{
-	    			Session.set("menu_selected", selectArr);
-	    			Global.C.elem["sidebarLeftlayout"].setTemplateName(sidebar);
-	    			//Global.C.elem["toplayout"].setTemplateName("notop");
-	    			//console.log("toplayout",Global.C.elem["toplayout"]);
-	    		 	Global.C.elem["mlayout"].setTemplateName(tmplName);
-			     	Global.C.elem["mmenu"].setTitle(menuName);
-
-			     	
-			     	var dados = dP.findOne({id:Meteor.userId()});
-			        if(dados)
-			            Session.set("dadosPessoais",true);
-			        else
-			            Session.set("dadosPessoais",false);
+	    			
+	    			if(Meteor.user()){
+	    					Session.set("menu_selected", selectArr);
+			    			//Session.set("pageSideBar",sidebar);
+			    			//Session.set("page",tmplName);
+			    			Global.C.elem["sidebarLeftlayout"].setTemplateName(sidebar);
+			    			Global.C.elem["toplayout"].setTemplateName("notop");
+			    			//console.log("toplayout",Global.C.elem["toplayout"]);
+			    			//Session.set("pageTop","notop");
+			    			Session.set("menu","menu_original");
+			    		 	Global.C.elem["mlayout"].setTemplateName(tmplName);
+					     	Global.C.elem["mmenu"].setTitle(menuName);
+		
+					     	var dados = dP.findOne({id:Meteor.userId()});
+					        if(dados)
+					            Session.set("dadosPessoais",true);
+					        else
+					            Session.set("dadosPessoais",false);
+					}else{
+						Session.set("menu_selected", selectArr);
+		    			//Session.set("pageSideBar",sidebar);
+		    			//Session.set("page",tmplName);
+		    			Global.C.elem["sidebarLeftlayout"].setTemplateName("");
+		    			Global.C.elem["toplayout"].setTemplateName("notop");
+		    			//console.log("toplayout",Global.C.elem["toplayout"]);
+		    			//Session.set("pageTop","notop");
+		    			Session.set("menu","menu_original");
+		    		 	Global.C.elem["mlayout"].setTemplateName("home");
+				     	Global.C.elem["mmenu"].setTitle(CC.Menu.HOME_TITLE);
+				}
 			        
 	    }
 	}

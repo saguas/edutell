@@ -16,7 +16,7 @@ module Eduapp{
 	    	var self = this;
 	        Handlebars.registerHelper('sidebarleft', function() {
 		    	var tmpl = self.getTemplateName();
-		    	//var s = Session.get("page");
+		    	//var tmpl = Session.get("pageSideBar");
 		        console.log("template ",tmpl);
 		        if (Template[tmpl]){ //verifica se há um template com o node dado por this.pag            
 		            return Template[tmpl]();//chama o template registado com o nome de this.page

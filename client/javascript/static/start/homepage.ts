@@ -14,7 +14,7 @@ module Eduapp{
 	    }
 
 	    private startTemplate():void{
-	    	Template[this.getTemplateName()].rendered = function() {
+	    	Template.home.rendered = function() {
 		    	$('#myCarousel').carousel();
 			};
 	    }

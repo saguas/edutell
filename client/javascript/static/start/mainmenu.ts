@@ -15,24 +15,21 @@ module Eduapp{
 	    {
 	        super(tmpl,pos,tipo,router);
 
-	        this.startHelpers();
-	        this.startTemplate();
 	        this.setTitle(CC.Menu.HOME_TITLE);
-	        //this.title = "HOME";
-	        //Session.set("menu_title", this.title);
 	        this.selected = [CC.Menu.HOME];
-	        //this.selected.push("home");
 	        Session.set("menu_selected",this.selected);
+	        this.startTemplate();
+	        this.startHelpers();
 
 	    }
 
 	    private startTemplate():void{
 	    	
-	    	Template[this.getTemplateName()].rendered = function() {
-		    	
+	    	Template.menu_original.rendered = function() {
+		    	console.log("mainmenu");
 			};
 
-			Template[this.getTemplateName()].Title = function() {
+			Template.menu_original.Title = function() {
     
 			    var menuTitle = Session.get("menu_title");
 			    //console.log("Title",menuTitle);
