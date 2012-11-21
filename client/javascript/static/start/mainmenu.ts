@@ -99,7 +99,7 @@ module Eduapp{
 
 			Handlebars.registerHelper('userTipo', function(tipo) {
 		       //console.log("user profile ",Meteor.user().profile.tipo, " tipo ",tipo);
-		        if(Meteor.userLoaded() && Meteor.user().profile.tipo == tipo){
+		        if(Meteor.userId() && Meteor.user().profile && Meteor.user().profile.tipo == tipo){
 		            console.log("login true ");
 		           return true;
 		        }
