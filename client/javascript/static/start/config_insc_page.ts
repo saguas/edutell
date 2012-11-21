@@ -12,7 +12,8 @@ module Eduapp{
 
 	        this.startHelpers();
 	        this.startTemplate();
-	        Session.set("escolas",[""]);
+	        //Session.set("escolas",[""]);
+	        Session.set("escolas",null);
 	        this.cConfigInsc = new CConfigInscricao();
 
 	    }
@@ -162,20 +163,20 @@ module Eduapp{
 	    private startHelpers():void{
 	    	//Template.dpFormInsc2.Turma = function(){
 		    Handlebars.registerHelper('Turma',function(t){
-		        console.log("turmas ", t.turmas);
+		        //console.log("turmas ", t);
 
 		        var dados = dP.findOne({id:Meteor.userId()});
 
-		        if(dados){
+		        if(dados && t){
 		            _.each(t.turmas,function(tt){
-		                    console.log("tt ",tt);
+		                    //console.log("tt ",tt);
 		                    if(_.contains(dados.escolas,t.name)){
 		                            //t[idx].selected = "selected";
 		                            if(_.contains(dados.turmas,tt.turma)){
 		                                tt.selected = "selected";
 		                            }
 		                            
-		                            console.log("tt ", tt);
+		                            //console.log("tt ", tt);
 		                    }
 		                });
 		        }

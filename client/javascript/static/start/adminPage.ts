@@ -5,7 +5,7 @@
 //import CC = Eduapp.Constantes;
 
 module Eduapp{
-	export class ConfigPage extends PageTemplate{
+	export class AdminPage extends PageTemplate{
 
 		 constructor(tmpl:string,pos:string,tipo:string, router:any)
 	    {
@@ -18,7 +18,7 @@ module Eduapp{
 	    }
 
 	    private startTemplate():void{
-	    	Template.configuracao.rendered = function() {
+	    	Template.administracao.rendered = function() {
 		    	
 			};
 	    }
@@ -31,25 +31,26 @@ module Eduapp{
 	    	
 	    		var Router = this.getRouter();
 	    		var self = this;
-	    		Router.route("config", "config", function() {
+	    		//console.log("a registar router admin ");
+	    		Router.route("admin", "admin", function() {
 
-			        console.log("config ");
+			        //console.log("admin ");
 			        
-			        Router.setConfigSession("configuracao",CC.Menu.CONFIG_TITLE,"config_sidebar-left",["config","config_dados_pessoais"]);
+			        Router.setAdminSession("administracao",CC.Menu.ADMIN_TITLE,"admin_sidebar-left",["admin",""]);
 
 		    	});
 
 		    
-		    	Router.route("config_dados_pessoais", "config_dados_pessoais", function() {
+		    	Router.route("administracao_alunos", "administracao_alunos", function() {
 			        
-			        Router.setConfigSession("config_dados_pessoais",CC.Menu.CONFIG_TITLE,"config_sidebar-left",["config","configdadosP"]);
+			        Router.setAdminSession("administracao_alunos",CC.Menu.ADMIN_TITLE,"admin_sidebar-left",["admin","adminalunos"]);
 		        
 		    	});
 		    
 
-		    	Router.route("config_inscricao", "config_inscricao", function() {
+		    	Router.route("administracao_profs", "administracao_profs", function() {
 			       
-			        Router.setConfigSession("config_inscricao",CC.Menu.CONFIG_TITLE,"config_sidebar-left",["config","configinsc"]);
+			        Router.setAdminSession("administracao_profs",CC.Menu.ADMIN_TITLE,"admin_sidebar-left",["admin","adminprofs"]);
 			        
 			    });
 
@@ -60,9 +61,9 @@ module Eduapp{
 			        
 			    });
 	    }
-
+	    
 	    /*
-	    private setConfigSession(tmplName:string, menuName:string, sidebar: string ,selectArr:string[]):void{
+	    private setAdminSession(tmplName:string, menuName:string, sidebar: string ,selectArr:string[]):void{
 	    			
 	    			if(Meteor.user()){
 	    					Session.set("menu_selected", selectArr);
@@ -75,12 +76,8 @@ module Eduapp{
 			    			Session.set("menu","menu_original");
 			    		 	Global.C.elem["mlayout"].setTemplateName(tmplName);
 					     	Global.C.elem["mmenu"].setTitle(menuName);
-		
-					     	var dados = dP.findOne({id:Meteor.userId()});
-					        if(dados)
-					            Session.set("dadosPessoais",true);
-					        else
-					            Session.set("dadosPessoais",false);
+							
+							
 					}else{
 						Session.set("menu_selected", selectArr);
 		    			//Session.set("pageSideBar",sidebar);

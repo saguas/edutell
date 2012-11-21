@@ -5,7 +5,7 @@
 /// <reference path="../../../../../../Definitions/bootstrap/bootstrap-2.1.d.ts" />
 /// <reference path="../../../../../../Definitions/handlebars/handlebars-1.0.d.ts" />
 /// <reference path="../../../../../../Definitions/toastr/toastr-1.0.d.ts" />
-/// <reference path="../../../../../../Definitions/chosen/chosen-0.9.d.ts" />
+/// <reference path="../../../../../../Definitions/chosen/chosen.jquery-0.9.d.ts" />
 
 ///<reference path='../../start/interfaces/IPage.ts'/>
 ///<reference path='../../start/interfaces/ILayout.ts'/>

@@ -5,7 +5,7 @@
 //import CC = Eduapp.Constantes;
 
 module Eduapp{
-	export class ConfigSideBarLeftPage extends PageTemplate{
+	export class AdminSideBarLeftPage extends PageTemplate{
 
 		 constructor(tmpl:string,pos:string,tipo:string, router:any)
 	    {
@@ -21,36 +21,36 @@ module Eduapp{
 	    	var Router = this.getRouter();
 	    	var self = this;
 
-	    	Template["config_sidebar-left"].rendered = function() {
+	    	Template["admin_sidebar-left"].rendered = function() {
 		    	
 			};
 
-			Template["config_sidebar-left"].events({
-		        "click .dados": function(event,tmpl){
+			Template["admin_sidebar-left"].events({
+		        "click .alunos": function(event,tmpl){
 		            event.preventDefault();
-		           	//console.log("dados pessoais clicked ");
-		            Router.changePage(CC.Page.CONFIG_DADOS_PESSOAIS);
+		           	//console.log("admin alunos clicked ");
+		            Router.changePage(CC.Page.ADMIN_ALUNOS);
 		        },
-		        "click .insc": function(event,tmpl){
+		        "click .profs": function(event,tmpl){
 		            event.preventDefault();
 		            
-		            Router.changePage(CC.Page.CONFIG_INSCRICAO);
+		            Router.changePage(CC.Page.ADMIN_PROFS);
 		        },
 		        "click .EEs": function(event){
 		            event.preventDefault();
-		            Router.changePage("");
+		            Router.changePage(CC.Page.ADMIN_EES);
 		        },
 		        "click .escolas": function(event){
 		            event.preventDefault();
-		            Router.changePage("");
+		            Router.changePage(CC.Page.ADMIN_ESCOLAS);
 		        },
-		        "click .confirm": function(event){
+		        "click .adds": function(event){
 		            event.preventDefault();
-		            Router.changePage(CC.Page.CONFIG_CONFIRMACAO);
+		            Router.changePage(CC.Page.ADMIN_ADD);
 		        }        
 		    });
 
-		    Template["config_sidebar-left"].dadosPessoais = function(){
+		    Template["admin_sidebar-left"].dadosPessoais = function(){
 		        return Session.get("dadosPessoais");
 		    };
 	    }
@@ -60,4 +60,3 @@ module Eduapp{
 	    }
 	}
 }
-

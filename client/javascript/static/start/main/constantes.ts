@@ -16,6 +16,11 @@ module Eduapp.Constantes{
 		static CONFIG_INSCRICAO:string = "config_inscricao";
 		static CONFIG_CONFIRMACAO:string = "config_confirmacao";
 		static ADMIN: string = "admin";
+		static ADMIN_ALUNOS:string = "administracao_alunos";
+		static ADMIN_PROFS:string = "administracao_profs";
+		static ADMIN_EES:string = "";
+		static ADMIN_ESCOLAS:string = "";
+		static ADMIN_ADD:string = "";
 	}
 }
 

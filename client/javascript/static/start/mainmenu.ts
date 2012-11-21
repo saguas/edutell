@@ -1,8 +1,8 @@
 ///<reference path='../common/variaveis/declare_vars.ts'/>
 ///<reference path='../../../../../Definitions/mydefs/pagetemplate.d.ts'/>
 
-import CC = Eduapp.Constantes;
-import Global = Eduapp.Global;
+//import CC = Eduapp.Constantes;
+//import Global = Eduapp.Global;
 
 module Eduapp{
 
@@ -62,11 +62,12 @@ module Eduapp{
 		           
 		           },
 		        'click .admin': function(event) {
-			        //console.log("admin clicked ");
+			        console.log("admin clicked ");
 			        self.selected = [CC.Menu.ADMIN];
 			        self.setTitle(CC.Menu.ADMIN_TITLE);
 	        		Session.set("menu_selected",self.selected);
 			        event.preventDefault();
+			        //Global.C.elem["sidebarLeftlayout"].setTemplateName("admin_sidebar-left");
 			        self.getRouter().changePage(CC.Page.ADMIN);
 		       
 		       },

@@ -2,8 +2,8 @@
 ///<reference path='../../../../../Definitions/mydefs/pagetemplate.d.ts'/>
 ///<reference path="../../../../../Definitions/mydefs/validacao_form.d.ts" />
 
-import Global = Eduapp.Global;
-import CC = Eduapp.Constantes;
+//import Global = Eduapp.Global;
+//import CC = Eduapp.Constantes;
 
 module Eduapp{
 	export class ConfigDadosPessoaisPage extends PageTemplate{

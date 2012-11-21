@@ -5,7 +5,11 @@
 ///<reference path='../../../../../../Definitions/mydefs/config_dados_pessoais.d.ts'/>
 ///<reference path='../../../../../../Definitions/mydefs/config_insc_page.d.ts'/>
 ///<reference path='../../../../../../Definitions/mydefs/config_sideBarleft_Page.d.ts'/>
-///<reference path='../../../../../../Definitions/mydefs/configpage.d.ts'/>
+///<reference path='../../../../../../Definitions/mydefs/admin_SideBarleft_Page.d.ts'/>
+///<reference path='../../../../../../Definitions/mydefs/configPage.d.ts'/>
+///<reference path='../../../../../../Definitions/mydefs/adminPage.d.ts'/>
+///<reference path='../../../../../../Definitions/mydefs/admin_alunos_page.d.ts'/>
+///<reference path='../../../../../../Definitions/mydefs/admin_profs_page.d.ts'/>
 ///<reference path='../../../../../../Definitions/mydefs/menulayout.d.ts'/>
 ///<reference path='../../../../../../Definitions/mydefs/toplayout.d.ts'/>
 ///<reference path='../../../../../../Definitions/mydefs/sidebarLeftlayout.d.ts'/>
@@ -21,24 +25,48 @@ module Eduapp {
     Session.set("dadosPessoais",false);
 
 	export var router = startRouter();
-	export var mlayout = new Eduapp.MiddleLayout("home",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
-	export var homepage = new Eduapp.HomePage("home",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
-	export var configpage = new Eduapp.ConfigPage("configuracao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
-	export var config_DP_page = new Eduapp.ConfigDadosPessoaisPage("config_dados_pessoais",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
-	export var config_INSC_page = new Eduapp.ConfigInscricaoPage("config_inscricao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
-	export var config_SB_page = new Eduapp.ConfigSideBarLeftPage("config_sidebar-left",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
-	export var menulayout = new Eduapp.MenuLayout("menu_original",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
-	export var toplayout = new Eduapp.TopLayout("notop",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
-	export var sidebarLeftlayout = new Eduapp.SideBarLayout("",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
-	export var startLayout = new Eduapp.Layout("layout",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
-	export var mmenu = new Eduapp.MainMenu("menu_original",Eduapp.Position.TOP,Eduapp.UserTipo.ALUNO,router);
-	
-	
-	//Session.set("page","home");
-	//Session.set("layout","layout");
-	//Session.set("pageTop","notop");
-	//Session.set("pageSideBar","");
-	//Session.set("menu","menu_original");
+
+	var mlayout = new Eduapp.MiddleLayout("home",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
+	var menulayout = new Eduapp.MenuLayout("menu_original",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
+	var toplayout = new Eduapp.TopLayout("notop",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
+	var sidebarLeftlayout = new Eduapp.SideBarLayout("",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
+	var startLayout = new Eduapp.Layout("layout",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO);
+	var homepage = new Eduapp.HomePage("home",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
+	var mmenu = new Eduapp.MainMenu("menu_original",Eduapp.Position.TOP,Eduapp.UserTipo.ALUNO,router);
+	var configpage;
+	var config_DP_page;
+	var config_INSC_page;
+	var config_SB_page;
+	var admin_SB_page ;
+	var adminpage;
+	var adminAlunosPage;
+	var adminProfsPage;
+
+
+
+	Meteor.autorun(function(){
+			if(Meteor.userId()){
+				
+				var user = Meteor.user();
+				//console.log("profile admin user ",user);
+		      	if(user.profile && user.profile.tipo === "Admin"){
+		      		//console.log("profile admin ");
+		      		deleteObject(user);
+		      		adminpage = new Eduapp.AdminPage("administracao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
+		      		adminAlunosPage = new Eduapp.AdminAlunosPage("administracao_alunos",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
+		      		adminProfsPage = new Eduapp.AdminProfsPage("administracao_profs",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
+					admin_SB_page = new Eduapp.AdminSideBarLeftPage("admin_sidebar-left",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
+				}else if(user.profile && user.profile.tipo === "Aluno"){
+					deleteObject(user);
+					configpage = new Eduapp.ConfigPage("configuracao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
+					config_DP_page = new Eduapp.ConfigDadosPessoaisPage("config_dados_pessoais",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
+					config_INSC_page = new Eduapp.ConfigInscricaoPage("config_inscricao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
+					config_SB_page = new Eduapp.ConfigSideBarLeftPage("config_sidebar-left",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
+				}
+			}
+	});
+		
+
 	Global.C.elem["mlayout"] = mlayout;	
 	Global.C.elem["mmenu"] = mmenu;	
 	Global.C.elem["homepage"] = homepage;	
@@ -49,11 +77,11 @@ module Eduapp {
 	Global.C.elem["sidebarLeftlayout"] = sidebarLeftlayout;
 	Global.C.elem["config_DP_page"] = config_DP_page;
 	Global.C.elem["config_INSC_page"] = config_INSC_page;
-	Global.C.elem["config_SB_page"] = config_SB_page;	
-	//mlayout.setTemplateName("configuracao");
-	//mlayout.setTemplateName("home");
-	
-	//console.log("Main mlayout ", mlayout);
+	Global.C.elem["config_SB_page"] = config_SB_page;
+	Global.C.elem["admin_SB_page"] = admin_SB_page;
+	Global.C.elem["adminpage"] = adminpage;
+	Global.C.elem["adminAlunosPage"] = adminAlunosPage;
+	Global.C.elem["adminProfsPage"] = adminProfsPage;
 	
 
 	// shared between dropdown and single mode
@@ -64,11 +92,27 @@ module Eduapp {
       if(event.target.id == "login-buttons-logout"){
             
             event.preventDefault();
+            var user = Meteor.user();
+            deleteObject(user);
             router.changePage("");
       }
      }
     
   });
+
+  	function deleteObject(user){
+  		if(user.profile && user.profile.tipo === "Admin"){
+        	delete Global.C.elem["admin_SB_page"];
+			delete Global.C.elem["adminpage"];
+			delete Global.C.elem["adminAlunosPage"];
+			delete Global.C.elem["adminProfsPage"];
+        }else if(user.profile && user.profile.tipo === "Aluno"){
+        	delete Global.C.elem["configpage"];
+        	delete Global.C.elem["config_INSC_page"];
+        	delete Global.C.elem["config_DP_page"];
+        	delete Global.C.elem["config_SB_page"];
+    	}
+  	}
   
   
 	function startRouter(){
@@ -90,11 +134,7 @@ module Eduapp {
 			        
 			           toplayout.setTemplateName("notop");
 			           mlayout.setTemplateName("home");
-			           	//Session.set("page","home");
-						//Session.set("layout","layout");
-						//Session.set("pageTop","notop");
-						//Session.set("pageSideBar","");
-						//Session.set("menu","menu_original");
+			           
 			            mmenu.setTitle(CC.Menu.HOME_TITLE);
 			            Session.set("menu_selected",["home"]);
 			            Global.C.elem["sidebarLeftlayout"].setTemplateName("");
@@ -110,25 +150,47 @@ module Eduapp {
 		            console.log("nopath ", path);
 		        },
 		        changePage: function(menu_id) {
-		            //console.log("changePage ", opt);
-		            //if(opt == undefined || opt == null)
-		              //  this.navigate(menu_id, true);
-		            //else
+		           
 		            this.navigate(menu_id, true);
 		        },
-		        //objeto com o nome dos routes a chamar com a função Router.changePage(Router.pages.login / Router.pages.registo) Assim é possível experimentar várias páginas de login
-		        pages: {
-		            inicial: "",
-		            login: "",
-		            registo: "",
-		            tpc: "",
-		            faltas: "",
-		            testes: "",
-		            config: "", //página de configuração
-		            admin: "",//página do administrador
-		            adminalunos: "",
-		            logout: ""
-		        }
+		        setConfigSession: function(tmplName, menuName, sidebar, selectArr){
+		        	this.setAdminSession(tmplName, menuName, sidebar, selectArr);
+		        	if(Meteor.user()){
+		        			var dados = dP.findOne({id:Meteor.userId()});
+					        if(dados)
+					            Session.set("dadosPessoais",true);
+					        else
+					            Session.set("dadosPessoais",false);
+		        	}
+		        }, 
+		        setAdminSession: function(tmplName, menuName, sidebar, selectArr){
+	    			
+	    			if(Meteor.user()){
+	    					Session.set("menu_selected", selectArr);
+			    			//Session.set("pageSideBar",sidebar);
+			    			//Session.set("page",tmplName);
+			    			Global.C.elem["sidebarLeftlayout"].setTemplateName(sidebar);
+			    			Global.C.elem["toplayout"].setTemplateName("notop");
+			    			//console.log("toplayout",Global.C.elem["toplayout"]);
+			    			//Session.set("pageTop","notop");
+			    			Session.set("menu","menu_original");
+			    		 	Global.C.elem["mlayout"].setTemplateName(tmplName);
+					     	Global.C.elem["mmenu"].setTitle(menuName);
+					           
+					}else{
+						Session.set("menu_selected", selectArr);
+		    			//Session.set("pageSideBar",sidebar);
+		    			//Session.set("page",tmplName);
+		    			Global.C.elem["sidebarLeftlayout"].setTemplateName("");
+		    			Global.C.elem["toplayout"].setTemplateName("notop");
+		    			//console.log("toplayout",Global.C.elem["toplayout"]);
+		    			//Session.set("pageTop","notop");
+		    			Session.set("menu","menu_original");
+		    		 	Global.C.elem["mlayout"].setTemplateName("home");
+				     	Global.C.elem["mmenu"].setTitle(CC.Menu.HOME_TITLE);
+					}
+			        
+	    		}	
 	    });
 
 		return new MenuRouter();

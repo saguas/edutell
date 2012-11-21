@@ -1,6 +1,9 @@
 ///<reference path='../../common/variaveis/declare_vars.ts'/>
 ///<reference path='../interfaces/IPage.ts'/>
 
+import Global = Eduapp.Global;
+import CC = Eduapp.Constantes;
+
 module Eduapp{
 	export class PageTemplate implements IPage{
 

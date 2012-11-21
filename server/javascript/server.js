@@ -10,7 +10,13 @@ Meteor.publish("escolas", function () {
 });
 
 Meteor.publish("dadosPessoais", function () {
-  return dP.find();
+  if(this.userId){
+    //return dP.find();
+    //console.log("server ", this.userId);
+    return dP.find({id: this.userId});
+  }
+
+  return null;
 });
 
 
