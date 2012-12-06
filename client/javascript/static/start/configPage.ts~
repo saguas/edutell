@@ -1,11 +1,11 @@
-///<reference path='../../../../../Definitions/mydefs/declare_vars.ts'/>
+///<reference path='../common/variaveis/declare_vars.ts'/>
 ///<reference path='../../../../../Definitions/mydefs/pagetemplate.d.ts'/>
 
 //import Global = Eduapp.Global;
 //import CC = Eduapp.Constantes;
 
 module Eduapp{
-	export class AdminPage extends PageTemplate{
+	export class ConfigPage extends PageTemplate{
 
 		 constructor(tmpl:string,pos:string,tipo:string, router:any)
 	    {
@@ -18,7 +18,7 @@ module Eduapp{
 	    }
 
 	    private startTemplate():void{
-	    	Template.administracao.rendered = function() {
+	    	Template.configuracao.rendered = function() {
 		    	
 			};
 	    }
@@ -31,26 +31,25 @@ module Eduapp{
 	    	
 	    		var Router = this.getRouter();
 	    		var self = this;
-	    		//console.log("a registar router admin ");
-	    		Router.route("admin", "admin", function() {
+	    		Router.route("config", "config", function() {
 
-			        //console.log("admin ");
+			        console.log("config ");
 			        
-			        Router.setAdminSession("administracao",CC.Menu.ADMIN_TITLE,"admin_sidebar-left",["admin",""]);
+			        Router.setConfigSession("configuracao",CC.Menu.CONFIG_TITLE,"config_sidebar-left",["config","config_dados_pessoais"]);
 
 		    	});
 
 		    
-		    	Router.route("administracao_alunos", "administracao_alunos", function() {
+		    	Router.route("config_dados_pessoais", "config_dados_pessoais", function() {
 			        
-			        Router.setAdminSession("administracao_alunos",CC.Menu.ADMIN_TITLE,"admin_sidebar-left",["admin","adminalunos"]);
+			        Router.setConfigSession("config_dados_pessoais",CC.Menu.CONFIG_TITLE,"config_sidebar-left",["config","configdadosP"]);
 		        
 		    	});
 		    
 
-		    	Router.route("administracao_profs", "administracao_profs", function() {
+		    	Router.route("config_inscricao", "config_inscricao", function() {
 			       
-			        Router.setAdminSession("administracao_profs",CC.Menu.ADMIN_TITLE,"admin_sidebar-left",["admin","adminprofs"]);
+			        Router.setConfigSession("config_inscricao",CC.Menu.CONFIG_TITLE,"config_sidebar-left",["config","configinsc"]);
 			        
 			    });
 
@@ -61,9 +60,9 @@ module Eduapp{
 			        
 			    });
 	    }
-	    
+
 	    /*
-	    private setAdminSession(tmplName:string, menuName:string, sidebar: string ,selectArr:string[]):void{
+	    private setConfigSession(tmplName:string, menuName:string, sidebar: string ,selectArr:string[]):void{
 	    			
 	    			if(Meteor.user()){
 	    					Session.set("menu_selected", selectArr);
@@ -76,8 +75,12 @@ module Eduapp{
 			    			Session.set("menu","menu_original");
 			    		 	Global.C.elem["mlayout"].setTemplateName(tmplName);
 					     	Global.C.elem["mmenu"].setTitle(menuName);
-							
-							
+		
+					     	var dados = dP.findOne({id:Meteor.userId()});
+					        if(dados)
+					            Session.set("dadosPessoais",true);
+					        else
+					            Session.set("dadosPessoais",false);
 					}else{
 						Session.set("menu_selected", selectArr);
 		    			//Session.set("pageSideBar",sidebar);

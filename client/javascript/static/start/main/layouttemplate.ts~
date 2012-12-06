@@ -1,21 +1,16 @@
-///<reference path='../../../../../../Definitions/mydefs/declare_vars.ts'/>
-///<reference path='../../../../../../Definitions/mydefs/IPage.ts'/>
-
-import Global = Eduapp.Global;
-import CC = Eduapp.Constantes;
+///<reference path='../../../../../Definitions/mydefs/declare_vars.ts'/>
+///<reference path='../../../../../Definitions/mydefs/ILayout.ts'/>
 
 module Eduapp{
-	export class PageTemplate implements IPage{
+	export class LayoutTemplate implements ILayout{
 
 		public templateName: string;
-		private title:string;
 		private position: string;
 		private userTipo: string;
 		private listenersUserTipo:any;
 		private listenersTmplName:any;
-		private Router:any;
 
-		constructor(tmpl:string,pos:string,tipo:string,router:any)
+		constructor(tmpl:string,pos:string,tipo:string)
 	    {
 
 	    	this.templateName = tmpl;
@@ -23,7 +18,6 @@ module Eduapp{
 	    	this.position = this.checkPosition(pos) ? pos : "nothing";
 	        this.listenersUserTipo = {};
 	        this.listenersTmplName = {};
-	        this.Router = router;
 	    };
 
 	    public getTemplateName():string{
@@ -100,27 +94,12 @@ module Eduapp{
 
 				return _.contains([Eduapp.Position.TOP,Eduapp.Position.BOTTOM,Eduapp.Position.MIDDLE,Eduapp.Position.LEFT, Eduapp.Position.RIGHT,Eduapp.Position.NOTHING], pos);
 		}
-		private startTemplate():void{
-			return;
-		}
 
 		private startHelpers():void{
 			return;
 		}
-
-		public setRouter(router:any):void{
-			this.Router = router;
-		};
-		public getRouter():any{
-			return this.Router;
-		};
-
-		public getTitle():string{
-			return this.title;
-		}
-
-		public setTitle(title:string):void{
-			this.title = title;
+		private startTemplate():void{
+			return;
 		}
 	}
 }

@@ -1,5 +1,5 @@
-///<reference path='../../common/variaveis/declare_vars.ts'/>
-///<reference path='../interfaces/ILayout.ts'/>
+///<reference path='../../../../../../Definitions/mydefs/declare_vars.ts'/>
+///<reference path='../../../../../../Definitions/mydefs/ILayout.ts'/>
 
 module Eduapp{
 	export class LayoutTemplate implements ILayout{

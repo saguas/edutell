@@ -1,11 +1,8 @@
-///<reference path='../../../../../Definitions/mydefs/declare_vars.ts'/>
+///<reference path='../common/variaveis/declare_vars.ts'/>
 ///<reference path='../../../../../Definitions/mydefs/pagetemplate.d.ts'/>
 
-//import Global = Eduapp.Global;
-//import CC = Eduapp.Constantes;
-
 module Eduapp{
-	export class AdminProfsPage extends PageTemplate{
+	export class HomePage extends PageTemplate{
 
 		 constructor(tmpl:string,pos:string,tipo:string, router:any)
 	    {
@@ -17,7 +14,9 @@ module Eduapp{
 	    }
 
 	    private startTemplate():void{
-	    	
+	    	Template.home.rendered = function() {
+		    	$('#myCarousel').carousel();
+			};
 	    }
 
 	    private startHelpers():void{

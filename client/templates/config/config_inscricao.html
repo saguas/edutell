@@ -45,7 +45,7 @@ and open the template in the editor.
       <div class="form-inline">
             
             <div class="controls">
-              
+         
             	  <select id="escola" data-placeholder="Escolha uma Escola..." class="chzn-select" multiple style="width:350px;" tabindex="2">
   			          <option value=""></option> 
   			          <!--<option value="Lindley">Lindley</option> 
@@ -55,12 +55,10 @@ and open the template in the editor.
                     <option value="{{name}}" {{#if EscolaSelected this}} selected {{/if}}>{{name}}</option>
                   {{/each}}
 			         </select>
+
               {{#isolate}}
                 <select id="turma" data-placeholder="Escolha uma Turma..." class="chzn-select" multiple style="width:350px;" tabindex="3">
     			          <option value=""></option> 
-    			          <!--<option value="7C">7ºC</option> 
-    			          <option value="7A">7ºA</option> 
-    			          <option value="8A">8ºA</option> -->
                     {{#each Turmas}}
                        <optgroup label="{{name}}">
                         {{#each Turma this}}

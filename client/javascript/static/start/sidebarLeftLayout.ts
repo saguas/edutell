@@ -1,5 +1,6 @@
-///<reference path='../common/variaveis/declare_vars.ts'/>
+///<reference path='../../../../../Definitions/mydefs/declare_vars.ts'/>
 ///<reference path='../../../../../Definitions/mydefs/layouttemplate.d.ts'/>
+
 module Eduapp{
 	export class SideBarLayout extends LayoutTemplate{
 
@@ -23,5 +24,9 @@ module Eduapp{
 		        }
 		    });
 	    }
+
+	   	private startTemplate():void{
+
+	   	};
 	}
 }

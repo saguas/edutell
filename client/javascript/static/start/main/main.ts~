@@ -1,4 +1,4 @@
-///<reference path='../../../../../../Definitions/mydefs/declare_vars.ts'/>
+///<reference path='../../../../../Definitions/mydefs/declare_vars.ts'/>
 ///<reference path='../../../../../../Definitions/mydefs/layout.d.ts'/>
 ///<reference path='../../../../../../Definitions/mydefs/sidebarLeftLayout.d.ts'/>
 ///<reference path='../../../../../../Definitions/mydefs/middlelayout.d.ts'/>
@@ -18,7 +18,7 @@
 //import Global = Eduapp.Global;
 //import CC = Eduapp.Constantes;
 
-module Eduapp { 
+module Eduapp {
 
 	Meteor.subscribe("escolas");
     Meteor.subscribe("dadosPessoais");

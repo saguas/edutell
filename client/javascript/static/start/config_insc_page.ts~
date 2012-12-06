@@ -1,23 +1,19 @@
-///<reference path='../../../../../Definitions/mydefs/declare_vars.ts'/>
+///<reference path='../common/variaveis/declare_vars.ts'/>
 ///<reference path='../../../../../Definitions/mydefs/pagetemplate.d.ts'/>
 
 module Eduapp{
 	export class ConfigInscricaoPage extends PageTemplate{
 
 		 private cConfigInsc:any;
-		 //private refresh: bool;
 
 		 constructor(tmpl:string,pos:string,tipo:string, router:any)
 	    {
 	        super(tmpl,pos,tipo,router);
 
-	        //this.refresh = true;
 	        this.startHelpers();
 	        this.startTemplate();
-	       
 	        //Session.set("escolas",[""]);
 	        Session.set("escolas",null);
-	        //Session.set("refresh", true);
 	        this.cConfigInsc = new CConfigInscricao();
 
 	    }
@@ -37,7 +33,6 @@ module Eduapp{
 
 			Template.dpFormInsc2.rendered = function(){
 		        var _this = this;
-		        
 		        console.log("dpFormInsc2.rendered");
 		        if (! _this.handle) {
 		          _this.handle = Meteor.autorun(function() {
@@ -47,25 +42,22 @@ module Eduapp{
 		                    $('#escola').val(dados.escolas);
 		                    $("#escola").trigger("liszt:updated");
 		                    //$('#turma').val(dados.turmas);
-		                    //Session.set("escolas",dados.turmas);
-		                    //Template.dpFormInsc2.Turmas();
-
-		                    $('#turma').val(dados.turmas);   
-		                    //console.log("turmas em dados ",);
-		                    $("#turma").trigger("liszt:updated"); 
-
 		                    Session.set("dadosPessoais",true);
 		                    Session.set("dadosPessoaisEdit",false);
 		                    //Session.set("escolas",$("#escola").val());
 		                    Session.set("escolas",$("#escola").val());
- 
+		                    //Session.set("escolas",dados.turmas);
+		                    //Template.dpFormInsc2.Turmas();
+
+		                   $('#turma').val(dados.turmas);   
+		                   $("#turma").trigger("liszt:updated"); 
+		                   
+		                    
 		                    //Session.set("escolas",dados.turmas);
 		                }else{
 		                    Session.set("dadosPessoais",false);
 		                    Session.set("dadosPessoaisEdit",true);
 		                }
-		                //self.refresh = false;
-		                //Session.set("refresh", false);
 		            });
 		      }
 		    };
@@ -92,38 +84,21 @@ module Eduapp{
 
 		    Template.dpFormInsc2.Turmas = function(){
 		        //console.log("Turmas ",Escolas.find({name: Session.get("escolas")[0]}).fetch());
-   
-		        var myt = [];
-		        var dados = dP.findOne({id:Meteor.userId()}, {reactive: false});
 
-		        _.each(Session.get("escolas"),function(escola){		        	
-		            var obj = Escolas.find({name: escola},{reactive: false}).fetch();
-		           
-		            //console.log("context ",Meteor.deps.Context.current);
-		            
+		        var myt = [];
+
+		        _.each(Session.get("escolas"),function(escola){
+		            var obj = Escolas.find({name: escola}).fetch();
+		            //console.log("obj ",obj);
+
 		            if(obj.length > 0){
-		            
+		                //obj[0].turmas[0].selected="selected";
+		                //console.log("obj ",obj[0]);
 		                myt.push(obj[0]);
 		            }
 		        });
 
 		        //console.log("myt ",myt);
-		        if(dados){
-		        	_.each(myt,function(obj){
-		        		//console.log("obj ",obj.turmas);
-			            _.each(obj.turmas,function(tt){
-			                    //console.log("tt ",tt);
-			                    if(_.contains(dados.escolas,obj.name)){
-			                            //t[idx].selected = "selected";
-			                            if(_.contains(dados.turmas,tt.turma)){
-			                                tt.selected = "selected";
-			                            }
-			                            
-			                            //console.log("tt ", tt);
-			                    }
-			                });
-		        	});
-		        }
 
 		        return myt.length > 0? myt: null;
 		        //return Escolas.find({name: Session.get("escolas")[0]}).fetch();
@@ -131,7 +106,7 @@ module Eduapp{
 
 		    Template.dpFormInsc2.Turma = function(t){
 		    		//console.log("turmas ", t);
-		    	/*
+
 		        var dados = dP.findOne({id:Meteor.userId()});
 
 		        if(dados && t){
@@ -146,8 +121,8 @@ module Eduapp{
 		                            //console.log("tt ", tt);
 		                    }
 		                });
-		        }*/
-		        console.log("this turmas ", this.turmas);
+		        }
+
 		        return this.turmas;
 		    };
 
@@ -165,7 +140,6 @@ module Eduapp{
 		                    }
 		                    else{
 		                        self.cConfigInsc.insert();
-		                        //self.refresh = true;
 		                    }
 		                }
 		                /*
@@ -187,7 +161,6 @@ module Eduapp{
 		                }else{
 		                    $(tmpl.find('#myModal')).modal('hide');    
 		                    self.cConfigInsc.insert();
-		                    //self.refresh = true;
 		                }
 		            });
 		                
@@ -210,7 +183,29 @@ module Eduapp{
 	    }
 
 	    private startHelpers():void{
-	    	
+	    	//Template.dpFormInsc2.Turma = function(){
+
+		    /*Handlebars.registerHelper('Turma',function(t){
+		        //console.log("turmas ", t);
+
+		        var dados = dP.findOne({id:Meteor.userId()});
+
+		        if(dados && t){
+		            _.each(t.turmas,function(tt){
+		                    //console.log("tt ",tt);
+		                    if(_.contains(dados.escolas,t.name)){
+		                            //t[idx].selected = "selected";
+		                            if(_.contains(dados.turmas,tt.turma)){
+		                                tt.selected = "selected";
+		                            }
+		                            
+		                            //console.log("tt ", tt);
+		                    }
+		                });
+		        }
+
+		        return this.turmas;//[{turma:""}];//this.turmas;////this.turmas;
+		    });*/
 	    }
 	}
 
@@ -237,8 +232,8 @@ module Eduapp{
 	        }else if(escolas.length == 0){
 	            toastr.error("É necessária selecionar uma escola ","Inscrição");
 	        }else{
-                this.escolas = _.without(escolas,"");
-                this.turmas = _.without(turmas,"");
+                this.escolas = escolas;
+                this.turmas = turmas;
 	            ret = true;
 	        }
 
@@ -258,9 +253,7 @@ module Eduapp{
               //dP.insert(obj);
               dP.update({id:Meteor.userId()},{$set:obj});
               Meteor.users.update(Meteor.userId(),{$set:{"profile.tipo":$('#classes').val()}});
-
-              //Session.set("refresh", true);
-           	  
+           
         };
 
         getEscolas(): string[]{

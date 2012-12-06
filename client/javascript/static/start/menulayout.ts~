@@ -1,30 +1,26 @@
-///<reference path='../../../../../Definitions/mydefs/declare_vars.ts'/>
+///<reference path='../common/variaveis/declare_vars.ts'/>
 ///<reference path='../../../../../Definitions/mydefs/layouttemplate.d.ts'/>
+
 module Eduapp{
-	export class Layout extends LayoutTemplate{
+	export class MenuLayout extends LayoutTemplate{
 
 		 constructor(tmpl:string,pos:string,tipo:string)
 	    {
 	        super(tmpl,pos,tipo);
 
 	        this.startHelpers();
-
-	        //elimina qualquer click de fazer o que está definido por defeito. Usado para evitar que os menus de login coloquem #
-		    Template.layout.events({
-		        'click': function(event) {
-		                
-		                event.preventDefault();
-		          }
-		    });
+	        //this.startTemplate();
 
 	    }
 
 	    private startHelpers():void{
 
 	    	var self = this;
-	        Handlebars.registerHelper('layout', function() {
+	        //console.log("MiddleLayout ", self );
+	        Handlebars.registerHelper('menu', function() {
 		    	var tmpl = self.getTemplateName();
-		    	//var tmpl = Session.get("layout");
+		    	//var tmpl = Session.get("menu");
+		    	//var s = Session.get("page");
 		        console.log("template ",tmpl);
 		        if (Template[tmpl]){ //verifica se há um template com o node dado por this.pag            
 		            return Template[tmpl]();//chama o template registado com o nome de this.page

@@ -1,14 +1,14 @@
-/// <reference path="../../../Definitions/mydefs/declare_vars.ts" />
+/// <reference path="../../client/javascript/static/common/variaveis/declare_vars.ts" />
 
 
-Escolas = new Meteor.Collection("Escolas");
+Escolas = new Meteor.Collection("escolas");
 dP = new Meteor.Collection("dadosPessoais");
 
 
 Meteor.users.deny({
 
   update: function (userId, docs, fields, modifier) { 
-      //console.log("docs fields ",fields, " modifier ", _.values(modifier));
+      console.log("docs fields ",fields, " modifier ", _.values(modifier));
       var ret = false;
 
       if(fields.length == 1 && fields[0] == "profile"){
@@ -33,7 +33,7 @@ Escolas.allow({
       var tipo = user.profile.tipo;
       //console.log("user ", user);
 
-      if(tipo == "Admin")
+      if(tipo == "admin")
         return true;
 
       return false; // no cowboy inserts -- use createParty method
@@ -42,7 +42,7 @@ Escolas.allow({
       var user = Meteor.users.findOne({_id: userId});  
       var tipo = user.profile.tipo;
 
-      if(tipo == "Admin")
+      if(tipo == "admin")
         return true;
 
       return false; // no cowboy inserts -- use createParty method
@@ -51,7 +51,7 @@ Escolas.allow({
       var user = Meteor.users.findOne({_id: userId});  
       var tipo = user.profile.tipo;
 
-      if(tipo == "Admin")
+      if(tipo == "admin")
         return true;
 
       return false; // no cowboy inserts -- use createParty method
@@ -72,7 +72,7 @@ dP.allow({
       var user = Meteor.users.findOne({_id: userId});  
       var tipo = user.profile.tipo;
 
-      if(tipo == "Admin")
+      if(tipo == "admin")
         return true;
 
       return false; // no cowboy inserts -- use createParty method

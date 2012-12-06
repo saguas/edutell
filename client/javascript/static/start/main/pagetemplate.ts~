@@ -1,5 +1,5 @@
-///<reference path='../../../../../../Definitions/mydefs/declare_vars.ts'/>
-///<reference path='../../../../../../Definitions/mydefs/IPage.ts'/>
+///<reference path='../../../../../Definitions/mydefs/declare_vars.ts'/>
+///<reference path='../../../../../Definitions/mydefs/IPage.ts'/>
 
 import Global = Eduapp.Global;
 import CC = Eduapp.Constantes;

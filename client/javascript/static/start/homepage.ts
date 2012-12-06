@@ -1,4 +1,4 @@
-///<reference path='../common/variaveis/declare_vars.ts'/>
+///<reference path='../../../../../Definitions/mydefs/declare_vars.ts'/>
 ///<reference path='../../../../../Definitions/mydefs/pagetemplate.d.ts'/>
 
 module Eduapp{
