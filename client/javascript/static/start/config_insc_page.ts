@@ -104,6 +104,28 @@ module Eduapp{
 		        //return Escolas.find({name: Session.get("escolas")[0]}).fetch();
 		    };
 
+		    Template.dpFormInsc2.Turma = function(t){
+		    		//console.log("turmas ", t);
+
+		        var dados = dP.findOne({id:Meteor.userId()});
+
+		        if(dados && t){
+		            _.each(t.turmas,function(tt){
+		                    //console.log("tt ",tt);
+		                    if(_.contains(dados.escolas,t.name)){
+		                            //t[idx].selected = "selected";
+		                            if(_.contains(dados.turmas,tt.turma)){
+		                                tt.selected = "selected";
+		                            }
+		                            
+		                            //console.log("tt ", tt);
+		                    }
+		                });
+		        }
+
+		        return this.turmas;
+		    };
+
 		    Template.config_inscricao.events({
 		        'click #btnformInsc': function(event, tmpl) {
 		                
@@ -162,7 +184,8 @@ module Eduapp{
 
 	    private startHelpers():void{
 	    	//Template.dpFormInsc2.Turma = function(){
-		    Handlebars.registerHelper('Turma',function(t){
+
+		    /*Handlebars.registerHelper('Turma',function(t){
 		        //console.log("turmas ", t);
 
 		        var dados = dP.findOne({id:Meteor.userId()});
@@ -182,7 +205,7 @@ module Eduapp{
 		        }
 
 		        return this.turmas;//[{turma:""}];//this.turmas;////this.turmas;
-		    });
+		    });*/
 	    }
 	}
 
