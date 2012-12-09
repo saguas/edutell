@@ -51,9 +51,9 @@ module Eduapp {
 			if(myid){
 			//var user = Meteor.user();
 				var user = Meteor.users.findOne({_id: myid}, {reactive: false});
-			//if(user){
-				
+
 				//console.log("profile admin user ",user, " profile ", user.profile);
+
 		      	if(user && user.profile && user.profile.tipo === "Admin"){
 		      		//console.log("profile admin ");
 		      		deleteObject(user);
