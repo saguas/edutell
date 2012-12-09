@@ -53,8 +53,8 @@ module Eduapp {
 				var user = Meteor.users.findOne({_id: myid}, {reactive: false});
 			//if(user){
 				
-				console.log("profile admin user ",user, " profile ", user.profile);
-		      	if(user.profile && user.profile.tipo === "Admin"){
+				//console.log("profile admin user ",user, " profile ", user.profile);
+		      	if(user && user.profile && user.profile.tipo === "Admin"){
 		      		//console.log("profile admin ");
 		      		deleteObject(user);
 		      		adminpage = new Eduapp.AdminPage("administracao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
@@ -65,7 +65,7 @@ module Eduapp {
 					Global.C.elem["adminpage"] = adminpage;
 					Global.C.elem["adminAlunosPage"] = adminAlunosPage;
 					Global.C.elem["adminProfsPage"] = adminProfsPage;
-				}else if(user.profile && user.profile.tipo === "Aluno"){
+				}else if(user && user.profile && user.profile.tipo === "Aluno"){
 					deleteObject(user);
 					configpage = new Eduapp.ConfigPage("configuracao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 					config_DP_page = new Eduapp.ConfigDadosPessoaisPage("config_dados_pessoais",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
