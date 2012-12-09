@@ -12,6 +12,6 @@ accounts-ui
 accounts-facebook
 accounts-twitter
 accounts-google
-meteor-typescript
 http
+typescript
 preserve-inputs

@@ -1,4 +1,4 @@
-/// <reference path="declare_vars.ts" />
+/// <reference path="../../../../../../Definitions/mydefs/declare_vars.ts" />
 
 interface MessageShowed{
 	elementName: string;

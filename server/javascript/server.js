@@ -25,8 +25,12 @@ Meteor.startup(function() {
      Accounts.onCreateUser(function(options, user){ //esta função é chamada antes de Meteor.accounts.validateNewUser 
         console.log("onCreateUser user:",user);
             
-        if (options.profile)
+        if (options.profile && options.profile.tipo == "Aluno")
             user.profile = options.profile;
+        else if(options.profile){
+            options.profile.tipo = "Aluno";
+            user.profile = options.profile;
+        }
         else
             user.profile = {tipo:"Aluno"};
 
