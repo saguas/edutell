@@ -140,7 +140,6 @@ module Eduapp{
 		    };
 
 		    Template.dpFormInsc2.Turma = function(t){
-		    		//console.log("turmas ", t);
 
 		        console.log("this turmas ", this.turmas);
 		        return this.turmas;
