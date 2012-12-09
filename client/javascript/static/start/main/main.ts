@@ -54,7 +54,7 @@ module Eduapp {
 			//if(user){
 				
 				console.log("profile admin user ",user, " profile ", user.profile);
-		      	if(user.profile && user.profile.tipo === "Admin"){
+		      	if(user && user.profile && user.profile.tipo === "Admin"){
 		      		//console.log("profile admin ");
 		      		deleteObject(user);
 		      		adminpage = new Eduapp.AdminPage("administracao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
