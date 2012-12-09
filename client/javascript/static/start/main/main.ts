@@ -46,10 +46,14 @@ module Eduapp {
 
 
 	Meteor.autorun(function(){
-			if(Meteor.userId()){
+			var myid = Meteor.userId();
+
+			if(myid){
+			//var user = Meteor.user();
+				var user = Meteor.users.findOne({_id: myid}, {reactive: false});
+			//if(user){
 				
-				var user = Meteor.user();
-				//console.log("profile admin user ",user);
+				console.log("profile admin user ",user, " profile ", user.profile);
 		      	if(user.profile && user.profile.tipo === "Admin"){
 		      		//console.log("profile admin ");
 		      		deleteObject(user);
@@ -57,12 +61,20 @@ module Eduapp {
 		      		adminAlunosPage = new Eduapp.AdminAlunosPage("administracao_alunos",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 		      		adminProfsPage = new Eduapp.AdminProfsPage("administracao_profs",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 					admin_SB_page = new Eduapp.AdminSideBarLeftPage("admin_sidebar-left",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
+					Global.C.elem["admin_SB_page"] = admin_SB_page;
+					Global.C.elem["adminpage"] = adminpage;
+					Global.C.elem["adminAlunosPage"] = adminAlunosPage;
+					Global.C.elem["adminProfsPage"] = adminProfsPage;
 				}else if(user.profile && user.profile.tipo === "Aluno"){
 					deleteObject(user);
 					configpage = new Eduapp.ConfigPage("configuracao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 					config_DP_page = new Eduapp.ConfigDadosPessoaisPage("config_dados_pessoais",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 					config_INSC_page = new Eduapp.ConfigInscricaoPage("config_inscricao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 					config_SB_page = new Eduapp.ConfigSideBarLeftPage("config_sidebar-left",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
+					Global.C.elem["configpage"] = configpage;	
+					Global.C.elem["config_DP_page"] = config_DP_page;
+					Global.C.elem["config_INSC_page"] = config_INSC_page;
+					Global.C.elem["config_SB_page"] = config_SB_page;
 				}
 			}
 	});
@@ -71,18 +83,13 @@ module Eduapp {
 	Global.C.elem["mlayout"] = mlayout;	
 	Global.C.elem["mmenu"] = mmenu;	
 	Global.C.elem["homepage"] = homepage;	
-	Global.C.elem["configpage"] = configpage;	
+	
 	Global.C.elem["toplayout"] = toplayout;
 	Global.C.elem["menulayout"] = menulayout;
 	Global.C.elem["startLayout"] = startLayout;
 	Global.C.elem["sidebarLeftlayout"] = sidebarLeftlayout;
-	Global.C.elem["config_DP_page"] = config_DP_page;
-	Global.C.elem["config_INSC_page"] = config_INSC_page;
-	Global.C.elem["config_SB_page"] = config_SB_page;
-	Global.C.elem["admin_SB_page"] = admin_SB_page;
-	Global.C.elem["adminpage"] = adminpage;
-	Global.C.elem["adminAlunosPage"] = adminAlunosPage;
-	Global.C.elem["adminProfsPage"] = adminProfsPage;
+	
+	
 	
 
 	// shared between dropdown and single mode
@@ -102,17 +109,17 @@ module Eduapp {
   });
 
   	function deleteObject(user){
-  		if(user.profile && user.profile.tipo === "Admin"){
+  		//if(user.profile && user.profile.tipo === "Admin"){
         	delete Global.C.elem["admin_SB_page"];
 			delete Global.C.elem["adminpage"];
 			delete Global.C.elem["adminAlunosPage"];
 			delete Global.C.elem["adminProfsPage"];
-        }else if(user.profile && user.profile.tipo === "Aluno"){
+        //}else if(user.profile && user.profile.tipo === "Aluno"){
         	delete Global.C.elem["configpage"];
         	delete Global.C.elem["config_INSC_page"];
         	delete Global.C.elem["config_DP_page"];
         	delete Global.C.elem["config_SB_page"];
-    	}
+    	//}
   	}
   
   

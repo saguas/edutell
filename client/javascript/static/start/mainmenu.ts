@@ -10,21 +10,27 @@ module Eduapp{
 
 		private title:string;
 		private selected: string[];
+		//private myid: any;
+		//private profileTipo: string = "";
 
 		constructor(tmpl:string,pos:string,tipo:string,router:any)
 	    {
 	        super(tmpl,pos,tipo,router);
 
+	        //this.myid = Meteor.userId();
+	        //this.profileTipo = Meteor.user().profile.tipo;
 	        this.setTitle(CC.Menu.HOME_TITLE);
 	        this.selected = [CC.Menu.HOME];
-	        Session.set("menu_selected",this.selected);
+	        Session.set("menu_selected",this.selected);	        
 	        this.startTemplate();
 	        this.startHelpers();
 
 	    }
 
 	    private startTemplate():void{
-	    	
+
+	    	var self = this;
+
 	    	Template.menu_original.rendered = function() {
 		    	console.log("mainmenu");
 			};
@@ -48,7 +54,7 @@ module Eduapp{
 			    }
 			});
 
-			var self = this;
+			
 			Template.menu_orig.events({
 		        'click .config': function(event) {
 		            
@@ -84,6 +90,7 @@ module Eduapp{
 	    }
 
 	    private startHelpers():void{
+	    	var self = this;
 	    	Handlebars.registerHelper('activar', function(options) {
 			    //mostra o menu login em algumas páginas antes de fazer login
 			   
@@ -99,7 +106,10 @@ module Eduapp{
 
 			Handlebars.registerHelper('userTipo', function(tipo) {
 		       //console.log("user profile ",Meteor.user().profile.tipo, " tipo ",tipo);
-		        if(Meteor.userId() && Meteor.user().profile && Meteor.user().profile.tipo == tipo){
+		       var myid =  Meteor.userId();
+		       var user = Meteor.users.findOne({_id: myid}, {reactive: false});
+
+		        if(myid && user.profile.tipo == tipo){
 		            console.log("login true ");
 		           return true;
 		        }

@@ -5,6 +5,7 @@ module Eduapp{
 	export class ConfigInscricaoPage extends PageTemplate{
 
 		 private cConfigInsc:any;
+		 //private myid:any;
 		 //private refresh: bool;
 
 		 constructor(tmpl:string,pos:string,tipo:string, router:any)
@@ -14,9 +15,10 @@ module Eduapp{
 	        //this.refresh = true;
 	        this.startHelpers();
 	        this.startTemplate();
-	       
+	       	//this.myid = Meteor.userId();
 	        //Session.set("escolas",[""]);
 	        Session.set("escolas",null);
+	        console.log("objecto ConfigInscricaoPage criado");
 	        //Session.set("refresh", true);
 	        this.cConfigInsc = new CConfigInscricao();
 
@@ -28,6 +30,8 @@ module Eduapp{
 	    	Template.config_inscricao.rendered = function() {
 		    	//console.log("config_inscricao.rendered");
 		        $(this.findAll(".chzn-select")).chosen();
+		        //$("#turma").trigger("liszt:updated"); 
+		        //$("#escola").trigger("liszt:updated");
 
 		        $(this.find("#escola")).chosen().change(function(){
 		            //console.log("escola ",$("#escola").val());
@@ -37,11 +41,12 @@ module Eduapp{
 
 			Template.dpFormInsc2.rendered = function(){
 		        var _this = this;
-		        
+		        //var myid = Meteor.userId();
 		        console.log("dpFormInsc2.rendered");
 		        if (! _this.handle) {
 		          _this.handle = Meteor.autorun(function() {
-		                var dados = dP.findOne({id:Meteor.userId()});
+		          		var myid = Meteor.userId();
+		                var dados = dP.findOne({id:myid});
 		                console.log("dados in dpFormInsc2.rendered ",dados);
 		                if(dados){
 		                    $('#escola').val(dados.escolas);
@@ -80,7 +85,9 @@ module Eduapp{
 
 		    Template.dpFormInsc2.EscolaSelected = function(escola){
 		        var ret = false;
-		        var dados = dP.findOne({id:Meteor.userId()});
+		        var myid = Meteor.userId();
+		        //var dados = dP.findOne({id:Meteor.userId()});
+		        var dados = dP.findOne({id:myid});
 
 		        if(dados){
 		            ret = _.contains(dados.escolas,escola.name);
@@ -92,9 +99,11 @@ module Eduapp{
 
 		    Template.dpFormInsc2.Turmas = function(){
 		        //console.log("Turmas ",Escolas.find({name: Session.get("escolas")[0]}).fetch());
-   
+
 		        var myt = [];
-		        var dados = dP.findOne({id:Meteor.userId()}, {reactive: false});
+		        var myid = Meteor.userId();
+		        //var dados = dP.findOne({id:Meteor.userId()}, {reactive: false});
+		        var dados = dP.findOne({id:myid}, {reactive: false});
 
 		        _.each(Session.get("escolas"),function(escola){		        	
 		            var obj = Escolas.find({name: escola},{reactive: false}).fetch();
@@ -125,6 +134,7 @@ module Eduapp{
 		        	});
 		        }
 
+		        console.log("turmas template myt ",myt, " sessiom.get(escolas) ",Session.get("escolas"));
 		        return myt.length > 0? myt: null;
 		        //return Escolas.find({name: Session.get("escolas")[0]}).fetch();
 		    };
@@ -164,7 +174,7 @@ module Eduapp{
 		                        $(tmpl.find('#myModal')).modal();
 		                    }
 		                    else{
-		                        self.cConfigInsc.insert();
+		                        self.cConfigInsc.insert();		                      
 		                        //self.refresh = true;
 		                    }
 		                }
@@ -218,6 +228,7 @@ module Eduapp{
 
         private escolas: string[];
         private turmas: string[];
+        private profileTipo: string;
 
 		constructor() {
 		};
@@ -239,6 +250,7 @@ module Eduapp{
 	        }else{
                 this.escolas = _.without(escolas,"");
                 this.turmas = _.without(turmas,"");
+                this.profileTipo = $('#classes').val();
 	            ret = true;
 	        }
 
@@ -247,17 +259,21 @@ module Eduapp{
 
         insert():void{
 
+        	  var myid = Meteor.userId();
               var obj = {
-                id: Meteor.userId,
+                //id: Meteor.userId,
+                id: myid,
                 escolas:this.escolas,
                 turmas: this.turmas
               };
 
-              console.log("obj ", obj, " userId ",Meteor.userId());
+              console.log("obj ", obj, " userId ", myid);
 
               //dP.insert(obj);
-              dP.update({id:Meteor.userId()},{$set:obj});
-              Meteor.users.update(Meteor.userId(),{$set:{"profile.tipo":$('#classes').val()}});
+              //dP.update({id:Meteor.userId()},{$set:obj});
+              dP.update({id:myid},{$set:obj});
+              //Meteor.users.update(Meteor.userId(),{$set:{"profile.tipo":$('#classes').val()}});
+              Meteor.users.update(myid,{$set:{"profile.tipo":this.profileTipo}});
 
               //Session.set("refresh", true);
            	  
