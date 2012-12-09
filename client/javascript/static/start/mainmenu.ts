@@ -109,7 +109,7 @@ module Eduapp{
 		       	var myid =  Meteor.userId();
 		       	var user = Meteor.users.findOne({_id: myid}, {reactive: false});
 
-		        if(myid && user.profile.tipo == tipo){
+		        if(myid && user && user.profile.tipo == tipo){
 		            console.log("login true ");
 		           return true;
 		        }
