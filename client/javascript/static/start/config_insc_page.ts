@@ -18,7 +18,7 @@ module Eduapp{
 	       	//this.myid = Meteor.userId();
 	        //Session.set("escolas",[""]);
 	        Session.set("escolas",null);
-	        console.log("objecto ConfigInscricaoPage criado");
+	        console.log("**** objecto ConfigInscricaoPage criado");
 	        //Session.set("refresh", true);
 	        this.cConfigInsc = new CConfigInscricao();
 
@@ -106,7 +106,8 @@ module Eduapp{
 		        var dados = dP.findOne({id:myid}, {reactive: false});
 
 		        _.each(Session.get("escolas"),function(escola){		        	
-		            var obj = Escolas.find({name: escola},{reactive: false}).fetch();
+		            //var obj = Escolas.find({name: escola},{reactive: false}).fetch();
+		            var obj = Escolas.find({name: escola}).fetch();
 		           
 		            //console.log("context ",Meteor.deps.Context.current);
 		            
@@ -134,7 +135,7 @@ module Eduapp{
 		        	});
 		        }
 
-		        console.log("turmas template myt ",myt, " sessiom.get(escolas) ",Session.get("escolas"));
+		        //console.log("turmas template myt ",myt, " sessiom.get(escolas) ",Session.get("escolas"));
 		        return myt.length > 0? myt: null;
 		        //return Escolas.find({name: Session.get("escolas")[0]}).fetch();
 		    };
