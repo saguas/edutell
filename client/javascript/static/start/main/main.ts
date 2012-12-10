@@ -61,8 +61,8 @@ module Eduapp {
 		      		adminAlunosPage = new Eduapp.AdminAlunosPage("administracao_alunos",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 		      		adminProfsPage = new Eduapp.AdminProfsPage("administracao_profs",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 					admin_SB_page = new Eduapp.AdminSideBarLeftPage("admin_sidebar-left",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
-					Global.C.elem["admin_SB_page"] = admin_SB_page;
 					Global.C.elem["adminpage"] = adminpage;
+					Global.C.elem["admin_SB_page"] = admin_SB_page;					
 					Global.C.elem["adminAlunosPage"] = adminAlunosPage;
 					Global.C.elem["adminProfsPage"] = adminProfsPage;
 				}else if(user && user.profile && user.profile.tipo === "Aluno"){
@@ -163,7 +163,8 @@ module Eduapp {
 		        },
 		        setConfigSession: function(tmplName, menuName, sidebar, selectArr){
 		        	this.setAdminSession(tmplName, menuName, sidebar, selectArr);
-		        	if(Meteor.user()){
+		        	//if(Meteor.user()){
+		        	if(Meteor.userId()){
 		        			var dados = dP.findOne({id:Meteor.userId()});
 					        if(dados)
 					            Session.set("dadosPessoais",true);
@@ -173,7 +174,9 @@ module Eduapp {
 		        }, 
 		        setAdminSession: function(tmplName, menuName, sidebar, selectArr){
 	    			
-	    			if(Meteor.user()){
+	    			//if(Meteor.user()){
+	    			console.log("userid ",Meteor.userId());
+	    			if(Meteor.userId()){
 	    					Session.set("menu_selected", selectArr);
 			    			//Session.set("pageSideBar",sidebar);
 			    			//Session.set("page",tmplName);
