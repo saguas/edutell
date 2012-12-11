@@ -42,13 +42,37 @@ module Eduapp {
 	var adminpage;
 	var adminAlunosPage;
 	var adminProfsPage;
+	var handle;
+	//var C = false;
 
+	Session.set("userwaslogin",false);
 
+	//se o utilizador fizer refresh no browser então tem de voltar a fazer login
+	if(Meteor.userId()){
+		//userwaslogin = true;
+		Session.set("userwaslogin",true);
+		Meteor.logout(function(){
+				router.setAdminSession("","","",["home"]);
+				//userwaslogin=false;
+				Session.set("userwaslogin",false);
+			});
+		//console.log("teste userlogin and handle is ");	
 
-	Meteor.autorun(function(){
+		//if(Session.get("handle"))
+		//	Session.get("handle").stop();	
+	}
+
+	
+	//o utilizar pode mudar. Um faz login e depois logout. O outro faz login e altera o userid. Daí ser necessário estar dentro de reatividade
+	handle = Meteor.autorun(function(){
+		
 			var myid = Meteor.userId();
 
-			if(myid){
+			//console.log("userwaslogin ",Session.get("userwaslogin"), " myid ", myid);
+			if(myid && !Session.get("userwaslogin")){
+
+				//userwaslogin = false;
+				//console.log("userwaslogin ",userwaslogin);
 			//var user = Meteor.user();
 				var user = Meteor.users.findOne({_id: myid}, {reactive: false});
 			//if(user){
@@ -65,7 +89,7 @@ module Eduapp {
 					Global.C.elem["adminpage"] = adminpage;
 					Global.C.elem["adminAlunosPage"] = adminAlunosPage;
 					Global.C.elem["adminProfsPage"] = adminProfsPage;
-				}else if(user.profile && user.profile.tipo === "Aluno"){
+				}else if(user && user.profile && user.profile.tipo === "Aluno"){
 					deleteObject(user);
 					configpage = new Eduapp.ConfigPage("configuracao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 					config_DP_page = new Eduapp.ConfigDadosPessoaisPage("config_dados_pessoais",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
@@ -80,6 +104,7 @@ module Eduapp {
 	});
 		
 
+	//Session.set("handle", handle);
 	Global.C.elem["mlayout"] = mlayout;	
 	Global.C.elem["mmenu"] = mmenu;	
 	Global.C.elem["homepage"] = homepage;	
@@ -103,6 +128,7 @@ module Eduapp {
             var user = Meteor.user();
             deleteObject(user);
             router.changePage("");
+            console.log("logout...");
       }
      }
     
@@ -140,8 +166,8 @@ module Eduapp {
 		        main: function() {
 
 			        
-			           toplayout.setTemplateName("notop");
-			           mlayout.setTemplateName("home");
+			           	toplayout.setTemplateName("notop");
+			           	mlayout.setTemplateName("home");
 			           
 			            mmenu.setTitle(CC.Menu.HOME_TITLE);
 			            Session.set("menu_selected",["home"]);
@@ -156,9 +182,11 @@ module Eduapp {
 		        nopath: function(path) {
 		            
 		            console.log("nopath ", path);
+		            //this.setAdminSession("","","",["home"]);
+		            this.changePage("");
 		        },
 		        changePage: function(menu_id) {
-		           
+		           	//console.log("menu_id clicked ", menu_id);
 		            this.navigate(menu_id, true);
 		        },
 		        setConfigSession: function(tmplName, menuName, sidebar, selectArr){
@@ -172,8 +200,8 @@ module Eduapp {
 		        	}
 		        }, 
 		        setAdminSession: function(tmplName, menuName, sidebar, selectArr){
-	    			
-	    			if(Meteor.user()){
+	    			//console.log("userid ",Meteor.userId());
+	    			if(/*Meteor.user()*/Meteor.userId()){
 	    					Session.set("menu_selected", selectArr);
 			    			//Session.set("pageSideBar",sidebar);
 			    			//Session.set("page",tmplName);
@@ -189,6 +217,7 @@ module Eduapp {
 						Session.set("menu_selected", selectArr);
 		    			//Session.set("pageSideBar",sidebar);
 		    			//Session.set("page",tmplName);
+		    			
 		    			Global.C.elem["sidebarLeftlayout"].setTemplateName("");
 		    			Global.C.elem["toplayout"].setTemplateName("notop");
 		    			//console.log("toplayout",Global.C.elem["toplayout"]);

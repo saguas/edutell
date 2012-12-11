@@ -31,9 +31,11 @@ module Eduapp{
 	    	
 	    		var Router = this.getRouter();
 	    		var self = this;
+
+	    		//console.log("Router config started");
 	    		Router.route("config", "config", function() {
 
-			        console.log("config ");
+			        //console.log("config ");
 			        
 			        Router.setConfigSession("configuracao",CC.Menu.CONFIG_TITLE,"config_sidebar-left",["config","config_dados_pessoais"]);
 
