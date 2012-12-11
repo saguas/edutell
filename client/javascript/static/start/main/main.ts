@@ -201,7 +201,7 @@ module Eduapp {
 		        }, 
 		        setAdminSession: function(tmplName, menuName, sidebar, selectArr){
 	    			//console.log("userid ",Meteor.userId());
-	    			if(Meteor.user()){
+	    			if(/*Meteor.user()*/Meteor.userId()){
 	    					Session.set("menu_selected", selectArr);
 			    			//Session.set("pageSideBar",sidebar);
 			    			//Session.set("page",tmplName);
