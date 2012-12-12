@@ -21,7 +21,8 @@ module Eduapp{
 	       	this.para = para;
 	       	this.corpo = corpo;
 	       	this.assunto = assunto;
-	       	//this.html = html;
+	       	if(html)
+	       		this.html = html;
 	    }
 
 	    //cc; bcc; replyTo devem ser enviados por opt;
