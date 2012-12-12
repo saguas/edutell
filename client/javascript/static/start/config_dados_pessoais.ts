@@ -95,7 +95,7 @@ module Eduapp{
 		      });
 		    }
 		      if(!this.handleEdit){
-		            console.log("handleEdit ", this.handleEdit);
+		            //console.log("handleEdit ", this.handleEdit);
 		            this.handleEdit = self.disableFormElemnt();
 		        }
 		        $('a[data-toggle="pill"]').on('show', function (e) {

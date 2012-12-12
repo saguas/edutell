@@ -14,6 +14,7 @@
 ///<reference path='../../../../../../Definitions/mydefs/menulayout.d.ts'/>
 ///<reference path='../../../../../../Definitions/mydefs/toplayout.d.ts'/>
 ///<reference path='../../../../../../Definitions/mydefs/mainmenu.d.ts'/>
+///<reference path='../../../../../../Definitions/mydefs/email.d.ts'/>
 
 //import Global = Eduapp.Global;
 //import CC = Eduapp.Constantes;
@@ -62,7 +63,27 @@ module Eduapp {
 		//	Session.get("handle").stop();	
 	}
 
-	
+	//envio de email: Fazer  export MAIL_URL=smtp://luisfmfernandes:199490@smtp.googlemail.com/
+	// ou colocar em /etc/environment a MAIL_URL
+	//var mail = new Email("luisfmfernandes@gmail.com","lenarute@gmail.com",
+	//	"olá. <b>Muitos Mais Beijos.<b>","teste5",true);
+	//mail.sendMail();
+	//mail.sendMail({from:"luisfmfernandes@gmail.com", to:"lenarute@gmail.com",
+      //                html:"olá. <b>Muitos Mais Beijos.<b>",subject:"teste4"});
+
+	/*
+	 Meteor.call("sendMail",null,"luisfmfernandes@gmail.com","lenarute@gmail.com",
+	 	"olá. <b>Muitos Mais Beijos.<b>","teste4",true,function(error, result){
+        
+        if(alert-error){
+           	console.log("email error ");
+        }else{
+            console.log("email enviado !!! ");
+            //self.refresh = true;
+        }
+    });
+	*/
+
 	//o utilizar pode mudar. Um faz login e depois logout. O outro faz login e altera o userid. Daí ser necessário estar dentro de reatividade
 	handle = Meteor.autorun(function(){
 		

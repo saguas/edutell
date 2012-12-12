@@ -19,6 +19,23 @@ Meteor.publish("dadosPessoais", function () {
   return null;
 });
 
+Meteor.methods({
+    sendMail: function(opt,de,para,corpo,assunto,html){
+      
+          if(!opt){
+              if(html){
+                  Email.send({from:de, to:para,
+                    html:corpo,subject:assunto});
+              }else{
+                  Email.send({from:de, to:para,
+                      text:corpo,subject:assunto});
+              }
+            }else{
+                Email.send(opt);
+            }
+      }
+  
+});
 
 Meteor.startup(function() {
   
