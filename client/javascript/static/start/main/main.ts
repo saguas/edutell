@@ -65,9 +65,9 @@ module Eduapp {
 
 	//envio de email: Fazer  export MAIL_URL=smtp://luisfmfernandes:199490@smtp.googlemail.com/
 	// ou colocar em /etc/environment a MAIL_URL
-	var mail = new Email("luisfmfernandes@gmail.com","lenarute@gmail.com",
-		"olá. <b>Muitos Mais Beijos.<b>","teste9");
-	mail.sendMail();
+	//var mail = new Email("luisfmfernandes@gmail.com","lenarute@gmail.com",
+	//	"olá. <b>Muitos Mais Beijos.<b>","teste9");
+	//mail.sendMail();
 	//mail.sendMail({from:"luisfmfernandes@gmail.com", to:"lenarute@gmail.com",
       //                html:"olá. <b>Muitos Mais Beijos.<b>",subject:"teste4"});
 
