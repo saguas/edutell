@@ -4,7 +4,64 @@ and open the template in the editor.
 -->
 <template name="administracao_alunos">
     
-    <p>Adminstração Alunos</p>
+    <select id="adminAlunosPesquisa" data-placeholder="Escolha uma escola e turma ..." class="chzn-select" multiple style="width:350px;" tabindex="3">
+    		<option value=""></option> 
+                {{#each Escola}}
+                   <optgroup label="{{name}}">
+
+	                    {{#each Turma this}}
+	                      <option value="{{this.name}};{{this.turma}}" {{selected}}>{{this.turma}}</option>
+	                    {{/each}}
+            	   <optgroup>
+                {{/each}}
+	</select>
+
+	<select id="AdminEstadoPesquisa" data-placeholder="Escolha um Estado..." class="chzn-select" multiple style="width:350px;" tabindex="2">
+  			  <option value=""></option> 
+		      {{#each Estado}}
+            		<option value="{{name}}" {{#if EscolaSelected this}} selected {{/if}}>{{name}}</option>
+          	  {{/each}}
+	</select>
+
+	<p></p>
+	<p></p>
+	<p></p>
+    {{>tableAlunos}}
     
     
+</template>
+
+
+<template name="tableAlunos">
+		<form class="form-search">
+		  <div class="input-append">
+		    <input id="findAluno" class="search-query" type="text" data-provide="typeahead" placeholder="procurar por aluno">
+		    <button id="btnfindAluno" type="submit" class="btn">Limpar</button>
+		  </div>		  
+		</form>
+    	
+		<table id="tableadminalunos" class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Escola</th>
+                  <th>Turma</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyadminalunos">
+            
+              </tbody>
+    </table>
+    
+    {{{page}}}
+    
+</template>
+
+<template name="paginacao">
+    <div class="pagination pagination-mini pagination-right">
+          <ul id="pagesul">
+          </ul>
+      </div>
+
 </template>

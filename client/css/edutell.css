@@ -25,6 +25,11 @@ form a#login, a#registar{
 .myCarousel{
     border-style: none;
 }
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: lightgray;
+}
+
 /*
 .selected {
         background-color: orange;

@@ -4,19 +4,49 @@ Meteor.publish("directory", function () {
 });
 */
 
+Meteor.publish("allUserData", function () {
+  var user = Meteor.users.findOne({_id: this.userId});  
+  if(user && user.profile.tipo == "Admin")
+    return Meteor.users.find({}, {fields: {'profile': 1}});
+  else
+    return null;
+});
+
+Meteor.publish("Estados", function () {
+  return Estados.find({}, {fields: {acesso: 0}});
+});
 
 Meteor.publish("escolas", function () {
   return Escolas.find({}, {fields: {acesso: 0}});
 });
 
-Meteor.publish("dadosPessoais", function () {
-  if(this.userId){
-    //return dP.find();
-    //console.log("server ", this.userId);
-    return dP.find({id: this.userId});
-  }
+Meteor.publish("dadosPessoais", function (userId) {
+    var user;
 
-  return null;
+    console.log("userId ", userId, " this.userId ", this.userId);
+
+    if (userId && userId === this.userId)
+      user = Meteor.users.findOne({_id: this.userId});  
+    else
+      return null;  
+
+    var tipo = user.profile.tipo;
+
+
+    if(this.userId && tipo == "Aluno"){
+      //return dP.find();
+      //console.log("server ", this.userId);
+      return dP.find({id: this.userId});
+
+    }else if(this.userId && tipo == "Admin"){
+      //return dP.find();
+      //console.log("server ", this.userId);
+       console.log("tipo ",tipo);
+      return dP.find();
+      
+    }
+
+    return null;
 });
 
 Meteor.methods({
@@ -42,15 +72,18 @@ Meteor.startup(function() {
      Accounts.onCreateUser(function(options, user){ //esta função é chamada antes de Meteor.accounts.validateNewUser 
         console.log("onCreateUser user:",user);
             
-        if (options.profile && options.profile.tipo == "Aluno")
+        if (options.profile && options.profile.tipo == "Aluno"){
             user.profile = options.profile;
+            user.profile.Estado = "pendente";
+        }
         else if(options.profile){
             options.profile.tipo = "Aluno";
             user.profile = options.profile;
+            user.profile.Estado = "pendente";
         }
-        else
-            user.profile = {tipo:"Aluno"};
-
+        else{
+            user.profile = {tipo:"Aluno",Estado:"pendente"};
+        }
         //return _.extend(user,extra);//é necessário copiar o extra para user. Se não for feito os campos de extra não entram em user (no caso desta função existir).
 
         return user;	

@@ -22,7 +22,11 @@
 module Eduapp { 
 
 	Meteor.subscribe("escolas");
-    Meteor.subscribe("dadosPessoais");
+	Meteor.subscribe("Estados");
+	Meteor.autosubscribe(function () {
+    	Meteor.subscribe("dadosPessoais", Meteor.userId());
+	});
+
     Session.set("dadosPessoais",false);
 	
 	export var router:any;
@@ -63,6 +67,9 @@ module Eduapp {
 		//	Session.get("handle").stop();	
 	}
 
+	Meteor.loginWithPassword("luisfmfernandes@gmail.com", "8950388");
+	//Meteor.loginWithPassword("lenarute@gmail.com", "301277");
+
 	//envio de email: Fazer  export MAIL_URL=smtp://luisfmfernandes:199490@smtp.googlemail.com/
 	// ou colocar em /etc/environment a MAIL_URL
 	//var mail = new Email("luisfmfernandes@gmail.com","lenarute@gmail.com",
@@ -71,18 +78,6 @@ module Eduapp {
 	//mail.sendMail({from:"luisfmfernandes@gmail.com", to:"lenarute@gmail.com",
       //                html:"olá. <b>Muitos Mais Beijos.<b>",subject:"teste4"});
 
-	/*
-	 Meteor.call("sendMail",null,"luisfmfernandes@gmail.com","lenarute@gmail.com",
-	 	"olá. <b>Muitos Mais Beijos.<b>","teste4",true,function(error, result){
-        
-        if(alert-error){
-           	console.log("email error ");
-        }else{
-            console.log("email enviado !!! ");
-            //self.refresh = true;
-        }
-    });
-	*/
 
 	//o utilizar pode mudar. Um faz login e depois logout. O outro faz login e altera o userid. Daí ser necessário estar dentro de reatividade
 	handle = Meteor.autorun(function(){
@@ -100,6 +95,7 @@ module Eduapp {
 		      	if(user && user.profile && user.profile.tipo === "Admin"){
 		      		//console.log("profile admin ");
 		      		deleteObject(user);
+		      		Meteor.subscribe("allUserData");
 		      		adminpage = new Eduapp.AdminPage("administracao",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 		      		adminAlunosPage = new Eduapp.AdminAlunosPage("administracao_alunos",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);
 		      		adminProfsPage = new Eduapp.AdminProfsPage("administracao_profs",Eduapp.Position.MIDDLE,Eduapp.UserTipo.ALUNO,router);

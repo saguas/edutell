@@ -3,7 +3,11 @@
 
 Escolas = new Meteor.Collection("Escolas");
 dP = new Meteor.Collection("dadosPessoais");
+Estados = new Meteor.Collection("Estados");
 
+Estados.allow({
+
+  });
 
 Meteor.users.deny({
 
@@ -14,7 +18,7 @@ Meteor.users.deny({
       if(fields.length == 1 && fields[0] == "profile"){
         _.each(_.values(modifier), function(val){
               console.log("val ", _.values(val));
-              if(_.values(val)[0] == "Prof")
+              if(_.values(val)[0] == "Prof" || _.values(val)[0] == "Admin") 
                 ret = true;
           });
       }else
@@ -62,11 +66,11 @@ Escolas.allow({
 dP.allow({
   insert: function (userId, escola) {
 
-      return true; // no cowboy inserts -- use createParty method
+      return true; 
   },
   update: function (userId, docs, fields, modifier) {
       console.log("userId ",userId);
-      return userId? true: false;//true; // no cowboy inserts -- use createParty method
+      return userId? true: false;
   },
   remove: function (userId, parties) {
       var user = Meteor.users.findOne({_id: userId});  
